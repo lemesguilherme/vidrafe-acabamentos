@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import { company, contacts } from "@/data/site";
+import { company, contacts, ogImage } from "@/data/site";
 
 // Fontes via next/font (ver design.md): Playfair para titulos, Inter para corpo.
 const playfair = Playfair_Display({
@@ -18,8 +18,8 @@ const inter = Inter({
   display: "swap",
 });
 
-// Dominio provisorio — atualizar na hora do deploy na Vercel.
-const SITE_URL = "https://vidrafe.vercel.app";
+// Dominio vem de company.siteUrl (data/site.ts): trocar la no deploy.
+const SITE_URL = company.siteUrl;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -39,15 +39,22 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: SITE_URL,
+    url: "/",
     siteName: company.name,
     title: "Vidrafe Acabamentos | Vidraçaria e Forros em Santa Bárbara de Goiás",
     description:
       "Vidraçaria, box, esquadrias, forro PVC e drywall em Santa Bárbara de Goiás. Orçamento rápido pelo WhatsApp.",
-    // TODO (Fase 7): adicionar imagem OG real 1200x630 com dimensoes corretas.
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vidrafe Acabamentos | Vidraçaria e Forros em Santa Bárbara de Goiás",
+    description:
+      "Vidraçaria, box, esquadrias, forro PVC e drywall em Santa Bárbara de Goiás. Orçamento rápido pelo WhatsApp.",
+    images: [ogImage],
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: SITE_URL },
+  alternates: { canonical: "/" },
 };
 
 // JSON-LD LocalBusiness para SEO local (ver prd.md).
@@ -97,12 +104,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${playfair.variable} ${inter.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        {/* Fontes ja vem do proprio site via next/font; so o mapa e externo. */}
         <link rel="preconnect" href="https://www.google.com" />
         <script
           type="application/ld+json"

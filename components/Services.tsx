@@ -46,16 +46,19 @@ const icons: Record<ServiceItem["icon"], LucideIcon> = {
 function ServiceCard({ item }: { item: ServiceItem }) {
   const Icon = icons[item.icon];
   return (
-    <li className="service-card rounded-md bg-white p-5 shadow-sm">
-      <span className="flex h-11 w-11 items-center justify-center rounded-md bg-gold">
+    // Mobile: icone ao lado do texto (card baixo). A partir do sm: icone no topo.
+    <li className="service-card flex items-center gap-4 rounded-md bg-white p-4 shadow-sm sm:block sm:p-5">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-gold">
         <Icon className="h-5 w-5 text-navy" aria-hidden="true" />
       </span>
-      <h4 className="mt-4 font-heading text-lg font-semibold leading-snug text-navy">
-        {item.label}
-      </h4>
-      {item.detail && (
-        <p className="mt-1 font-body text-sm text-navy/70">{item.detail}</p>
-      )}
+      <div>
+        <h4 className="font-heading text-lg font-semibold leading-snug text-navy sm:mt-4">
+          {item.label}
+        </h4>
+        {item.detail && (
+          <p className="mt-0.5 font-body text-sm text-navy/70 sm:mt-1">{item.detail}</p>
+        )}
+      </div>
     </li>
   );
 }

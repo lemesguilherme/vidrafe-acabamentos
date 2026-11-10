@@ -5,6 +5,8 @@
 */
 
 export const company = {
+  // Dominio provisorio: atualizar pelo dominio final na hora do deploy.
+  siteUrl: "https://vidrafe-acabamentos.vercel.app",
   name: "Vidrafe Acabamentos",
   shortName: "Vidrafe",
   city: "Santa Bárbara de Goiás",
@@ -25,7 +27,18 @@ export const company = {
 } as const;
 
 /*
-  Dois profissionais, dois numeros. O destino de cada CTA depende do contexto —
+  Imagem Open Graph gerada por scripts/gerar-assets.mjs (npm run assets).
+  As dimensoes declaradas batem com o arquivo (bug da v1).
+*/
+export const ogImage = {
+  url: "/og-image.jpg",
+  width: 1200,
+  height: 630,
+  alt: "Vidrafe Acabamentos, vidraçaria e acabamentos em Santa Bárbara de Goiás",
+};
+
+/*
+  Dois profissionais, dois numeros. O destino de cada CTA depende do contexto:
   ver tabela de roteamento no prd.md. Padrao do site = Joel Júnior.
 */
 export const contacts = {
@@ -43,7 +56,7 @@ export const contacts = {
   },
 } as const;
 
-// Mensagens pre-preenchidas por contexto (obrigatorio — foi falha na v1).
+// Mensagens pre-preenchidas por contexto (obrigatorio, foi falha na v1).
 export const waMessages = {
   default: "Olá! Vi o site da Vidrafe e gostaria de pedir um orçamento.",
   vidracaria:

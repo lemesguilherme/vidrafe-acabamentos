@@ -21,7 +21,8 @@ const phones = [
 ];
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
-const linkClass = "transition-colors hover:text-gold";
+// py-1 aumenta a area de toque no celular sem mudar o visual.
+const linkClass = "inline-block py-1 transition-colors hover:text-gold";
 const titleClass = "font-heading text-lg font-semibold text-gold";
 
 // Ano gerado na build (site estatico): atualiza a cada novo deploy.
@@ -30,8 +31,8 @@ const year = new Date().getFullYear();
 export default function Footer() {
   return (
     <footer className="bg-darkfooter font-body text-white/75">
-      <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-4">
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-12 px-5 py-16 sm:px-8 lg:grid-cols-12 lg:gap-8">
+        <div className="col-span-2 lg:col-span-4">
           <a href="/#inicio" className="inline-flex items-center gap-3 rounded-md">
             <img
               src="/logo.jpg"
@@ -51,9 +52,9 @@ export default function Footer() {
           </p>
         </div>
 
-        <nav aria-label="Rodapé" className="lg:col-span-2">
+        <nav aria-label="Rodapé" className="col-span-1 lg:col-span-2">
           <h2 className={titleClass}>Navegação</h2>
-          <ul className="mt-4 flex flex-col gap-2.5 text-sm">
+          <ul className="mt-3 flex flex-col gap-1 text-sm">
             {navLinks.map((link) => (
               <li key={link.href}>
                 {/* Prefixo "/" para funcionar tambem fora da home. */}
@@ -65,9 +66,9 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <div className="lg:col-span-3">
+        <div className="col-span-1 lg:col-span-3">
           <h2 className={titleClass}>Serviços</h2>
-          <ul className="mt-4 flex flex-col gap-2.5 text-sm">
+          <ul className="mt-3 flex flex-col gap-1 text-sm">
             {footerServices.map((item) => (
               <li key={item.label}>
                 <a href="/#servicos" className={linkClass}>
@@ -78,7 +79,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="lg:col-span-3">
+        <div className="col-span-2 lg:col-span-3">
           <h2 className={titleClass}>Contato</h2>
           <ul className="mt-4 flex flex-col gap-4 text-sm">
             {phones.map(({ contact, area, href }) => (

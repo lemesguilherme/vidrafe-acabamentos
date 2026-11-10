@@ -129,7 +129,7 @@ export default function Gallery() {
             role="tablist"
             aria-label="Profissional"
             onKeyDown={onTabKeyDown}
-            className="flex gap-6 overflow-x-auto border-b border-navy/15 sm:gap-10"
+            className="flex gap-6 overflow-x-auto overflow-y-hidden border-b border-navy/15 sm:gap-10"
           >
             {tabKeys.map((key, i) => {
               const selected = key === tab;

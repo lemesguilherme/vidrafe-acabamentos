@@ -1,12 +1,25 @@
 import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 import Footer from "@/components/Footer";
-import { company, contacts } from "@/data/site";
+import { company, contacts, ogImage } from "@/data/site";
 
+const title = `Política de Privacidade | ${company.name}`;
+const description = `Como o site da ${company.name} trata dados de visitantes.`;
+
+// trailingSlash: true no next.config, entao a URL canonica termina em "/".
 export const metadata: Metadata = {
-  title: `Política de Privacidade | ${company.name}`,
-  description: `Como o site da ${company.name} trata dados de visitantes.`,
-  alternates: { canonical: "/politica-de-privacidade" },
+  title,
+  description,
+  alternates: { canonical: "/politica-de-privacidade/" },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "/politica-de-privacidade/",
+    siteName: company.name,
+    title,
+    description,
+    images: [ogImage],
+  },
 };
 
 const sectionTitle = "mt-10 font-heading text-2xl font-bold text-navy";

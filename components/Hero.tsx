@@ -51,7 +51,8 @@ export default function Hero() {
         className="absolute inset-0 -z-10 bg-gradient-to-t from-navy via-navy/60 to-transparent"
       />
 
-      <div className="mx-auto w-full max-w-6xl px-5 pb-16 pt-32 sm:px-8 sm:pb-24 lg:pb-28">
+      {/* pb maior no mobile: o botao flutuante nao cobre a linha de horario. */}
+      <div className="mx-auto w-full max-w-6xl px-5 pb-28 pt-32 sm:px-8 sm:pb-24 lg:pb-28">
         <div className="max-w-3xl">
           <p className="hero-eyebrow flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-gold sm:text-sm">
             <span className="block h-[2px] w-8 bg-brick" aria-hidden="true" />
@@ -89,7 +90,9 @@ export default function Hero() {
           </div>
 
           <p className="hero-meta mt-8 font-body text-sm text-white/65">
-            {company.hours.weekdays} · {company.hours.saturday}
+            <span className="block sm:inline">{company.hours.weekdays}</span>
+            <span className="hidden sm:inline"> · </span>
+            <span className="block sm:inline">{company.hours.saturday}</span>
           </p>
         </div>
       </div>
