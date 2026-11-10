@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
+import Gallery from "@/components/Gallery";
 
 export default function Home() {
   return (
@@ -11,7 +12,8 @@ export default function Home() {
         <Hero />
         <About />
         <Services />
-        {/* Proximas secoes (galeria, diferenciais, localizacao...) entram nas fases seguintes. */}
+        <Gallery />
+        {/* Proximas secoes (diferenciais, localizacao, CTA final...) entram nas fases seguintes. */}
       </main>
     </>
   );

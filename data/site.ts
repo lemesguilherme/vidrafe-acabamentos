@@ -94,27 +94,53 @@ export const services = {
   MapPin, ShieldCheck, Clock, Hammer
 */
 
-// Abas e categorias da galeria. Sem filtro "Todos" (regra do briefing).
-export const gallery = {
+/*
+  Galeria: abas por profissional e categorias. Sem filtro "Todos" (regra do briefing).
+
+  COMO ADICIONAR AS FOTOS REAIS:
+  1. Salvar os arquivos em public/galeria/, nomeados por categoria e numero
+     (ex: vidros-01.jpg, vidros-02.jpg, box-01.jpg, drywall-01.jpg).
+  2. Colocar os caminhos no array `images` da categoria:
+       images: ["/galeria/vidros-01.jpg", "/galeria/vidros-02.jpg"]
+  Pronto. A categoria troca sozinha os placeholders pelas fotos clicaveis
+  com lightbox. `alt` e a descricao base usada no texto alternativo de cada foto.
+
+  `color` e a cor do placeholder enquanto nao ha foto: paleta escura e terrosa
+  derivada do navy e do brick, uma cor distinta por categoria.
+*/
+export type GalleryCategory = {
+  name: string;
+  alt: string;
+  color: string;
+  images: string[];
+};
+
+export type GalleryTab = {
+  label: string;
+  owner: keyof typeof contacts;
+  categories: GalleryCategory[];
+};
+
+export const gallery: Record<"vidracaria" | "forros", GalleryTab> = {
   vidracaria: {
     label: "Joel · Vidraçaria",
-    owner: "joel" as const,
+    owner: "joel",
     categories: [
-      "Vidros",
-      "Espelhos",
-      "Box p/ Banheiro",
-      "Portas & Janelas",
-      "Esquadrias",
+      { name: "Vidros", alt: "Vidro temperado instalado pela Vidrafe", color: "#2C3D5B", images: [] },
+      { name: "Espelhos", alt: "Espelho sob medida instalado pela Vidrafe", color: "#4A5363", images: [] },
+      { name: "Box p/ Banheiro", alt: "Box de banheiro em vidro instalado pela Vidrafe", color: "#2F4A4C", images: [] },
+      { name: "Portas & Janelas", alt: "Porta ou janela de vidro instalada pela Vidrafe", color: "#5C2B27", images: [] },
+      { name: "Esquadrias", alt: "Esquadria de alumínio instalada pela Vidrafe", color: "#5A5A42", images: [] },
     ],
   },
   forros: {
     label: "Joel Júnior · Forros & Drywall",
-    owner: "junior" as const,
+    owner: "junior",
     categories: [
-      "Forro PVC Branco",
-      "Forro Amadeirado",
-      "Drywall",
-      "Luminárias LED",
+      { name: "Forro PVC Branco", alt: "Forro PVC branco instalado pela Vidrafe", color: "#6B6A63", images: [] },
+      { name: "Forro Amadeirado", alt: "Forro PVC amadeirado instalado pela Vidrafe", color: "#6A4630", images: [] },
+      { name: "Drywall", alt: "Parede ou sanca de drywall feita pela Vidrafe", color: "#46423F", images: [] },
+      { name: "Luminárias LED", alt: "Iluminação em LED instalada pela Vidrafe", color: "#6E5F26", images: [] },
     ],
   },
-} as const;
+};
