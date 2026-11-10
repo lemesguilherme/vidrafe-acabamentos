@@ -144,3 +144,52 @@ export const gallery: Record<"vidracaria" | "forros", GalleryTab> = {
     ],
   },
 };
+
+// Diferenciais. Usam os 4 icones reservados, que nao aparecem em servicos.
+export const diferenciais = [
+  {
+    title: "Daqui de Santa Bárbara",
+    text: "A loja fica na Av. Castelo Branco e a gente atende a cidade e a região. Precisou de um ajuste depois, é só chamar.",
+    icon: "MapPin",
+  },
+  {
+    title: "Feito com capricho",
+    text: "Cada peça é medida na sua obra e instalada por quem faz isso todo dia, com acabamento conferido antes de ir embora.",
+    icon: "Hammer",
+  },
+  {
+    title: "Conversa direta com o dono",
+    text: "Você fala e acerta o preço direto com o Joel ou o Joel Júnior. Não tem vendedor nem atendente no meio do caminho.",
+    icon: "ShieldCheck",
+  },
+  {
+    title: "Orçamento pelo WhatsApp",
+    text: "Manda a foto ou a medida do lugar pelo WhatsApp e recebe a resposta no mesmo dia.",
+    icon: "Clock",
+  },
+] as const;
+
+/*
+  DEPOIMENTOS ILUSTRATIVOS: textos de exemplo, NAO sao de clientes reais.
+  Servem so para montar o layout. Para trocar pelos verdadeiros:
+  1. Pedir autorizacao do cliente para publicar o texto e o nome.
+  2. Substituir `quote` pela fala real e `author` pelo nome (ex: "Maria, Residencial Tempo Novo").
+  3. Quando todos forem reais, mudar `depoimentosIlustrativos` para false:
+     o selo "Depoimento ilustrativo" some da secao automaticamente.
+*/
+export const depoimentosIlustrativos = true;
+
+export const depoimentos = [
+  {
+    quote: "Fizeram o box do banheiro e o espelho da sala. Mediram certinho, instalaram no dia combinado e deixaram tudo limpo.",
+    author: "Cliente em Santa Bárbara de Goiás",
+  },
+  {
+    quote: "Coloquei forro PVC amadeirado na casa toda com o Júnior. Ficou bonito demais e o preço foi o que ele passou no WhatsApp.",
+    author: "Cliente da região",
+  },
+  {
+    quote: "Precisava trocar as janelas da loja rápido. O Joel foi lá no mesmo dia, mediu e resolveu na semana.",
+    author: "Comerciante em Santa Bárbara de Goiás",
+  },
+] as const;
