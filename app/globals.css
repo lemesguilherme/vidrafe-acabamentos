@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Base global enxuta. Regra do projeto (ver regras.md):
+  NAO definir cor de heading global — cor vem de classe utilitaria por contexto,
+  para nunca repetir o bug da v1 (navy sobre navy = invisivel).
+*/
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-navy font-body antialiased;
+  }
+
+  /* Headings herdam apenas a familia serif e o balanceamento de linha. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading;
+    text-wrap: balance;
+  }
+
+  /* Ancoras da navbar sticky nao ficam escondidas sob o header. */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  /* Foco visivel e consistente em todos os interativos. */
+  :focus-visible {
+    outline: 2px solid theme("colors.gold");
+    outline-offset: 2px;
+  }
+}
+
+/* Respeitar quem pede menos movimento. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
