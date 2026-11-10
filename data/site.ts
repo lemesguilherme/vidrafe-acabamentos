@@ -66,27 +66,33 @@ export const services = {
     title: "Vidraçaria & Esquadrias",
     owner: "joel" as const,
     items: [
-      "Vidros (temperados, comuns, laminados)",
-      "Espelhos sob medida",
-      "Portas (pivotantes, de correr, de abrir)",
-      "Janelas residenciais e comerciais",
-      "Box para banheiro (canto, frontal, especiais)",
-      "Armário para pia em vidro",
-      "Esquadrias em alumínio",
-      "Cobertura em policarbonato",
+      { label: "Vidros", detail: "temperados, comuns e laminados", icon: "Square" },
+      { label: "Espelhos", detail: "sob medida", icon: "RectangleVertical" },
+      { label: "Portas", detail: "pivotantes, de correr e de abrir", icon: "DoorOpen" },
+      { label: "Janelas", detail: "residenciais e comerciais", icon: "AppWindow" },
+      { label: "Box para banheiro", detail: "canto, frontal e especiais", icon: "ShowerHead" },
+      { label: "Armário para pia", detail: "em vidro, sob medida", icon: "Container" },
+      { label: "Esquadrias em alumínio", detail: "", icon: "Frame" },
+      { label: "Cobertura em policarbonato", detail: "", icon: "Umbrella" },
     ],
   },
   forros: {
     title: "Forros & Drywall",
     owner: "junior" as const,
     items: [
-      "Forro PVC (branco e amadeirado)",
-      "Drywall (divisórias, sancas, rebaixamentos)",
-      "Luminárias LED (spots, painéis, fitas)",
-      "Acabamentos em geral",
+      { label: "Forro PVC", detail: "branco e amadeirado", icon: "PanelTop" },
+      { label: "Drywall", detail: "divisórias, sancas e rebaixamentos", icon: "BrickWall" },
+      { label: "Luminárias LED", detail: "spots, painéis e fitas", icon: "Lightbulb" },
+      { label: "Acabamentos em geral", detail: "", icon: "PaintRoller" },
     ],
   },
 } as const;
+
+/*
+  Icones Lucide reservados para os diferenciais (fase futura).
+  Nao usar em servicos para nunca repetir icone entre secoes.
+  MapPin, ShieldCheck, Clock, Hammer
+*/
 
 // Abas e categorias da galeria. Sem filtro "Todos" (regra do briefing).
 export const gallery = {
