@@ -6,6 +6,9 @@ import Gallery from "@/components/Gallery";
 import Diferenciais from "@/components/Diferenciais";
 import Depoimentos from "@/components/Depoimentos";
 import Localizacao from "@/components/Localizacao";
+import CtaFinal from "@/components/CtaFinal";
+import Footer from "@/components/Footer";
+import BotaoFlutuante from "@/components/BotaoFlutuante";
 
 export default function Home() {
   return (
@@ -19,8 +22,10 @@ export default function Home() {
         <Diferenciais />
         <Depoimentos />
         <Localizacao />
-        {/* Proximas secoes (CTA final, footer, botao flutuante...) entram nas fases seguintes. */}
+        <CtaFinal />
       </main>
+      <Footer />
+      <BotaoFlutuante />
     </>
   );
 }
