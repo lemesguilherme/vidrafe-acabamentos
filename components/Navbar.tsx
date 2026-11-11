@@ -14,12 +14,37 @@ import { waLink } from "@/lib/whatsapp";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string>(navLinks[0].href);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  /*
+    Scrollspy: observa as secoes do menu e destaca o link da que esta cruzando
+    a faixa central da tela. Entre secoes fora do menu (diferenciais,
+    depoimentos) o ultimo destaque permanece. So troca uma classe, sem
+    animacao; a transicao de cor some com prefers-reduced-motion.
+  */
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => document.querySelector<HTMLElement>(link.href))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0 || !("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   const solid = scrolled || open;
@@ -45,9 +70,9 @@ export default function Navbar() {
           <img
             src="/logo.jpg"
             alt=""
-            width={46}
-            height={46}
-            className="h-[46px] w-[46px] rounded-md object-cover"
+            width={56}
+            height={56}
+            className="h-12 w-12 rounded-md object-cover sm:h-14 sm:w-14"
           />
           <span
             className={`font-heading text-2xl font-bold transition-colors ${
@@ -59,20 +84,31 @@ export default function Navbar() {
         </a>
 
         <ul className="hidden items-center gap-7 lg:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className={`font-body text-sm font-medium transition-colors hover:text-gold ${
-                  solid
-                    ? "text-navy focus-visible:outline-navy"
-                    : "text-white"
-                }`}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const current = active === link.href;
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  aria-current={current ? "location" : undefined}
+                  className={`relative py-2 font-body text-[15px] font-semibold transition-colors hover:text-gold motion-reduce:transition-none ${
+                    solid
+                      ? "text-navy focus-visible:outline-navy"
+                      : "text-white"
+                  }`}
+                >
+                  {link.label}
+                  {/* Underline da secao atual: brick no fundo branco, gold sobre o hero. */}
+                  <span
+                    aria-hidden="true"
+                    className={`absolute inset-x-0 -bottom-0.5 h-[3px] rounded-full transition-opacity motion-reduce:transition-none ${
+                      solid ? "bg-brick" : "bg-gold"
+                    } ${current ? "opacity-100" : "opacity-0"}`}
+                  />
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-3">
@@ -113,17 +149,27 @@ export default function Navbar() {
           className="border-t border-navy/10 bg-white px-5 pb-6 pt-2 sm:px-8 lg:hidden"
         >
           <ul className="flex flex-col">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block border-b border-navy/10 py-3.5 font-body text-base font-medium text-navy transition-colors hover:text-brick focus-visible:outline-navy"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const current = active === link.href;
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={current ? "location" : undefined}
+                    className={`flex items-center gap-3 border-b border-navy/10 py-3.5 font-body text-base font-semibold transition-colors hover:text-brick focus-visible:outline-navy motion-reduce:transition-none ${
+                      current ? "text-brick" : "text-navy"
+                    }`}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`h-4 w-[3px] rounded-full ${current ? "bg-brick" : "bg-transparent"}`}
+                    />
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
           <a
             href={ctaHref}

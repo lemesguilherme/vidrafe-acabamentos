@@ -4,6 +4,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { Camera } from "lucide-react";
 import { company, contacts } from "@/data/site";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -40,21 +41,38 @@ export default function About() {
           */}
           {/* <img src="/sobre-equipe.jpg" alt="Joel e Joel Júnior na loja da Vidrafe em Santa Bárbara de Goiás" width={800} height={1000} loading="lazy" className="aspect-[4/5] w-full rounded-md object-cover" /> */}
 
-          {/* Placeholder enquanto a foto real nao chega. */}
-          <div className="relative flex aspect-[4/5] w-full items-center justify-center overflow-hidden rounded-md bg-navy">
-            <img
-              src="/logo.jpg"
-              alt="Logo da Vidrafe Acabamentos"
-              width={160}
-              height={160}
-              loading="lazy"
-              className="h-32 w-32 rounded-md object-cover sm:h-40 sm:w-40"
-            />
+          {/*
+            Placeholder enquanto a foto real nao chega: moldura tracejada de
+            "espaco reservado" e legenda avisando que a foto vem ai, para nao
+            parecer um bloco vazio. Apagar este bloco inteiro ao trocar pela foto.
+          */}
+          <figure className="relative flex aspect-[4/5] w-full flex-col overflow-hidden rounded-md bg-navy p-4 sm:p-5">
+            <div className="flex flex-1 items-center justify-center rounded-sm border border-dashed border-white/25">
+              <img
+                src="/logo.jpg"
+                alt="Logo da Vidrafe Acabamentos"
+                width={160}
+                height={160}
+                loading="lazy"
+                className="h-28 w-28 rounded-md object-cover sm:h-36 sm:w-36"
+              />
+            </div>
+            <figcaption className="mt-4 flex items-center gap-3 font-body text-sm text-white/85">
+              <Camera className="h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
+              <span>
+                <span className="block font-semibold text-white">
+                  Foto da nossa loja em breve
+                </span>
+                <span className="block text-white/70">
+                  {company.address.split(",")[0]}, {company.city}
+                </span>
+              </span>
+            </figcaption>
             <span
               aria-hidden="true"
               className="absolute bottom-0 left-0 h-1 w-1/3 bg-brick"
             />
-          </div>
+          </figure>
         </div>
 
         <div className="about-text lg:col-span-7">
@@ -84,7 +102,7 @@ export default function About() {
                 <p className="font-heading text-xl font-bold text-navy">
                   {person.name}
                 </p>
-                <p className="mt-1 font-body text-sm text-navy/70">
+                <p className="mt-1 font-body text-base text-navy/75">
                   {person.role}
                 </p>
               </li>

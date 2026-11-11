@@ -30,7 +30,7 @@ const year = new Date().getFullYear();
 
 export default function Footer() {
   return (
-    <footer className="bg-darkfooter font-body text-white/75">
+    <footer className="bg-darkfooter font-body text-white/80">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-12 px-5 py-16 sm:px-8 lg:grid-cols-12 lg:gap-8">
         <div className="col-span-2 lg:col-span-4">
           <a href="/#inicio" className="inline-flex items-center gap-3 rounded-md">
@@ -46,7 +46,7 @@ export default function Footer() {
               {company.name}
             </span>
           </a>
-          <p className="mt-5 max-w-xs text-sm leading-relaxed">
+          <p className="mt-5 max-w-xs text-[15px] leading-relaxed">
             Vidraçaria, forro PVC e drywall em {company.city} e região. Feito com
             capricho por quem atende o seu WhatsApp.
           </p>
@@ -54,7 +54,7 @@ export default function Footer() {
 
         <nav aria-label="Rodapé" className="col-span-1 lg:col-span-2">
           <h2 className={titleClass}>Navegação</h2>
-          <ul className="mt-3 flex flex-col gap-1 text-sm">
+          <ul className="mt-4 flex flex-col gap-1.5 text-[15px]">
             {navLinks.map((link) => (
               <li key={link.href}>
                 {/* Prefixo "/" para funcionar tambem fora da home. */}
@@ -68,7 +68,7 @@ export default function Footer() {
 
         <div className="col-span-1 lg:col-span-3">
           <h2 className={titleClass}>Serviços</h2>
-          <ul className="mt-3 flex flex-col gap-1 text-sm">
+          <ul className="mt-4 flex flex-col gap-1.5 text-[15px]">
             {footerServices.map((item) => (
               <li key={item.label}>
                 <a href="/#servicos" className={linkClass}>
@@ -81,7 +81,7 @@ export default function Footer() {
 
         <div className="col-span-2 lg:col-span-3">
           <h2 className={titleClass}>Contato</h2>
-          <ul className="mt-4 flex flex-col gap-4 text-sm">
+          <ul className="mt-4 flex flex-col gap-5 text-[15px] leading-relaxed">
             {phones.map(({ contact, area, href }) => (
               <li key={contact.phone}>
                 <a href={href} {...external} className={`inline-flex items-start gap-2.5 ${linkClass}`}>
@@ -124,7 +124,7 @@ export default function Footer() {
 
       {/* pb maior no mobile para o botao flutuante nao cobrir a ultima linha. */}
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 pb-24 pt-6 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:pb-6">
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 pb-24 pt-6 text-sm text-white/70 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:pb-6">
           <p>
             © {year} {company.name}
           </p>

@@ -186,23 +186,42 @@ export const diferenciais = [
   DEPOIMENTOS ILUSTRATIVOS: textos de exemplo, NAO sao de clientes reais.
   Servem so para montar o layout. Para trocar pelos verdadeiros:
   1. Pedir autorizacao do cliente para publicar o texto e o nome.
-  2. Substituir `quote` pela fala real e `author` pelo nome (ex: "Maria, Residencial Tempo Novo").
-  3. Quando todos forem reais, mudar `depoimentosIlustrativos` para false:
+  2. Substituir `quote` pela fala real, `author` pelo nome
+     (ex: "Maria, Residencial Tempo Novo") e `service` pelo servico feito.
+  3. Se a avaliacao veio do Google, preencher `source: "Google"`,
+     `sourceUrl` com o link da avaliacao e `rating` (1 a 5). O card passa a
+     mostrar as estrelas e o link sozinho; sem esses campos, nada aparece.
+  4. Quando todos forem reais, mudar `depoimentosIlustrativos` para false:
      o selo "Depoimento ilustrativo" some da secao automaticamente.
 */
 export const depoimentosIlustrativos = true;
 
-export const depoimentos = [
+export type Depoimento = {
+  quote: string;
+  author: string;
+  service: string;
+  source: string;
+  sourceUrl?: string;
+  rating?: number;
+};
+
+export const depoimentos: Depoimento[] = [
   {
     quote: "Fizeram o box do banheiro e o espelho da sala. Mediram certinho, instalaram no dia combinado e deixaram tudo limpo.",
     author: "Cliente em Santa Bárbara de Goiás",
+    service: "Box de banheiro e espelho",
+    source: "Avaliação ilustrativa",
   },
   {
     quote: "Coloquei forro PVC amadeirado na casa toda com o Júnior. Ficou bonito demais e o preço foi o que ele passou no WhatsApp.",
     author: "Cliente da região",
+    service: "Forro PVC amadeirado",
+    source: "Avaliação ilustrativa",
   },
   {
     quote: "Precisava trocar as janelas da loja rápido. O Joel foi lá no mesmo dia, mediu e resolveu na semana.",
     author: "Comerciante em Santa Bárbara de Goiás",
+    service: "Troca de janelas",
+    source: "Avaliação ilustrativa",
   },
-] as const;
+];

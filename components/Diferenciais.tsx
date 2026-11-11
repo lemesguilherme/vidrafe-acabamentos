@@ -45,22 +45,20 @@ export default function Diferenciais() {
           <span className="mt-4 block h-[3px] w-16 bg-brick" aria-hidden="true" />
         </div>
 
-        {/* Cards pares descem um pouco no desktop: quebra a fileira perfeita. */}
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:items-start">
-          {diferenciais.map((item, i) => {
+        {/* Grade alinhada: todos os cards com a mesma altura na linha. */}
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {diferenciais.map((item) => {
             const Icon = icons[item.icon];
             return (
               <li
                 key={item.title}
-                className={`diferencial-card rounded-md bg-[#22345A] p-6 shadow-lg shadow-black/20 ${
-                  i % 2 === 1 ? "lg:mt-10" : ""
-                }`}
+                className="diferencial-card flex h-full flex-col rounded-md border-t-[3px] border-gold bg-[#22345A] p-6 shadow-lg shadow-black/20"
               >
                 <Icon className="h-8 w-8 text-gold" aria-hidden="true" />
                 <h3 className="mt-5 font-heading text-xl font-semibold text-white">
                   {item.title}
                 </h3>
-                <p className="mt-2 font-body text-sm leading-relaxed text-white/75">
+                <p className="mt-3 font-body text-[15px] leading-relaxed text-white/80">
                   {item.text}
                 </p>
               </li>

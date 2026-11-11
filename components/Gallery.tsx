@@ -272,29 +272,35 @@ function PlaceholderGrid({ category }: { category: GalleryCategory }) {
           <li
             key={i}
             style={{ backgroundColor: category.color }}
-            className={`gallery-tile relative flex items-end overflow-hidden rounded-md p-4 ${tileSpan(i)}`}
+            className={`gallery-tile relative items-end overflow-hidden rounded-md p-4 ${tileSpan(i)} ${
+              // No celular o tile do aviso ocupa a linha toda e o ultimo some, fechando a grade.
+              i === 0 ? "col-span-2 flex" : i === PLACEHOLDER_COUNT - 1 ? "hidden sm:flex" : "flex"
+            }`}
           >
             {/* Variacao leve de tom entre tiles, para a grade nao virar um bloco chapado. */}
             <span
               className="absolute inset-0 bg-gradient-to-br from-white/[0.06] to-black/20"
               style={{ opacity: [1, 0.5, 0.8, 0.3, 0.9, 0.6][i % 6] }}
             />
-            <ImageIcon
-              className={`absolute right-4 top-4 text-white/25 ${
-                i === 0 ? "h-8 w-8" : "h-5 w-5"
-              }`}
-            />
             {i === 0 ? (
               <div className="relative">
-                <p className="font-heading text-xl font-semibold text-white sm:text-2xl">
+                <span className="inline-flex items-center gap-1.5 rounded-sm bg-black/25 px-2 py-1 font-body text-xs font-semibold text-white">
+                  <ImageIcon className="h-3.5 w-3.5 text-gold" aria-hidden="true" />
+                  Fotos reais em breve
+                </span>
+                <p className="mt-3 font-heading text-xl font-semibold text-white sm:text-2xl">
                   {category.name}
                 </p>
-                <p className="mt-1 font-body text-sm text-white/70">
-                  Fotos chegando em breve
+                <p className="mt-1 font-body text-sm text-white/80">
+                  Estamos separando os trabalhos feitos para mostrar aqui.
                 </p>
               </div>
             ) : (
-              <span className="relative h-[2px] w-6 bg-white/25" />
+              <>
+                {/* Moldura tracejada: le como "espaco reservado para foto". */}
+                <span className="absolute inset-3 rounded-sm border border-dashed border-white/20" />
+                <ImageIcon className="relative mx-auto mb-auto mt-auto h-6 w-6 text-white/35" />
+              </>
             )}
           </li>
         ))}

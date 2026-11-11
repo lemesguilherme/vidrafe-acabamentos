@@ -4,7 +4,8 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { depoimentos, depoimentosIlustrativos } from "@/data/site";
+import { Star } from "lucide-react";
+import { depoimentos, depoimentosIlustrativos, type Depoimento } from "@/data/site";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -35,7 +36,7 @@ export default function Depoimentos() {
             O que os clientes contam
           </h2>
           {depoimentosIlustrativos && (
-            <p className="mt-4 font-body text-sm text-navy/70">
+            <p className="mt-4 font-body text-base leading-relaxed text-navy/75">
               Os textos abaixo são exemplos ilustrativos e serão trocados por
               depoimentos reais de clientes da Vidrafe.
             </p>
@@ -44,33 +45,73 @@ export default function Depoimentos() {
 
         <ul className="mt-12 grid gap-5 md:grid-cols-3">
           {depoimentos.map((item) => (
-            <li
-              key={item.quote}
-              className="depoimento-card relative flex flex-col rounded-md bg-white p-6 pt-8 shadow-sm"
-            >
-              {depoimentosIlustrativos && (
-                <span className="absolute right-4 top-4 rounded-sm border border-navy/20 px-2 py-0.5 font-body text-[11px] font-medium text-navy/70">
-                  Depoimento ilustrativo
-                </span>
-              )}
-              <span
-                aria-hidden="true"
-                className="font-heading text-5xl leading-none text-brick/70"
-              >
-                &ldquo;
-              </span>
-              <figure className="mt-1 flex flex-1 flex-col">
-                <blockquote className="flex-1 font-body text-base leading-relaxed text-navy/85">
-                  {item.quote}
-                </blockquote>
-                <figcaption className="mt-5 border-t border-navy/10 pt-4 font-body text-sm font-semibold text-navy">
-                  {item.author}
-                </figcaption>
-              </figure>
-            </li>
+            <DepoimentoCard key={item.quote} item={item} ilustrativo={depoimentosIlustrativos} />
           ))}
         </ul>
       </div>
     </section>
+  );
+}
+
+/*
+  Card de depoimento. Ja esta pronto para avaliacoes reais: `rating` mostra as
+  estrelas e `sourceUrl` vira link para a avaliacao (ex: Google). Enquanto o
+  dado nao existe, essas partes simplesmente nao renderizam.
+*/
+function DepoimentoCard({ item, ilustrativo }: { item: Depoimento; ilustrativo: boolean }) {
+  const rating = item.rating ? Math.max(0, Math.min(5, Math.round(item.rating))) : 0;
+
+  return (
+    <li className="depoimento-card relative flex flex-col overflow-hidden rounded-md border-t-[3px] border-brick bg-white p-6 pt-7 shadow-sm sm:p-8">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-3 right-5 select-none font-heading text-[7rem] leading-none text-brick/10"
+      >
+        &ldquo;
+      </span>
+
+      {ilustrativo && (
+        <span className="self-start rounded-sm border border-navy/20 px-2 py-0.5 font-body text-xs font-medium text-navy/70">
+          Depoimento ilustrativo
+        </span>
+      )}
+
+      {rating > 0 && (
+        <p className="mt-4 flex gap-0.5" aria-label={`Nota ${rating} de 5`}>
+          {Array.from({ length: 5 }, (_, i) => (
+            <Star
+              key={i}
+              aria-hidden="true"
+              className={`h-4 w-4 ${i < rating ? "fill-gold text-gold" : "text-navy/20"}`}
+            />
+          ))}
+        </p>
+      )}
+
+      <figure className="relative mt-5 flex flex-1 flex-col">
+        <blockquote className="flex-1 font-heading text-lg font-medium leading-snug text-navy sm:text-xl">
+          {item.quote}
+        </blockquote>
+        <figcaption className="mt-6 border-t border-navy/10 pt-5 font-body">
+          <span className="block text-base font-semibold text-navy">{item.author}</span>
+          <span className="mt-1 flex items-center gap-2 text-sm text-navy/75">
+            <span aria-hidden="true" className="h-[2px] w-4 bg-brick" />
+            {item.service}
+          </span>
+          {item.sourceUrl ? (
+            <a
+              href={item.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-block text-sm font-medium text-navy underline decoration-brick/40 underline-offset-4 transition-colors hover:decoration-brick focus-visible:outline-navy"
+            >
+              Ver avaliação no {item.source}
+            </a>
+          ) : (
+            <span className="mt-2 block text-sm text-navy/70">{item.source}</span>
+          )}
+        </figcaption>
+      </figure>
+    </li>
   );
 }
