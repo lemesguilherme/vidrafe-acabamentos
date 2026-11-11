@@ -225,3 +225,42 @@ export const depoimentos: Depoimento[] = [
     source: "Avaliação ilustrativa",
   },
 ];
+
+/*
+  Perguntas frequentes. Fonte unica: alimenta a secao Faq e o JSON-LD FAQPage
+  (app/page.tsx). Nada de prazo fixo, garantia, preco ou forma de pagamento
+  que nao foi confirmado com o Joel e o Joel Júnior: nesses casos a resposta
+  manda para o WhatsApp.
+*/
+export const faq = [
+  {
+    pergunta: "Vocês atendem quais cidades?",
+    resposta:
+      "A loja fica em Santa Bárbara de Goiás e a gente atende a cidade e a região. Se a sua obra é em outra cidade por perto, manda a localização no WhatsApp que a gente fala se dá pra atender.",
+  },
+  {
+    pergunta: "Como funciona o orçamento?",
+    resposta:
+      "É só mandar a medida ou uma foto do lugar pelo WhatsApp, dizendo o que você quer fazer. A gente responde no mesmo dia, e pedir orçamento não te compromete com nada.",
+  },
+  {
+    pergunta: "Vocês fazem a medição e a instalação?",
+    resposta:
+      "Fazemos. A gente vai até a sua casa ou comércio, mede no lugar e depois volta para instalar. Quem mede é quem instala. Combine o dia da visita pelo WhatsApp.",
+  },
+  {
+    pergunta: "Trabalham com quais tipos de vidro?",
+    resposta:
+      "Vidro temperado, comum e laminado, além de espelho sob medida. Serve para box, porta, janela e armário de pia. Se ficou em dúvida sobre qual vidro usar, o Joel explica a diferença no WhatsApp.",
+  },
+  {
+    pergunta: "Vocês fazem forro e drywall também?",
+    resposta:
+      "Fazemos. Forro PVC branco ou amadeirado, drywall para divisória, sanca e rebaixamento, e a instalação das luminárias LED. Essa parte fica com o Joel Júnior, é só chamar ele no WhatsApp.",
+  },
+  {
+    pergunta: "Em quanto tempo fica pronto?",
+    resposta:
+      "Depende do serviço e do tamanho da obra. Um espelho é diferente de um forro na casa toda. Depois da medição a gente combina o prazo certinho com você pelo WhatsApp.",
+  },
+] as const;
