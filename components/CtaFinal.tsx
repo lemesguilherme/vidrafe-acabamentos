@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 import { ArrowUpRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { company, contacts, waMessages } from "@/data/site";
-import { waLink } from "@/lib/whatsapp";
+import { waContexto, waLink } from "@/lib/whatsapp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -75,6 +75,7 @@ export default function CtaFinal() {
             <li key={contact.phone}>
               <a
                 href={href}
+                {...waContexto("cta_final")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cta-final-button group flex items-center gap-4 rounded-md bg-navy px-5 py-4 text-white shadow-lg shadow-navy/20 transition-colors hover:bg-[#13203a] focus-visible:outline-navy"

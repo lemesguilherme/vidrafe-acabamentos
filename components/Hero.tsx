@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { ArrowRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { company, waMessages } from "@/data/site";
-import { waLink } from "@/lib/whatsapp";
+import { waContexto, waLink } from "@/lib/whatsapp";
 
 gsap.registerPlugin(useGSAP);
 
@@ -73,6 +73,7 @@ export default function Hero() {
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
             <a
               href={waLink("junior", waMessages.default)}
+              {...waContexto("hero")}
               target="_blank"
               rel="noopener noreferrer"
               className="hero-cta inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 font-body font-semibold text-navy transition-colors hover:bg-yellow-400"

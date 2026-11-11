@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { company, contacts, waMessages } from "@/data/site";
-import { waLink } from "@/lib/whatsapp";
+import { waContexto, waLink } from "@/lib/whatsapp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -97,6 +97,7 @@ export default function Localizacao() {
                     <a
                       href={href}
                       {...external}
+                      {...waContexto("localizacao")}
                       className="group inline-flex items-center gap-3 rounded-md focus-visible:outline-navy"
                     >
                       <FaWhatsapp className="text-2xl text-navy" aria-hidden="true" />

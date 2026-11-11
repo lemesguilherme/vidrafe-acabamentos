@@ -70,8 +70,24 @@ export default function PoliticaDePrivacidade() {
           <h2 className={sectionTitle}>O que o site coleta</h2>
           <p className={paragraph}>
             O site não tem formulário, cadastro nem área de login. Ele não pede o
-            seu nome, telefone ou e-mail e não usa ferramentas de análise de
-            visitas.
+            seu nome, telefone ou e-mail.
+          </p>
+          <p className={paragraph}>
+            Para saber quantas pessoas visitam o site e quais botões de WhatsApp
+            são mais usados, usamos o Vercel Analytics. Ele conta os acessos de
+            forma agregada, como páginas vistas, país, tipo de aparelho,
+            navegador, de onde a visita veio e em qual botão de WhatsApp a pessoa
+            clicou. Não usa cookies e não identifica quem você é: a gente só vê
+            os números somados. Mais detalhes em{" "}
+            <a
+              href="https://vercel.com/docs/analytics/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-brick"
+            >
+              vercel.com/docs/analytics/privacy-policy
+            </a>
+            .
           </p>
           <p className={paragraph}>
             Como qualquer site na internet, a empresa de hospedagem pode registrar

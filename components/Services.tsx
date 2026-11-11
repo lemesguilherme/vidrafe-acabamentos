@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { contacts, services, waMessages } from "@/data/site";
-import { waLink } from "@/lib/whatsapp";
+import { waContexto, waLink } from "@/lib/whatsapp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -121,6 +121,7 @@ export default function Services() {
             </div>
             <a
               href={waLink(vidracaria.owner, waMessages.vidracaria)}
+              {...waContexto("servicos_joel")}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-navy px-6 py-3 font-body font-semibold text-white transition-colors hover:bg-[#13203a] focus-visible:outline-navy sm:self-auto"
@@ -149,6 +150,7 @@ export default function Services() {
             <span className="mt-5 block h-[3px] w-16 bg-brick" aria-hidden="true" />
             <a
               href={waLink(forros.owner, waMessages.forros)}
+              {...waContexto("servicos_junior")}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 font-body font-semibold text-navy transition-colors hover:bg-yellow-400"

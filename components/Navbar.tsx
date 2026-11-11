@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { company, navLinks, waMessages } from "@/data/site";
-import { waLink } from "@/lib/whatsapp";
+import { waContexto, waLink } from "@/lib/whatsapp";
 
 /*
   Navbar fixa no topo. Transparente sobre o hero e branca solida com sombra
@@ -114,6 +114,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <a
             href={ctaHref}
+            {...waContexto("navbar")}
             target="_blank"
             rel="noopener noreferrer"
             className={`hidden items-center gap-2 rounded-full bg-gold px-5 py-2.5 font-body text-sm font-semibold text-navy transition-colors hover:bg-yellow-400 sm:inline-flex ${
@@ -173,6 +174,7 @@ export default function Navbar() {
           </ul>
           <a
             href={ctaHref}
+            {...waContexto("navbar_mobile")}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}

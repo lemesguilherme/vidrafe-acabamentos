@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 import { Plus } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { faq, waMessages } from "@/data/site";
-import { waLink } from "@/lib/whatsapp";
+import { waContexto, waLink } from "@/lib/whatsapp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -129,6 +129,7 @@ export default function Faq() {
             Ficou com outra dúvida?
             <a
               href={waLink("junior", waMessages.default)}
+              {...waContexto("faq")}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-semibold text-navy underline decoration-brick/50 decoration-2 underline-offset-4 transition-colors hover:decoration-brick focus-visible:outline-navy motion-reduce:transition-none"

@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 import { ChevronLeft, ChevronRight, Image as ImageIcon, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { company, contacts, gallery, waMessages, type GalleryCategory } from "@/data/site";
-import { waLink } from "@/lib/whatsapp";
+import { waContexto, waLink } from "@/lib/whatsapp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -232,6 +232,7 @@ export default function Gallery() {
           </p>
           <a
             href={tabCta[tab].href}
+            {...waContexto("galeria")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-navy px-6 py-3 font-body font-semibold text-white transition-colors hover:bg-[#13203a] focus-visible:outline-navy sm:self-auto"

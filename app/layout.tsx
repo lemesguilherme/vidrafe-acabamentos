@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { company, contacts, ogImage } from "@/data/site";
+import WhatsAppTracking from "@/components/WhatsAppTracking";
 
 // Fontes via next/font (ver design.md): Playfair para titulos, Inter para corpo.
 const playfair = Playfair_Display({
@@ -55,6 +57,11 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "/" },
+};
+
+// theme-color navy: pinta a barra do navegador no celular com a cor da marca.
+export const viewport: Viewport = {
+  themeColor: "#1B2A4A",
 };
 
 // JSON-LD LocalBusiness para SEO local (ver prd.md).
@@ -113,7 +120,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Vercel Analytics (agregado, sem cookies) + evento whatsapp_click. */}
+        <Analytics />
+        <WhatsAppTracking />
+      </body>
     </html>
   );
 }

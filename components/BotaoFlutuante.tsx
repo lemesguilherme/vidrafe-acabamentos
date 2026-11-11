@@ -1,6 +1,6 @@
 import { FaWhatsapp } from "react-icons/fa";
 import { contacts, waMessages } from "@/data/site";
-import { waLink } from "@/lib/whatsapp";
+import { waContexto, waLink } from "@/lib/whatsapp";
 
 /*
   Botao flutuante de WhatsApp (Joel Júnior, padrao do site).
@@ -11,6 +11,7 @@ export default function BotaoFlutuante() {
   return (
     <a
       href={waLink("junior", waMessages.default)}
+      {...waContexto("flutuante")}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Conversar com o ${contacts.junior.name} no WhatsApp`}

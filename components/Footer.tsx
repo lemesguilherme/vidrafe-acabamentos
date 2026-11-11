@@ -1,6 +1,6 @@
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { company, contacts, navLinks, services, waMessages } from "@/data/site";
-import { waLink } from "@/lib/whatsapp";
+import { waContexto, waLink } from "@/lib/whatsapp";
 
 // Servicos de destaque no rodape (nao precisa listar os 12).
 const destaques = [
@@ -84,7 +84,7 @@ export default function Footer() {
           <ul className="mt-4 flex flex-col gap-5 text-[15px] leading-relaxed">
             {phones.map(({ contact, area, href }) => (
               <li key={contact.phone}>
-                <a href={href} {...external} className={`inline-flex items-start gap-2.5 ${linkClass}`}>
+                <a href={href} {...external} {...waContexto("footer")} className={`inline-flex items-start gap-2.5 ${linkClass}`}>
                   <FaWhatsapp className="mt-0.5 text-lg text-gold" aria-hidden="true" />
                   <span>
                     <span className="block font-semibold text-white">
