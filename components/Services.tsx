@@ -124,9 +124,9 @@ export default function Services() {
               {...waContexto("servicos_joel")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-navy px-6 py-3 font-body font-semibold text-white transition-colors hover:bg-[#13203a] focus-visible:outline-navy sm:self-auto"
+              className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition-colors hover:bg-whatsapp-dark focus-visible:outline-navy sm:self-auto"
             >
-              <FaWhatsapp className="text-xl text-gold" aria-hidden="true" />
+              <FaWhatsapp className="text-xl" aria-hidden="true" />
               Pedir orçamento no WhatsApp
             </a>
           </div>
@@ -153,7 +153,7 @@ export default function Services() {
               {...waContexto("servicos_junior")}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 font-body font-semibold text-navy transition-colors hover:bg-yellow-400"
+              className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition-colors hover:bg-whatsapp-dark"
             >
               <FaWhatsapp className="text-xl" aria-hidden="true" />
               Falar com o {contacts.junior.name}

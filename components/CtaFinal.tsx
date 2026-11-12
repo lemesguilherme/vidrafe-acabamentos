@@ -62,12 +62,12 @@ export default function CtaFinal() {
             {...waContexto("cta_final")}
             target="_blank"
             rel="noopener noreferrer"
-            className="cta-final-button group flex items-center gap-4 rounded-md bg-navy px-5 py-5 text-white shadow-lg shadow-navy/20 transition-colors hover:bg-[#13203a] focus-visible:outline-navy"
+            className="cta-final-button group flex items-center gap-4 rounded-md bg-whatsapp px-5 py-5 text-white shadow-lg shadow-whatsapp-dark/30 ring-1 ring-whatsapp-dark/40 transition-colors hover:bg-whatsapp-dark focus-visible:outline-navy"
           >
-            <FaWhatsapp className="shrink-0 text-3xl text-gold" aria-hidden="true" />
+            <FaWhatsapp className="shrink-0 text-3xl" aria-hidden="true" />
             <span className="flex-1 font-body text-lg font-semibold">Chamar no WhatsApp</span>
             <ArrowUpRight
-              className="h-5 w-5 shrink-0 text-gold transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
+              className="h-5 w-5 shrink-0 text-white/90 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
               aria-hidden="true"
             />
           </a>

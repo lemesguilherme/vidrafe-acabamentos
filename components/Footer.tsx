@@ -82,7 +82,7 @@ export default function Footer() {
           <ul className="mt-4 flex flex-col gap-5 text-[15px] leading-relaxed">
             <li>
               <a href={whatsappHref} {...external} {...waContexto("footer")} className={`inline-flex items-start gap-2.5 ${linkClass}`}>
-                <FaWhatsapp className="mt-0.5 text-lg text-gold" aria-hidden="true" />
+                <FaWhatsapp className="mt-0.5 text-lg text-whatsapp-light" aria-hidden="true" />
                 <span>
                   <span className="block font-semibold text-white">
                     {contacts.junior.phoneDisplay}

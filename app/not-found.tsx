@@ -52,7 +52,7 @@ export default function NotFound() {
               {...waContexto("pagina_404")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 font-body font-semibold text-navy transition-colors hover:bg-yellow-400 focus-visible:outline-navy"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-7 py-3.5 font-body font-semibold text-white transition-colors hover:bg-whatsapp-dark focus-visible:outline-navy"
             >
               <FaWhatsapp className="text-xl" aria-hidden="true" />
               Chamar no WhatsApp

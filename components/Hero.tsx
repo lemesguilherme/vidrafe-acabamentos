@@ -83,7 +83,7 @@ export default function Hero() {
               {...waContexto("hero")}
               target="_blank"
               rel="noopener noreferrer"
-              className="hero-cta inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 font-body font-semibold text-navy transition-colors hover:bg-yellow-400"
+              className="hero-cta inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-7 py-3.5 font-body font-semibold text-white transition-colors hover:bg-whatsapp-dark"
             >
               <FaWhatsapp className="text-xl" aria-hidden="true" />
               Pedir orçamento pelo WhatsApp

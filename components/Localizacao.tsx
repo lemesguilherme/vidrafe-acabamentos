@@ -94,7 +94,7 @@ export default function Localizacao() {
                 {...waContexto("localizacao")}
                 className="group mt-3 inline-flex items-center gap-3 rounded-md focus-visible:outline-navy"
               >
-                <FaWhatsapp className="text-2xl text-navy" aria-hidden="true" />
+                <FaWhatsapp className="text-2xl text-whatsapp" aria-hidden="true" />
                 <span className="font-body text-navy">
                   <span className="block font-semibold group-hover:underline group-hover:decoration-gold group-hover:decoration-2 group-hover:underline-offset-4">
                     {contacts.junior.phoneDisplay}

@@ -15,7 +15,7 @@ export default function BotaoFlutuante() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Conversar com o ${contacts.junior.name} no WhatsApp`}
-      className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-navy text-gold shadow-xl shadow-black/30 ring-2 ring-gold transition-transform hover:scale-105 sm:bottom-6 sm:right-6 sm:h-16 sm:w-16"
+      className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-xl shadow-black/30 ring-2 ring-white transition hover:scale-105 hover:bg-whatsapp-dark sm:bottom-6 sm:right-6 sm:h-16 sm:w-16"
     >
       <FaWhatsapp className="text-3xl sm:text-[2rem]" aria-hidden="true" />
     </a>

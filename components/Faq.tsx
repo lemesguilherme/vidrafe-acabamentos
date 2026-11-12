@@ -134,7 +134,7 @@ export default function Faq() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-semibold text-navy underline decoration-brick/50 decoration-2 underline-offset-4 transition-colors hover:decoration-brick focus-visible:outline-navy motion-reduce:transition-none"
             >
-              <FaWhatsapp className="text-xl text-navy" aria-hidden="true" />
+              <FaWhatsapp className="text-xl text-whatsapp" aria-hidden="true" />
               Pergunta pro Joel Júnior no WhatsApp
             </a>
           </p>

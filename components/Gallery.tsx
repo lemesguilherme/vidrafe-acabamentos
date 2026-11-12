@@ -236,9 +236,9 @@ export default function Gallery() {
             {...waContexto("galeria")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-navy px-6 py-3 font-body font-semibold text-white transition-colors hover:bg-[#13203a] focus-visible:outline-navy sm:self-auto"
+            className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition-colors hover:bg-whatsapp-dark focus-visible:outline-navy sm:self-auto"
           >
-            <FaWhatsapp className="text-xl text-gold" aria-hidden="true" />
+            <FaWhatsapp className="text-xl" aria-hidden="true" />
             {tabCta[tab].label}
           </a>
         </div>
