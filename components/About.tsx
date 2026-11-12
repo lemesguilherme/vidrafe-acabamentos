@@ -36,7 +36,7 @@ export default function About() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-16">
         <div className="about-media lg:col-span-5">
           {/*
-            FOTO DA LOJA/EQUIPE: quando chegar, salvar em public/sobre-equipe.jpg,
+            FOTO DO JOEL E DO JOEL JUNIOR: quando chegar, salvar em public/sobre-equipe.jpg,
             descomentar o img abaixo e apagar o bloco navy logo em seguida.
           */}
           {/* <img src="/sobre-equipe.jpg" alt="Joel e Joel Júnior na loja da Vidrafe em Santa Bárbara de Goiás" width={800} height={1000} loading="lazy" className="aspect-[4/5] w-full rounded-md object-cover" /> */}
@@ -61,11 +61,9 @@ export default function About() {
               <Camera className="h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
               <span>
                 <span className="block font-semibold text-white">
-                  Foto da nossa loja em breve
+                  Foto do Joel e do Joel Júnior em breve
                 </span>
-                <span className="block text-white/70">
-                  {company.address.split(",")[0]}, {company.city}
-                </span>
+                <span className="block text-white/70">Quem vai na sua obra</span>
               </span>
             </figcaption>
             <span
