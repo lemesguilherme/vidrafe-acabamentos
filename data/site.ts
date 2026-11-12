@@ -150,8 +150,26 @@ export const gallery: Record<"vidracaria" | "forros", GalleryTab> = {
     label: "Joel Júnior · Forros & Drywall",
     owner: "junior",
     categories: [
-      { name: "Forro PVC Branco", alt: "Forro PVC branco instalado pela Vidrafe", color: "#6B6A63", images: [] },
-      { name: "Forro Amadeirado", alt: "Forro PVC amadeirado instalado pela Vidrafe", color: "#6A4630", images: [] },
+      {
+        name: "Forro PVC Branco",
+        alt: "Forro PVC branco instalado pela Vidrafe",
+        color: "#6B6A63",
+        images: [
+          "/galeria/forro-branco-01-antes.jpeg",
+          "/galeria/forro-branco-02-antes.jpeg",
+          "/galeria/forro-branco-03-andamento.jpeg",
+          "/galeria/forro-branco-04-andamento.jpeg",
+          "/galeria/forro-branco-05-depois.jpeg",
+          "/galeria/forro-branco-06-depois.jpeg",
+          "/galeria/forro-branco-07-depois.jpeg",
+        ],
+      },
+      {
+        name: "Forro Amadeirado",
+        alt: "Forro PVC amadeirado instalado pela Vidrafe",
+        color: "#6A4630",
+        images: ["/galeria/forro-amadeirado-01.jpeg", "/galeria/forro-amadeirado-02.jpeg"],
+      },
       { name: "Drywall", alt: "Parede ou sanca de drywall feita pela Vidrafe", color: "#46423F", images: [] },
       { name: "Luminárias LED", alt: "Iluminação em LED instalada pela Vidrafe", color: "#6E5F26", images: [] },
     ],

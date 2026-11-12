@@ -35,20 +35,27 @@ export default function Hero() {
     <section
       id="inicio"
       ref={scope}
-      className="relative isolate flex min-h-screen items-end overflow-hidden bg-gradient-to-br from-navy via-[#14203a] to-[#080d18]"
+      className="relative isolate flex min-h-screen items-end overflow-hidden bg-navy"
     >
-      {/*
-        FOTO DA FACHADA: quando chegar, salvar em public/hero-fachada.jpg,
-        descomentar a linha abaixo e remover as classes de gradiente
-        (bg-gradient-to-br from-navy via-[...] to-[...]) da section.
-        O overlay logo abaixo ja garante a legibilidade do texto sobre a foto.
-      */}
-      {/* <img src="/hero-fachada.jpg" alt="Fachada da Vidrafe Acabamentos em Santa Bárbara de Goiás" width={1920} height={1080} fetchPriority="high" className="absolute inset-0 -z-20 h-full w-full object-cover" /> */}
+      {/* Foto da fachada (public/hero-fachada.jpeg). Fundo navy fica so como cor de carregamento. */}
+      <img
+        src="/hero-fachada.jpeg"
+        alt="Fachada da Vidrafe Acabamentos em Santa Bárbara de Goiás"
+        width={2185}
+        height={2185}
+        fetchPriority="high"
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
+      />
 
-      {/* Overlay de legibilidade: navy de baixo pra cima. */}
+      {/* Overlay de legibilidade: navy de baixo pra cima, mais um veu
+          da esquerda (onde fica o texto) e do topo (navbar sobre o ceu). */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-navy via-navy/60 to-transparent"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-navy via-navy/75 to-navy/50"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-navy/70 via-navy/30 to-transparent"
       />
 
       {/* pb maior no mobile: o botao flutuante nao cobre a linha de horario. */}

@@ -206,15 +206,16 @@ export default function Gallery() {
                       setLightboxIndex(i);
                     }}
                     aria-label={`Ampliar foto ${i + 1} de ${category.images.length}: ${category.name}`}
-                    className="group block h-full w-full overflow-hidden rounded-md bg-offwhite focus-visible:outline-navy"
+                    className="group relative block h-full w-full overflow-hidden rounded-md bg-offwhite focus-visible:outline-navy"
                   >
+                    {/* absolute: a foto (retrato) nao dita a altura da linha do grid. */}
                     <img
                       src={src}
                       alt={`${category.alt}, foto ${i + 1}`}
                       width={800}
                       height={800}
                       loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </button>
                 </li>
