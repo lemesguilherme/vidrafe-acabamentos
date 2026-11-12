@@ -168,7 +168,7 @@ export const gallery: Record<"vidracaria" | "forros", GalleryTab> = {
         name: "Forro Amadeirado",
         alt: "Forro PVC amadeirado instalado pela Vidrafe",
         color: "#6A4630",
-        images: ["/galeria/forro-amadeirado-01.jpeg", "/galeria/forro-amadeirado-02.jpeg"],
+        images: ["/galeria/forro-amadeirado-02.jpeg", "/galeria/forro-amadeirado-01.jpeg"],
       },
       { name: "Drywall", alt: "Parede ou sanca de drywall feita pela Vidrafe", color: "#46423F", images: [] },
       { name: "Luminárias LED", alt: "Iluminação em LED instalada pela Vidrafe", color: "#6E5F26", images: [] },

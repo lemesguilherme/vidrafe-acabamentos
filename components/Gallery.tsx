@@ -32,10 +32,18 @@ const tabCta: Record<TabKey, { text: string; label: string; href: string }> = {
 
 // Primeiro tile maior a partir do sm: quebra a grade uniforme (design.md, assimetria).
 // Tiles em 4:3; o maior acompanha a altura das duas linhas que ocupa.
-const tileSpan = (i: number) =>
-  i === 0
+// Com so 2 fotos nao existe segunda linha: tudo cabe em uma linha so, o destaque
+// em 2 colunas e a outra em retrato (3:4), as duas com a mesma altura, sem buraco.
+const tileSpan = (i: number, total = Infinity) => {
+  if (total === 2) {
+    return i === 0
+      ? "aspect-[4/3] sm:col-span-2 sm:aspect-auto"
+      : "aspect-[4/3] sm:aspect-[3/4]";
+  }
+  return i === 0
     ? "aspect-[4/3] sm:col-span-2 sm:row-span-2 sm:aspect-auto"
     : "aspect-[4/3]";
+};
 
 export default function Gallery() {
   const scope = useRef<HTMLElement>(null);
@@ -198,7 +206,7 @@ export default function Gallery() {
               className="grid grid-flow-dense grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4"
             >
               {category.images.map((src, i) => (
-                <li key={src} className={`gallery-tile ${tileSpan(i)}`}>
+                <li key={src} className={`gallery-tile ${tileSpan(i, category.images.length)}`}>
                   <button
                     type="button"
                     onClick={(e) => {
