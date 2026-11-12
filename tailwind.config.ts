@@ -14,12 +14,12 @@ const config: Config = {
         brick: "#8B1A1A", // acento decorativo: linhas (como na logo)
         offwhite: "#F5F5F0", // background alternado
         darkfooter: "#111827", // footer
-        // Exclusivo dos elementos de WhatsApp (pedido do cliente, fase 13).
-        // DEFAULT com texto branco = 5.21:1 (AA). #25D366 com branco reprova (1.98:1).
+        // Exclusivo dos elementos de WhatsApp. Verde oficial da marca WhatsApp,
+        // escolha do cliente (fase 14): branco sobre ele fica em 1.98:1, abaixo do AA,
+        // aceito como elemento de marca. Nao trocar por um verde mais escuro.
         whatsapp: {
-          DEFAULT: "#0E7A6E", // fundo dos botoes solidos, icone sobre fundo claro
-          dark: "#075E54", // hover (7.67:1 com branco)
-          light: "#25D366", // so icone sobre fundo escuro (8.94:1 no footer)
+          DEFAULT: "#25D366", // fundo dos botoes e logo nos links de texto
+          dark: "#1DA851", // so hover
         },
       },
       fontFamily: {
