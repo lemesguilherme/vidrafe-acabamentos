@@ -16,17 +16,17 @@ type TabKey = keyof typeof gallery;
 const tabKeys: TabKey[] = ["vidracaria", "forros"];
 const PLACEHOLDER_COUNT = 6;
 
-// CTA por aba, conforme a tabela de roteamento do prd.md.
+// CTA por aba. Todos vao para o numero padrao (Joel Junior), a pedido do cliente.
 const tabCta: Record<TabKey, { text: string; label: string; href: string }> = {
   vidracaria: {
-    text: "Viu algo parecido com o que você quer? Manda a referência pro Joel.",
-    label: `Pedir orçamento ao ${contacts.joel.name}`,
-    href: waLink(gallery.vidracaria.owner, waMessages.vidracaria),
+    text: "Viu algo parecido com o que você quer? Manda a referência pelo WhatsApp.",
+    label: "Pedir orçamento no WhatsApp",
+    href: waLink("junior", waMessages.default),
   },
   forros: {
     text: "Viu algo parecido com o que você quer? Manda a referência pro Joel Júnior.",
     label: `Pedir orçamento ao ${contacts.junior.name}`,
-    href: waLink(gallery.forros.owner, waMessages.forros),
+    href: waLink("junior", waMessages.default),
   },
 };
 

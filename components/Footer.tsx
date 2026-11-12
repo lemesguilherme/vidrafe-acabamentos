@@ -15,10 +15,8 @@ const footerServices = [...services.vidracaria.items, ...services.forros.items].
   (item) => destaques.includes(item.label),
 );
 
-const phones = [
-  { contact: contacts.joel, area: "Vidraçaria", href: waLink("joel", waMessages.vidracaria) },
-  { contact: contacts.junior, area: "Forros e drywall", href: waLink("junior", waMessages.forros) },
-];
+// Numero unico de atendimento (Joel Junior), a pedido do cliente.
+const whatsappHref = waLink("junior", waMessages.default);
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 // py-1 aumenta a area de toque no celular sem mudar o visual.
@@ -82,21 +80,17 @@ export default function Footer() {
         <div className="col-span-2 lg:col-span-3">
           <h2 className={titleClass}>Contato</h2>
           <ul className="mt-4 flex flex-col gap-5 text-[15px] leading-relaxed">
-            {phones.map(({ contact, area, href }) => (
-              <li key={contact.phone}>
-                <a href={href} {...external} {...waContexto("footer")} className={`inline-flex items-start gap-2.5 ${linkClass}`}>
-                  <FaWhatsapp className="mt-0.5 text-lg text-gold" aria-hidden="true" />
-                  <span>
-                    <span className="block font-semibold text-white">
-                      {contact.phoneDisplay}
-                    </span>
-                    <span className="block">
-                      {contact.name} · {area}
-                    </span>
+            <li>
+              <a href={whatsappHref} {...external} {...waContexto("footer")} className={`inline-flex items-start gap-2.5 ${linkClass}`}>
+                <FaWhatsapp className="mt-0.5 text-lg text-gold" aria-hidden="true" />
+                <span>
+                  <span className="block font-semibold text-white">
+                    {contacts.junior.phoneDisplay}
                   </span>
-                </a>
-              </li>
-            ))}
+                  <span className="block">Orçamento pelo WhatsApp</span>
+                </span>
+              </a>
+            </li>
             <li>
               <a href={company.instagramUrl} {...external} className={`inline-flex items-center gap-2.5 ${linkClass}`}>
                 <FaInstagram className="text-lg text-gold" aria-hidden="true" />

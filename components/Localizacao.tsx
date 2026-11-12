@@ -10,11 +10,8 @@ import { waContexto, waLink } from "@/lib/whatsapp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-// Cada numero com o seu papel e a mensagem do servico dele (prd.md).
-const phones = [
-  { contact: contacts.joel, area: "Vidraçaria", href: waLink("joel", waMessages.vidracaria) },
-  { contact: contacts.junior, area: "Forros e drywall", href: waLink("junior", waMessages.forros) },
-];
+// Numero unico de atendimento (Joel Junior), a pedido do cliente.
+const whatsappHref = waLink("junior", waMessages.default);
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -91,28 +88,22 @@ export default function Localizacao() {
               <h3 className="font-body text-sm font-semibold text-brick">
                 WhatsApp
               </h3>
-              <ul className="mt-3 flex flex-col gap-3">
-                {phones.map(({ contact, area, href }) => (
-                  <li key={contact.phone}>
-                    <a
-                      href={href}
-                      {...external}
-                      {...waContexto("localizacao")}
-                      className="group inline-flex items-center gap-3 rounded-md focus-visible:outline-navy"
-                    >
-                      <FaWhatsapp className="text-2xl text-navy" aria-hidden="true" />
-                      <span className="font-body text-navy">
-                        <span className="block font-semibold group-hover:underline group-hover:decoration-gold group-hover:decoration-2 group-hover:underline-offset-4">
-                          {contact.phoneDisplay}
-                        </span>
-                        <span className="block text-sm text-navy/70">
-                          {contact.name} · {area}
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <a
+                href={whatsappHref}
+                {...external}
+                {...waContexto("localizacao")}
+                className="group mt-3 inline-flex items-center gap-3 rounded-md focus-visible:outline-navy"
+              >
+                <FaWhatsapp className="text-2xl text-navy" aria-hidden="true" />
+                <span className="font-body text-navy">
+                  <span className="block font-semibold group-hover:underline group-hover:decoration-gold group-hover:decoration-2 group-hover:underline-offset-4">
+                    {contacts.junior.phoneDisplay}
+                  </span>
+                  <span className="block text-sm text-navy/70">
+                    Orçamento de vidraçaria, forro e drywall
+                  </span>
+                </span>
+              </a>
             </div>
 
             <div>

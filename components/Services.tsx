@@ -103,8 +103,8 @@ export default function Services() {
             O que a gente faz
           </h2>
           <p className="mt-4 font-body text-base leading-relaxed text-navy/80 sm:text-lg">
-            São duas frentes de trabalho, cada uma com o seu responsável. Chame
-            direto quem cuida do serviço que você precisa.
+            São duas frentes de trabalho, cada uma com o seu responsável. O
+            orçamento é pelo mesmo WhatsApp, seja vidro ou forro.
           </p>
         </div>
 
@@ -120,14 +120,14 @@ export default function Services() {
               </p>
             </div>
             <a
-              href={waLink(vidracaria.owner, waMessages.vidracaria)}
+              href={waLink("junior", waMessages.default)}
               {...waContexto("servicos_joel")}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-navy px-6 py-3 font-body font-semibold text-white transition-colors hover:bg-[#13203a] focus-visible:outline-navy sm:self-auto"
             >
               <FaWhatsapp className="text-xl text-gold" aria-hidden="true" />
-              Falar com o {contacts.joel.name}
+              Pedir orçamento no WhatsApp
             </a>
           </div>
 
@@ -149,7 +149,7 @@ export default function Services() {
             </p>
             <span className="mt-5 block h-[3px] w-16 bg-brick" aria-hidden="true" />
             <a
-              href={waLink(forros.owner, waMessages.forros)}
+              href={waLink("junior", waMessages.default)}
               {...waContexto("servicos_junior")}
               target="_blank"
               rel="noopener noreferrer"

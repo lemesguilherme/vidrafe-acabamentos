@@ -145,8 +145,7 @@ export default function PoliticaDePrivacidade() {
               </a>
             </li>
             <li>
-              WhatsApp: {contacts.joel.phoneDisplay} ({contacts.joel.name}) e{" "}
-              {contacts.junior.phoneDisplay} ({contacts.junior.name})
+              WhatsApp: {contacts.junior.phoneDisplay}
             </li>
           </ul>
 
