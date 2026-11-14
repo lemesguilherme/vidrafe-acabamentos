@@ -83,7 +83,13 @@ Tom: direto, confiável, regional, humano. Como um profissional de confiança fa
 
 1. **Fundação primeiro.** Sempre começamos pelos `.md` (`prd.md`, `design.md`, `regras.md`). Feito.
 2. **Um prompt por vez.** Cada fase é um prompt. Entrego, você analisa o resultado e como ficou, e só então partimos pra próxima. Nunca tudo de uma vez.
-3. **Usar as skills úteis ao projeto** em cada fase (ex: design de frontend, dataviz se houver algo visual, geração de imagem/ícone quando aplicável, skills de arquivo quando mexer em assets).
+3. **Usar as skills disponíveis.** No começo de cada tarefa, verificar as skills instaladas e carregar as que ajudam no que vai ser feito, de verdade, não por formalidade:
+   - Antes de criar ou remodelar qualquer UI (hero, seções, componentes, layout), carregar a skill `frontend-design` e seguir a orientação dela.
+   - Para gráficos ou dados visuais, `dataviz`.
+   - Para arquivos (docx, xlsx, pptx, pdf), a skill do formato correspondente.
+   - Para qualquer outra tarefa, se existir uma skill que eleve a qualidade, usar.
+
+   Não pular uma skill útil por pressa. Elas existem pra deixar o resultado acima do genérico.
 4. **Fotos chegam depois.** Hero e galeria usam placeholder (cor por categoria na galeria) até o cliente enviar as imagens reais. Deixar os pontos de troca bem marcados no código.
 5. **Deploy na Vercel** só quando começarmos a fase de setup, usando o repo salvo.
 6. **Checklist de qualidade** (seção 10) rodado ao fim de cada fase antes de seguir.

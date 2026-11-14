@@ -56,4 +56,6 @@ public/          logo e assets
 
 O projeto é construído **uma fase por vez**. Cada fase é entregue, revisada e só então se avança para a próxima. Não implementar fases futuras de uma vez. Fases em `prd.md`.
 
+No começo de cada tarefa, carregar as skills que ajudam de verdade: `frontend-design` antes de criar ou remodelar qualquer UI, `dataviz` para gráficos, a skill do formato para docx/xlsx/pptx/pdf. Detalhe em `regras.md`, seção 7.
+
 Rodar a build de verificação (`npm run build`) e o checklist de qualidade do `regras.md` ao fim de cada fase.
