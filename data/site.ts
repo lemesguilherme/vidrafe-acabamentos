@@ -58,17 +58,11 @@ export const contacts = {
   },
 } as const;
 
-// Mensagens pre-preenchidas (obrigatorio, foi falha na v1). Todos os botoes
-// usam `default` e o destino e sempre o junior. `vidracaria` e `forros` ficaram
-// de antes da Fase 12 e hoje nao sao usadas; o rastreamento por ponto de contato
-// e feito pelo waContexto (lib/whatsapp.ts). Se voltarem a ser usadas, lembrar
-// que `vidracaria` comeca com "Olá Joel!" e o numero de destino e do Júnior.
+// Mensagem pre-preenchida (obrigatorio, foi falha na v1). Desde a Fase 12 todos
+// os botoes usam `default` e o destino e sempre o junior. O rastreamento por
+// ponto de contato e feito pelo waContexto (lib/whatsapp.ts), nao pela mensagem.
 export const waMessages = {
   default: "Olá! Vi o site da Vidrafe e gostaria de pedir um orçamento.",
-  vidracaria:
-    "Olá Joel! Vi o site da Vidrafe e quero um orçamento de vidraçaria.",
-  forros:
-    "Olá! Vi o site da Vidrafe e quero um orçamento de forro ou drywall.",
 } as const;
 
 export const navLinks = [
@@ -276,7 +270,7 @@ export const faq = [
   {
     pergunta: "Trabalham com quais tipos de vidro?",
     resposta:
-      "Vidro temperado, comum e laminado, além de espelho sob medida. Serve para box, porta, janela e armário de pia. Se ficou em dúvida sobre qual vidro usar, o Joel explica a diferença no WhatsApp.",
+      "Vidro temperado, comum e laminado, além de espelho sob medida. Serve para box, porta, janela e armário de pia. Se ficou em dúvida sobre qual vidro usar, a gente explica a diferença no WhatsApp.",
   },
   {
     pergunta: "Vocês fazem forro e drywall também?",
