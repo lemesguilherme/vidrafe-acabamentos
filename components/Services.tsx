@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { contacts, services, waMessages } from "@/data/site";
-import { waContexto, waLink } from "@/lib/whatsapp";
+import { waContexto, waLink, type WaContexto } from "@/lib/whatsapp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -60,6 +60,50 @@ function ServiceCard({ item }: { item: ServiceItem }) {
         )}
       </div>
     </li>
+  );
+}
+
+// Layout unico dos blocos de servico: barra brick + titulo + responsavel,
+// CTA de WhatsApp a direita (embaixo no mobile) e grade de cards.
+// Os dois CTAs vao pro Joel Junior (padrao do site); o contexto separa o rastreamento.
+function ServiceBlock({
+  title,
+  who,
+  items,
+  contexto,
+  className = "",
+}: {
+  title: string;
+  who: string;
+  items: readonly ServiceItem[];
+  contexto: WaContexto;
+  className?: string;
+}) {
+  return (
+    <div className={`services-block ${className}`}>
+      <div className="flex flex-col gap-6 border-l-4 border-brick pl-5 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h3 className="font-heading text-2xl font-bold text-navy sm:text-3xl">{title}</h3>
+          <p className="mt-1 font-body text-sm text-navy/70 sm:text-base">{who}</p>
+        </div>
+        <a
+          href={waLink("junior", waMessages.default)}
+          {...waContexto(contexto)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition-colors hover:bg-whatsapp-dark focus-visible:outline-navy sm:self-auto"
+        >
+          <FaWhatsapp className="text-xl" aria-hidden="true" />
+          Pedir orçamento no WhatsApp
+        </a>
+      </div>
+
+      <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {items.map((item) => (
+          <ServiceCard key={item.label} item={item} />
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -108,64 +152,22 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Bloco 1: Vidraçaria, com o Joel. Fundo off-white, cards em grade larga. */}
-        <div className="services-block mt-14">
-          <div className="flex flex-col gap-6 border-l-4 border-brick pl-5 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h3 className="font-heading text-2xl font-bold text-navy sm:text-3xl">
-                {vidracaria.title}
-              </h3>
-              <p className="mt-1 font-body text-sm text-navy/70 sm:text-base">
-                Com o {contacts.joel.name}: {contacts.joel.role.toLowerCase()}
-              </p>
-            </div>
-            <a
-              href={waLink("junior", waMessages.default)}
-              {...waContexto("servicos_joel")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition-colors hover:bg-whatsapp-dark focus-visible:outline-navy sm:self-auto"
-            >
-              <FaWhatsapp className="text-xl" aria-hidden="true" />
-              Pedir orçamento no WhatsApp
-            </a>
-          </div>
-
-          <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {vidracaria.items.map((item) => (
-              <ServiceCard key={item.label} item={item} />
-            ))}
-          </ul>
-        </div>
-
-        {/* Bloco 2: Forros e drywall, com o Joel Júnior. Painel navy, layout lateral. */}
-        <div className="services-block mt-16 grid gap-10 rounded-md bg-navy p-6 sm:p-10 lg:grid-cols-12 lg:items-center">
-          <div className="lg:col-span-5">
-            <h3 className="font-heading text-2xl font-bold text-white sm:text-3xl">
-              {forros.title}
-            </h3>
-            <p className="mt-2 font-body text-sm text-white/75 sm:text-base">
-              Com o {contacts.junior.name}: {contacts.junior.role.toLowerCase()}
-            </p>
-            <span className="mt-5 block h-[3px] w-16 bg-brick" aria-hidden="true" />
-            <a
-              href={waLink("junior", waMessages.default)}
-              {...waContexto("servicos_junior")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition-colors hover:bg-whatsapp-dark"
-            >
-              <FaWhatsapp className="text-xl" aria-hidden="true" />
-              Falar com o {contacts.junior.name}
-            </a>
-          </div>
-
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-7">
-            {forros.items.map((item) => (
-              <ServiceCard key={item.label} item={item} />
-            ))}
-          </ul>
-        </div>
+        {/* Os dois blocos usam o mesmo layout. O de forros ganha um divisor
+            sutil em cima pra marcar onde a frente de vidraçaria termina. */}
+        <ServiceBlock
+          title={vidracaria.title}
+          who={`Com o ${contacts.joel.name}: ${contacts.joel.role.toLowerCase()}`}
+          items={vidracaria.items}
+          contexto="servicos_joel"
+          className="mt-14"
+        />
+        <ServiceBlock
+          title={forros.title}
+          who={`Com o ${contacts.junior.name}: ${contacts.junior.role.toLowerCase()}`}
+          items={forros.items}
+          contexto="servicos_junior"
+          className="mt-16 border-t border-navy/10 pt-16"
+        />
       </div>
     </section>
   );
