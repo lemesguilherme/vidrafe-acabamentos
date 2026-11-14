@@ -41,8 +41,8 @@ export default function Hero() {
       <img
         src="/hero-fachada.jpeg"
         alt="Fachada da Vidrafe Acabamentos em Santa Bárbara de Goiás"
-        width={2185}
-        height={2185}
+        width={1013}
+        height={1800}
         fetchPriority="high"
         className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
