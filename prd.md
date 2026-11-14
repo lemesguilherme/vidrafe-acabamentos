@@ -27,7 +27,7 @@ A empresa está em crescimento real (15k+ no Instagram, 100k+ no TikTok), então
 ### Profissionais
 
 **Joel — Vidraçaria, esquadrias e correlatos**
-- WhatsApp: (62) 9.8472-8056 → `https://wa.me/5562984728056`
+- WhatsApp: (62) 9.8472-8056 → `https://wa.me/5562984728056` (dado da empresa; não é usado em nenhum botão do site desde a Fase 12)
 
 **Joel Júnior — Forros, drywall e correlatos** (carro-chefe, cuida das redes sociais)
 - WhatsApp: (62) 9.9992-4453 → `https://wa.me/5562999924453`
@@ -36,32 +36,30 @@ A empresa está em crescimento real (15k+ no Instagram, 100k+ no TikTok), então
 
 ## 3. Roteamento de WhatsApp (regra crítica)
 
-O site tem dois números e o destino **depende do contexto**. Errar isso manda o cliente pro profissional errado.
+O site tem **um número único para todos os botões: Joel Júnior (4453)**.
+
+> **Nota (Fase 12):** a divisão por profissional (vidraçaria com o Joel 8056, forros com o Joel Júnior 4453) foi **descontinuada a pedido do cliente**. Todo botão e link de WhatsApp vai para o Júnior, que distribui o atendimento. O número do Joel não é mais usado em nenhum botão. Não reintroduzir a divisão sem novo pedido do cliente.
 
 | Ponto de contato | Destino | Número |
 |---|---|---|
 | Navbar (CTA) | Joel Júnior | 4453 |
 | Hero (CTA principal) | Joel Júnior | 4453 |
-| Serviços — bloco Vidraçaria | Joel | 8056 |
+| Serviços — bloco Vidraçaria | Joel Júnior | 4453 |
 | Serviços — bloco Forros/Drywall | Joel Júnior | 4453 |
-| Galeria — aba Vidraçaria | Joel | 8056 |
-| Galeria — aba Forros/Drywall | Joel Júnior | 4453 |
+| Galeria (as duas abas) | Joel Júnior | 4453 |
+| Localização | Joel Júnior | 4453 |
+| FAQ | Joel Júnior | 4453 |
 | CTA final | Joel Júnior | 4453 |
 | Botão flutuante | Joel Júnior | 4453 |
-| Footer (ambos listados) | Joel e Joel Júnior | 8056 e 4453 |
+| Footer | Joel Júnior | 4453 |
 
-**Padrão do site:** quando não houver contexto específico de vidraçaria, o destino é **Joel Júnior (4453)**.
+O rastreamento continua separando cada ponto de contato pelo atributo `data-wa-contexto` (helper `waContexto` em `lib/whatsapp.ts`), não pelo número.
 
 ### Mensagens pré-preenchidas (obrigatório, foi bug na v1)
 
-Todo link `wa.me` leva `?text=` com mensagem contextual codificada. Exemplos:
+Todo link `wa.me` leva `?text=` com mensagem codificada. Hoje todos os botões usam a mensagem padrão (`waMessages.default`):
 
-- Hero / Navbar / CTA final (Júnior):
-  `Olá! Vi o site da Vidrafe e gostaria de pedir um orçamento.`
-- Bloco/galeria Vidraçaria (Joel):
-  `Olá Joel! Vi o site da Vidrafe e quero um orçamento de vidraçaria.`
-- Bloco/galeria Forros (Júnior):
-  `Olá! Vi o site da Vidrafe e quero um orçamento de forro/drywall.`
+`Olá! Vi o site da Vidrafe e gostaria de pedir um orçamento.`
 
 Formato: `https://wa.me/55DDD9XXXXXXXX?text=Ol%C3%A1!%20...`
 
@@ -115,7 +113,7 @@ Moradores e comércios de Santa Bárbara de Goiás e região (Goiânia e cidades
 ### 4. Serviços
 - Dois blocos: Vidraçaria (Joel) e Forros/Drywall (Júnior)
 - Cards com ícones Lucide React (sem emoji, sem repetir ícone entre seções)
-- CTA próprio por bloco: "Falar com Joel" (8056) · "Falar com Joel Júnior" (4453)
+- CTA por bloco: "Pedir orçamento no WhatsApp", os dois para o Júnior (4453), ver seção 3
 
 ### 5. Galeria de trabalhos — ELEMENTO PRINCIPAL
 - Duas abas: "Joel · Vidraçaria" | "Joel Júnior · Forros & Drywall"
@@ -124,7 +122,7 @@ Moradores e comércios de Santa Bárbara de Goiás e região (Goiânia e cidades
   - Júnior: Forro PVC Branco · Forro Amadeirado · Drywall · Luminárias LED
 - Primeira categoria selecionada por padrão
 - Grid de fotos reais com lightbox ao clicar
-- CTA contextual por aba (Vidraçaria → 8056, Forros → 4453)
+- CTA das abas: as duas para o Júnior (4453), ver seção 3
 - Enquanto não houver fotos: placeholders com cor distinta por categoria (nunca todos iguais)
 
 ### 6. Diferenciais

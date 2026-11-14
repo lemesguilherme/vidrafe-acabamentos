@@ -38,8 +38,10 @@ export const ogImage = {
 };
 
 /*
-  Dois profissionais, dois numeros. O destino de cada CTA depende do contexto:
-  ver tabela de roteamento no prd.md. Padrao do site = Joel Júnior.
+  Dois profissionais, mas um destino so: todo botao de WhatsApp vai pro Joel
+  Júnior (4453) com waMessages.default, por decisao do cliente (Fase 12, ver
+  prd.md secao 3). O numero do Joel fica aqui so como dado da empresa; nao
+  e usado em nenhum botao. Nao voltar a dividir por profissional.
 */
 export const contacts = {
   junior: {
@@ -56,7 +58,11 @@ export const contacts = {
   },
 } as const;
 
-// Mensagens pre-preenchidas por contexto (obrigatorio, foi falha na v1).
+// Mensagens pre-preenchidas (obrigatorio, foi falha na v1). Todos os botoes
+// usam `default` e o destino e sempre o junior. `vidracaria` e `forros` ficaram
+// de antes da Fase 12 e hoje nao sao usadas; o rastreamento por ponto de contato
+// e feito pelo waContexto (lib/whatsapp.ts). Se voltarem a ser usadas, lembrar
+// que `vidracaria` comeca com "Olá Joel!" e o numero de destino e do Júnior.
 export const waMessages = {
   default: "Olá! Vi o site da Vidrafe e gostaria de pedir um orçamento.",
   vidracaria:
@@ -73,7 +79,8 @@ export const navLinks = [
   { label: "Localização", href: "#localizacao" },
 ] as const;
 
-// Servicos por profissional (ver prd.md).
+// Servicos por profissional (ver prd.md). `owner` diz quem executa o servico,
+// nao pra onde vai o WhatsApp: o destino e sempre o junior.
 export const services = {
   vidracaria: {
     title: "Vidraçaria & Esquadrias",

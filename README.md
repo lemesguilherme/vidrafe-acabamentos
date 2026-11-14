@@ -136,16 +136,9 @@ Para usar um domínio próprio:
 
 ## Roteamento de WhatsApp
 
-O site tem dois números, e o destino depende do contexto do botão:
+Todos os botões e links de WhatsApp do site vão para o **Joel Júnior, (62) 9.9992-4453**, com a mensagem padrão. Foi decisão do cliente na Fase 12: a divisão antiga (vidraçaria com o Joel, 8056) foi descontinuada e o número do Joel não é usado em nenhum botão.
 
-| Contexto | Profissional | Número |
-|---|---|---|
-| Padrão do site: navbar, hero, CTA final, botão flutuante | Joel Júnior | (62) 9.9992-4453 |
-| Forros e drywall: bloco de serviços, aba da galeria | Joel Júnior | (62) 9.9992-4453 |
-| Vidraçaria: bloco de serviços, aba da galeria | Joel | (62) 9.8472-8056 |
-| Localização e footer | os dois, cada um identificado | 8056 e 4453 |
-
-Todos os links passam pelo helper `lib/whatsapp.ts` com uma das mensagens de `waMessages` (`data/site.ts`), então nenhum botão abre o WhatsApp sem mensagem pré-preenchida. A tabela completa está no `prd.md`.
+Todos os links passam pelo helper `lib/whatsapp.ts` com `waMessages.default` (`data/site.ts`), então nenhum botão abre o WhatsApp sem mensagem pré-preenchida. Cada ponto de contato continua identificado no rastreamento pelo `waContexto`. Detalhes no `prd.md`, seção 3.
 
 ## Documentos de referência
 
