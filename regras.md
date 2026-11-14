@@ -86,7 +86,7 @@ Tom: direto, confiável, regional, humano. Como um profissional de confiança fa
 3. **Usar as skills úteis ao projeto** em cada fase (ex: design de frontend, dataviz se houver algo visual, geração de imagem/ícone quando aplicável, skills de arquivo quando mexer em assets).
 4. **Fotos chegam depois.** Hero e galeria usam placeholder (cor por categoria na galeria) até o cliente enviar as imagens reais. Deixar os pontos de troca bem marcados no código.
 5. **Deploy na Vercel** só quando começarmos a fase de setup, usando o repo salvo.
-6. **Checklist de qualidade** (seção 9) rodado ao fim de cada fase antes de seguir.
+6. **Checklist de qualidade** (seção 10) rodado ao fim de cada fase antes de seguir.
 
 ---
 
@@ -100,7 +100,15 @@ Tom: direto, confiável, regional, humano. Como um profissional de confiança fa
 
 ---
 
-## 9. Checklist de qualidade (rodar ao fim de cada fase)
+## 9. Formato e peso de mídia
+
+- **Imagens** são servidas em **WebP**, sempre redimensionadas e comprimidas. O pipeline da galeria converte os originais (JPEG/PNG) para WebP automaticamente no build, ninguém converte à mão. Larguras-alvo: hero ~1800px, fotos de galeria ~1600px. Qualidade ~80, sem metadados. Mirar bem abaixo de ~300 KB por imagem.
+- **Vídeos** são servidos em **MP4 (H.264)** como base universal, opcionalmente com WebM/VP9 como fonte adicional mais leve. Sempre comprimidos e redimensionados (máx 1080p), sem áudio quando decorativos, com poster (imagem de capa) e carregamento lazy. Nada de autoplay de vídeo pesado.
+- **Objetivo:** site leve e rápido. Nenhuma mídia original pesada (vários MB) vai para produção sem passar pela otimização.
+
+---
+
+## 10. Checklist de qualidade (rodar ao fim de cada fase)
 
 - [ ] Nenhum emoji no código nem na copy.
 - [ ] Nenhum travessão em excesso; copy soa regional e humana.
@@ -111,6 +119,7 @@ Tom: direto, confiável, regional, humano. Como um profissional de confiança fa
 - [ ] GSAP por classe específica e com `ctx.revert()` no cleanup.
 - [ ] Sem CSS global sobrescrevendo Tailwind.
 - [ ] Imagens com dimensões, `alt` e lazy corretos.
+- [ ] Mídia otimizada: imagens em WebP abaixo de ~300 KB, vídeos em MP4 comprimido com poster.
 - [ ] Acessibilidade: foco, ARIA, reduced-motion.
 - [ ] Sem dependência instalada e não usada.
 - [ ] Responsivo de verdade no mobile.

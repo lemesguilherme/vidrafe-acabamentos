@@ -39,6 +39,8 @@ Estes três arquivos são a fonte da verdade. Consulte-os antes de qualquer alte
 - **Sem CSS global** sobrescrevendo Tailwind. Sem dependência instalada e não usada.
 - **Acessibilidade**: `lang="pt-BR"`, HTML semântico, ARIA, `focus-visible`, `prefers-reduced-motion`, `alt` real.
 - **Ícones** Lucide, nunca emoji, nunca repetidos entre seções.
+- **Mídia leve**: imagens em WebP (hero ~1800px, galeria ~1600px, qualidade ~80, sem metadados, bem abaixo de ~300 KB), convertidas pelo pipeline no build.
+- **Vídeos** em MP4 H.264 (WebM opcional), máx 1080p, sem áudio se decorativo, com poster e lazy. Nenhum original de vários MB vai pra produção.
 
 ## Estrutura
 
