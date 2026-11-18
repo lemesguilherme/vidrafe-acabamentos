@@ -106,6 +106,11 @@ async function gerarAppleIcon(logo) {
   OG provisoria montada em SVG. Quando chegar a foto da fachada, da para
   trocar por uma OG com a foto real ao fundo (mesmo 1200x630) e manter
   as dimensoes declaradas no layout.
+
+  Excecao a regra do WebP: o OG fica em JPG de proposito. Varios scrapers
+  de preview de link (WhatsApp, alguns apps de mensagem) lidam melhor com
+  JPG/PNG no og:image, e WebP ali pode sumir com a miniatura. Nao converter
+  no pipeline de midia (scripts/otimizar-imagens.mjs).
 */
 async function gerarOg(logo) {
   const W = 1200;
