@@ -108,6 +108,20 @@ export const equipe = [
   },
 ] as const;
 
+/*
+  Numeros da Vidrafe (faixa no Sobre, entre o texto e os dois profissionais).
+
+  PREENCHER COM A VERDADE, nunca estimar: ano, obra ou cidade inventada
+  derruba a confianca. `valor` vazio = o item NAO aparece; todos vazios = a
+  faixa inteira some. Valor so com digitos ("15") ganha contagem animada no
+  scroll; qualquer outro formato ("1.200") aparece direto, sem animar.
+*/
+export const numeros: { valor: string; rotulo: string; prefixo?: string }[] = [
+  { valor: "", prefixo: "+", rotulo: "anos de mercado" },
+  { valor: "", rotulo: "obras entregues" },
+  { valor: "", rotulo: "cidades atendidas na região" },
+];
+
 export const navLinks = [
   { label: "Início", href: "#inicio" },
   { label: "Sobre", href: "#sobre" },
@@ -117,15 +131,15 @@ export const navLinks = [
 ] as const;
 
 /*
-  Servicos (lista numerada da secao Servicos e destaques do rodape).
+  Servicos (grade de icones da secao Servicos e destaques do rodape).
 
   `area` diz QUEM FAZ o servico (Vidracaria = Joel, Forros & Drywall = Joel
-  Júnior), nao pra onde vai o WhatsApp: o CTA de todos vai pro junior (Fase 12).
-  Cada CTA rastreia pelo `contexto` proprio (lib/whatsapp.ts).
+  Júnior) e agrupa a grade por frente. O WhatsApp de todos vai pro junior
+  (Fase 12); cada frente rastreia pelo proprio contexto (servicos_joel /
+  servicos_junior, lib/whatsapp.ts).
 
-  `galeria` (opcional) e o slug de uma categoria da galeria: a primeira foto
-  "Depois" dela (ou a primeira foto) aparece no servico aberto. Pasta vazia =
-  servico sem foto, e a foto surge sozinha quando a galeria ganhar fotos.
+  `icon` e um icone Lucide de categoria, mapeado em components/Services.tsx.
+  Nao repetir os icones de outras secoes (Diferenciais, galeria, FAQ...).
 
   Tags e textos vem do que a Vidrafe faz de verdade (lista anterior de servicos
   e FAQ). Nada de servico, material ou prazo que nao foi confirmado.
@@ -144,8 +158,7 @@ export const servicos = [
     area: "Vidraçaria",
     resumo: "Box de vidro feito na medida do seu banheiro, de canto, frontal ou em formato especial.",
     tags: ["Canto", "Frontal", "Especiais"],
-    galeria: "box-banheiro",
-    contexto: "servico_box",
+    icon: "ShowerHead",
   },
   {
     slug: "espelhos",
@@ -153,8 +166,7 @@ export const servicos = [
     area: "Vidraçaria",
     resumo: "Espelho cortado na medida da parede e armário de pia em vidro, sob medida pro seu cômodo.",
     tags: ["Espelho sob medida", "Armário para pia em vidro"],
-    galeria: "espelhos",
-    contexto: "servico_espelhos",
+    icon: "RectangleVertical",
   },
   {
     slug: "vidros",
@@ -162,8 +174,7 @@ export const servicos = [
     area: "Vidraçaria",
     resumo: "Vidro temperado, comum ou laminado pra box, porta, janela e armário de pia. Na dúvida, a gente explica a diferença.",
     tags: ["Temperado", "Comum", "Laminado"],
-    galeria: "vidros",
-    contexto: "servico_vidros",
+    icon: "Square",
   },
   {
     slug: "portas-janelas",
@@ -171,8 +182,7 @@ export const servicos = [
     area: "Vidraçaria",
     resumo: "Portas de vidro pivotantes, de correr ou de abrir, e janelas pra casa e pro comércio.",
     tags: ["Porta pivotante", "De correr", "De abrir", "Janela residencial", "Janela comercial"],
-    galeria: "portas-janelas",
-    contexto: "servico_portas_janelas",
+    icon: "DoorOpen",
   },
   {
     slug: "esquadrias",
@@ -180,8 +190,7 @@ export const servicos = [
     area: "Vidraçaria",
     resumo: "Esquadria de alumínio medida no vão e instalada por quem mediu.",
     tags: [],
-    galeria: "esquadrias",
-    contexto: "servico_esquadrias",
+    icon: "Frame",
   },
   {
     slug: "policarbonato",
@@ -189,7 +198,7 @@ export const servicos = [
     area: "Vidraçaria",
     resumo: "Cobertura em policarbonato medida no local e instalada pela gente.",
     tags: [],
-    contexto: "servico_policarbonato",
+    icon: "Umbrella",
   },
   {
     slug: "forro-pvc",
@@ -197,8 +206,7 @@ export const servicos = [
     area: "Forros & Drywall",
     resumo: "Forro PVC branco, amadeirado ou cerejeira, com o acabamento conferido antes da gente ir embora.",
     tags: ["Branco", "Amadeirado", "Cerejeira"],
-    galeria: "forro-pvc-branco",
-    contexto: "servico_forro_pvc",
+    icon: "PanelTop",
   },
   {
     slug: "drywall",
@@ -206,8 +214,7 @@ export const servicos = [
     area: "Forros & Drywall",
     resumo: "Divisória, sanca e rebaixamento em drywall pra mudar o ambiente sem quebra-quebra.",
     tags: ["Divisórias", "Sancas", "Rebaixamentos"],
-    galeria: "drywall-divisorias",
-    contexto: "servico_drywall",
+    icon: "BrickWall",
   },
   {
     slug: "led",
@@ -215,8 +222,7 @@ export const servicos = [
     area: "Forros & Drywall",
     resumo: "Spots, painéis e fitas de LED instalados junto com o forro ou o drywall.",
     tags: ["Spots", "Painéis", "Fitas"],
-    galeria: "luminarias-led",
-    contexto: "servico_led",
+    icon: "Lightbulb",
   },
 ] as const satisfies readonly {
   slug: string;
@@ -224,8 +230,7 @@ export const servicos = [
   area: AreaServico;
   resumo: string;
   tags: readonly string[];
-  galeria?: string;
-  contexto: `servico_${string}`;
+  icon: string;
 }[];
 
 /*

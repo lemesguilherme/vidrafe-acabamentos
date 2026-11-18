@@ -32,7 +32,8 @@ export type WaContexto =
   | "pagina_404"
   | "sobre_joel"
   | "sobre_junior"
-  | `servico_${string}`;
+  | "servicos_joel"
+  | "servicos_junior";
 
 export const WA_CONTEXTO_ATTR = "data-wa-contexto";
 

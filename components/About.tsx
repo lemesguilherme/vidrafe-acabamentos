@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Camera } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import { company, equipe, waMessages } from "@/data/site";
+import { company, equipe, numeros, waMessages } from "@/data/site";
 import { retratosEquipe } from "@/data/equipe.gerada";
 import { waContexto, waLink } from "@/lib/whatsapp";
 import CtaBrilho from "@/components/CtaBrilho";
@@ -17,6 +17,11 @@ type Pessoa = (typeof equipe)[number];
 
 // Campo vazio ou ainda com o lembrete "PREENCHER" nao aparece no site.
 const preenchido = (texto: string) => texto.trim() !== "" && !texto.startsWith("PREENCHER");
+
+// So os numeros preenchidos aparecem; nenhum preenchido = a faixa some.
+const numerosVisiveis = numeros.filter((n) => n.valor.trim() !== "");
+// Contagem animada so pra valor so de digitos ("15"); "1.200" aparece direto.
+const contavel = (valor: string) => /^\d+$/.test(valor.trim());
 
 const iniciais = (nome: string) =>
   nome
@@ -45,6 +50,32 @@ export default function About() {
           .from(".about-intro", { autoAlpha: 0, y: 20 })
           .from(".about-rule", { scaleX: 0, duration: 0.6 }, "-=0.35");
 
+        // Faixa de numeros: o wrapper entra e cada valor conta de 0 ate o real.
+        // O HTML ja sai com o valor final (sem JS ou com reduced-motion, e ele que fica).
+        const valores = gsap.utils.toArray<HTMLElement>(".numero-valor[data-alvo]");
+        if (document.querySelector(".about-numeros")) {
+          gsap.from(".about-numeros", {
+            autoAlpha: 0,
+            y: 16,
+            duration: 0.7,
+            ease: "power2.out",
+            scrollTrigger: { trigger: ".about-numeros", start: "top 85%", once: true },
+          });
+        }
+        valores.forEach((el) => {
+          const alvo = Number(el.dataset.alvo);
+          const contador = { v: 0 };
+          el.textContent = "0";
+          gsap.to(contador, {
+            v: alvo,
+            duration: 1.4,
+            ease: "power2.out",
+            scrollTrigger: { trigger: el, start: "top 85%", once: true },
+            onUpdate: () => {
+              el.textContent = String(Math.round(contador.v));
+            },
+          });
+        });
         gsap.utils.toArray<HTMLElement>(".equipe-pessoa").forEach((pessoa) => {
           gsap
             .timeline({
@@ -55,6 +86,9 @@ export default function About() {
             .from(pessoa.querySelector(".equipe-texto"), { autoAlpha: 0, y: 20 }, "-=0.55")
             .from(pessoa.querySelector(".equipe-linha"), { scaleX: 0, duration: 0.6 }, "-=0.45");
         });
+
+        // Se o matchMedia reverter (pessoa ativou reduced-motion), volta o valor real.
+        return () => valores.forEach((el) => (el.textContent = el.dataset.alvo ?? ""));
       });
     },
     { scope },
@@ -79,6 +113,30 @@ export default function About() {
             então dá pra combinar tudo direto. Pode contar com a gente.
           </p>
         </div>
+
+        {numerosVisiveis.length > 0 && (
+          <dl className="about-numeros mt-12 flex flex-wrap border-y border-navy/15 sm:mt-14">
+            {numerosVisiveis.map((n, i) => (
+              <div
+                key={n.rotulo}
+                className={`flex min-w-[50%] flex-1 flex-col-reverse py-6 sm:min-w-0 sm:px-8 sm:first:pl-0 ${
+                  i > 0 ? "sm:border-l sm:border-navy/15" : ""
+                }`}
+              >
+                <dt className="mt-1 font-body text-sm text-navy/70">{n.rotulo}</dt>
+                <dd className="font-heading text-4xl font-bold leading-none text-navy lining-nums tabular-nums sm:text-5xl">
+                  {n.prefixo && <span className="text-brick">{n.prefixo}</span>}
+                  <span
+                    className="numero-valor"
+                    data-alvo={contavel(n.valor) ? n.valor.trim() : undefined}
+                  >
+                    {n.valor.trim()}
+                  </span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )}
 
         <ul className="mt-16 flex flex-col gap-20 sm:mt-20 lg:gap-28">
           {equipe.map((pessoa, i) => (

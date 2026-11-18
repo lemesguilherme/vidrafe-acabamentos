@@ -1,42 +1,57 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import {
+  BrickWall,
+  DoorOpen,
+  Frame,
+  Lightbulb,
+  PanelTop,
+  RectangleVertical,
+  ShowerHead,
+  Square,
+  Umbrella,
+  type LucideIcon,
+} from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import { areaResponsavel, contacts, gallery, servicos, waMessages } from "@/data/site";
-import { fotosGaleria } from "@/data/galeria.gerada";
-import { waContexto, waLink } from "@/lib/whatsapp";
+import { areaResponsavel, contacts, servicos, waMessages, type AreaServico } from "@/data/site";
+import { waContexto, waLink, type WaContexto } from "@/lib/whatsapp";
 import CtaBrilho from "@/components/CtaBrilho";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type Servico = (typeof servicos)[number];
 
-const categoriasGaleria = [...gallery.vidracaria.categories, ...gallery.forros.categories];
+// Mapa nome -> componente. Importacao explicita mantem o bundle enxuto.
+const icons: Record<Servico["icon"], LucideIcon> = {
+  ShowerHead,
+  RectangleVertical,
+  Square,
+  DoorOpen,
+  Frame,
+  Umbrella,
+  PanelTop,
+  BrickWall,
+  Lightbulb,
+};
 
-// Foto do servico vem da galeria: a primeira "Depois" da categoria, senao a primeira.
-function fotoDoServico(servico: Servico) {
-  if (!("galeria" in servico)) return null;
-  const fotos = fotosGaleria[servico.galeria] ?? [];
-  const foto = fotos.find((f) => f.etapa === "Depois") ?? fotos[0];
-  if (!foto) return null;
-  const alt = categoriasGaleria.find((c) => c.slug === servico.galeria)?.alt ?? servico.titulo;
-  return { ...foto, alt };
-}
-
-const numero = (i: number) => String(i + 1).padStart(2, "0");
+// As duas frentes, na ordem da pagina. O CTA de ambas vai pro junior (Fase 12);
+// o contexto separa o rastreio.
+const frentes: { area: AreaServico; apelido: string; contexto: WaContexto }[] = [
+  { area: "Vidraçaria", apelido: "Joel", contexto: "servicos_joel" },
+  { area: "Forros & Drywall", apelido: "Júnior", contexto: "servicos_junior" },
+];
 
 export default function Services() {
   const scope = useRef<HTMLElement>(null);
-  // So uma aberta por vez; a primeira ja abre. Clicar na aberta fecha.
-  const [aberta, setAberta] = useState<number | null>(0);
 
   /*
-    Reveal no scroll. Alvos sao wrappers sem transicao CSS (.services-head e o
-    <li> de cada linha); o botao e o CTA ficam dentro e nunca sao animados
-    direto pelo GSAP (bug dos botoes sumidos, ver Hero.tsx).
+    Reveal no scroll. Alvos sao wrappers sem transicao CSS (.services-head,
+    .servico-frente-cab e cada .servico-item); o CTA fica dentro do cabecalho e
+    nunca e animado direto pelo GSAP (bug dos botoes sumidos, ver Hero.tsx).
   */
   useGSAP(
     () => {
@@ -45,11 +60,20 @@ export default function Services() {
         gsap
           .timeline({
             defaults: { ease: "power2.out", duration: 0.7 },
-            scrollTrigger: { trigger: scope.current, start: "top 75%", once: true },
+            scrollTrigger: { trigger: ".services-head", start: "top 80%", once: true },
           })
           .from(".services-head", { autoAlpha: 0, y: 20 })
-          .from(".services-rule", { scaleX: 0, duration: 0.6 }, "-=0.35")
-          .from(".servico-linha", { autoAlpha: 0, y: 16, stagger: 0.06, duration: 0.5 }, "-=0.3");
+          .from(".services-rule", { scaleX: 0, duration: 0.6 }, "-=0.35");
+
+        gsap.utils.toArray<HTMLElement>(".servico-frente").forEach((frente) => {
+          gsap
+            .timeline({
+              defaults: { ease: "power2.out", duration: 0.6 },
+              scrollTrigger: { trigger: frente, start: "top 75%", once: true },
+            })
+            .from(frente.querySelector(".servico-frente-cab"), { autoAlpha: 0, y: 16 })
+            .from(frente.querySelectorAll(".servico-item"), { autoAlpha: 0, y: 16, stagger: 0.06 }, "-=0.4");
+        });
       });
     },
     { scope },
@@ -60,7 +84,7 @@ export default function Services() {
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="services-head max-w-2xl">
           <h2 className="font-heading text-3xl font-bold text-navy sm:text-4xl">
-            O que a gente faz
+            Tudo que a gente mede e instala
           </h2>
           <span
             className="services-rule mt-4 block h-[3px] w-16 origin-left bg-brick"
@@ -72,160 +96,90 @@ export default function Services() {
           </p>
         </div>
 
-        <ol className="mt-12 border-t border-navy/15 sm:mt-16">
-          {servicos.map((servico, i) => (
-            <ServicoLinha
-              key={servico.slug}
-              servico={servico}
-              indice={i}
-              aberta={aberta === i}
-              onAlternar={() => setAberta(aberta === i ? null : i)}
+        <div className="mt-14 flex flex-col gap-16 sm:mt-16 lg:gap-20">
+          {frentes.map((frente) => (
+            <Frente
+              key={frente.area}
+              {...frente}
+              itens={servicos.filter((s) => s.area === frente.area)}
             />
           ))}
-        </ol>
+        </div>
       </div>
     </section>
   );
 }
 
-function ServicoLinha({
-  servico,
-  indice,
-  aberta,
-  onAlternar,
+/*
+  Uma frente: rotulo + quem faz + CTA a esquerda, grade de servicos a direita.
+  A grade e uma "tabela" de celulas brancas separadas por fio (gap-px sobre
+  fundo navy/10): todos os servicos visiveis de uma vez, nada pra abrir.
+  No mobile empilha: rotulo e CTA em cima, uma celula por linha.
+*/
+function Frente({
+  area,
+  apelido,
+  contexto,
+  itens,
 }: {
-  servico: Servico;
-  indice: number;
-  aberta: boolean;
-  onAlternar: () => void;
+  area: AreaServico;
+  apelido: string;
+  contexto: WaContexto;
+  itens: Servico[];
 }) {
-  const foto = fotoDoServico(servico);
-  const responsavel = contacts[areaResponsavel[servico.area]].name;
-  const botaoId = `servico-${servico.slug}-botao`;
-  const painelId = `servico-${servico.slug}-painel`;
+  const responsavel = contacts[areaResponsavel[area]].name;
 
   return (
-    <li className="servico-linha border-b border-navy/15">
-      <h3>
-        <button
-          id={botaoId}
-          type="button"
-          aria-expanded={aberta}
-          aria-controls={painelId}
-          onClick={onAlternar}
-          className="group flex w-full items-center gap-4 py-5 text-left focus-visible:outline-navy sm:gap-6 sm:py-6"
-        >
-          <span
-            className={`w-10 shrink-0 font-heading text-lg lining-nums tabular-nums transition-colors sm:w-14 sm:text-xl ${
-              aberta ? "text-brick" : "text-navy/45"
-            }`}
-          >
-            {numero(indice)}/
-          </span>
-          <span className="min-w-0 flex-1">
-            <span
-              className={`block font-heading text-xl font-semibold leading-snug transition-colors sm:text-3xl ${
-                aberta ? "text-navy" : "text-navy group-hover:text-brick"
-              }`}
+    <div className="servico-frente grid gap-8 lg:grid-cols-12 lg:gap-12">
+      <div className="servico-frente-cab lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
+        <div className="border-l-4 border-brick pl-5">
+          <h3 className="font-heading text-2xl font-bold text-navy sm:text-3xl">
+            {area} <span className="text-brick">· {apelido}</span>
+          </h3>
+          <p className="mt-2 font-body text-sm text-navy/70 sm:text-base">
+            Quem mede e instala é o {responsavel}.
+          </p>
+        </div>
+        {/* flex-col: no celular o CTA estica (o GlareHover fixa width: auto inline). */}
+        <div className="mt-6 flex flex-col sm:flex-row">
+          <CtaBrilho focoNavy>
+            <a
+              href={waLink("junior", waMessages.default)}
+              {...waContexto(contexto)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition hover:bg-whatsapp-dark focus-visible:outline-none active:scale-[0.97] sm:w-auto"
             >
-              {servico.titulo}
-            </span>
-            {/* Mobile: a area vai embaixo do nome; no desktop, etiqueta a direita. */}
-            <span className="mt-1 block font-body text-xs font-medium text-navy/60 sm:hidden">
-              {servico.area}
-            </span>
-          </span>
-          <span className="hidden shrink-0 rounded-full border border-navy/20 px-3 py-1 font-body text-xs font-medium text-navy/70 sm:inline">
-            {servico.area}
-          </span>
-          {/* Indicador +/- desenhado em CSS (o Plus do Lucide ja e do FAQ). */}
-          <span
-            aria-hidden="true"
-            className={`relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors ${
-              aberta
-                ? "border-brick bg-brick"
-                : "border-navy/25 group-hover:border-brick"
-            }`}
-          >
-            <span className={`absolute h-[2px] w-3.5 ${aberta ? "bg-white" : "bg-navy"}`} />
-            <span
-              className={`absolute h-3.5 w-[2px] transition-transform duration-300 motion-reduce:transition-none ${
-                aberta ? "scale-y-0 bg-white" : "bg-navy"
-              }`}
-            />
-          </span>
-        </button>
-      </h3>
-
-      {/* Altura por grid 0fr -> 1fr (mesmo recurso do FAQ). Fechado, o painel
-          fica inert: sai do Tab e do leitor de tela. Reduced-motion: sem animar. */}
-      <div
-        id={painelId}
-        role="region"
-        aria-labelledby={botaoId}
-        inert={!aberta}
-        className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
-          aberta ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-        }`}
-      >
-        <div className="overflow-hidden">
-          <div
-            className={`grid gap-8 pb-8 sm:pb-10 sm:pl-20 lg:grid-cols-12 lg:gap-12 ${
-              foto ? "" : "lg:pr-[25%]"
-            }`}
-          >
-            <div className={foto ? "lg:col-span-7" : "lg:col-span-12"}>
-              <p className="font-body text-sm font-semibold text-brick">
-                Quem faz: {responsavel}
-              </p>
-              <p className="mt-2 max-w-xl font-body text-base leading-relaxed text-navy/80 sm:text-lg">
-                {servico.resumo}
-              </p>
-
-              {servico.tags.length > 0 && (
-                <ul className="mt-5 flex flex-wrap gap-2" aria-label={`Tipos de ${servico.titulo.toLowerCase()}`}>
-                  {servico.tags.map((tag) => (
-                    <li
-                      key={tag}
-                      className="rounded-full border border-navy/15 bg-white px-3 py-1 font-body text-sm text-navy"
-                    >
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              <div className="mt-7 flex flex-col sm:flex-row">
-                <CtaBrilho focoNavy>
-                  <a
-                    href={waLink("junior", waMessages.default)}
-                    {...waContexto(servico.contexto)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition hover:bg-whatsapp-dark focus-visible:outline-none active:scale-[0.97] sm:w-auto"
-                  >
-                    <FaWhatsapp className="text-xl" aria-hidden="true" />
-                    Pedir orçamento pelo WhatsApp
-                  </a>
-                </CtaBrilho>
-              </div>
-            </div>
-
-            {foto && (
-              <div className="lg:col-span-5">
-                <img
-                  src={foto.src}
-                  alt={foto.alt}
-                  width={foto.width}
-                  height={foto.height}
-                  loading="lazy"
-                  className="aspect-[4/3] w-full rounded-md object-cover shadow-sm"
-                />
-              </div>
-            )}
-          </div>
+              <FaWhatsapp className="text-xl" aria-hidden="true" />
+              Pedir orçamento pelo WhatsApp
+            </a>
+          </CtaBrilho>
         </div>
       </div>
-    </li>
+
+      <ul className="grid gap-px overflow-hidden rounded-md border border-navy/10 bg-navy/10 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-3">
+        {itens.map((servico) => {
+          const Icon = icons[servico.icon];
+          return (
+            <li key={servico.slug} className="servico-item flex flex-col bg-white p-5 sm:p-6">
+              <span className="flex h-10 w-10 items-center justify-center rounded-md bg-navy">
+                <Icon className="h-5 w-5 text-gold" aria-hidden="true" />
+              </span>
+              <h4 className="mt-4 font-heading text-lg font-semibold leading-snug text-navy">
+                {servico.titulo}
+              </h4>
+              <p className="mt-1.5 font-body text-sm leading-relaxed text-navy/75">
+                {servico.resumo}
+              </p>
+              {servico.tags.length > 0 && (
+                <p className="mt-3 font-body text-xs font-medium text-navy/70">
+                  {servico.tags.join(" · ")}
+                </p>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }

@@ -90,7 +90,7 @@ export default function Faq() {
                       {/* Numero em Playfair com lining-nums (senao a fonte desenha "o1"). */}
                       <span
                         className={`w-9 shrink-0 pt-0.5 font-heading text-base lining-nums tabular-nums transition-colors motion-reduce:transition-none sm:w-12 sm:text-lg ${
-                          estaAberta ? "text-brick" : "text-navy/45"
+                          estaAberta ? "text-brick" : "text-navy/70"
                         }`}
                       >
                         {numero(i)}/
