@@ -36,7 +36,7 @@ export default function Depoimentos() {
             O que os clientes contam
           </h2>
           {depoimentosIlustrativos && (
-            <p className="mt-4 font-body text-base leading-relaxed text-navy/75">
+            <p className="mt-4 font-body text-base leading-relaxed text-navy/80">
               Os textos abaixo são exemplos ilustrativos e serão trocados por
               depoimentos reais de clientes da Vidrafe.
             </p>

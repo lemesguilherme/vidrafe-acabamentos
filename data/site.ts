@@ -265,7 +265,7 @@ export const faq = [
   {
     pergunta: "Vocês fazem a medição e a instalação?",
     resposta:
-      "Fazemos. A gente vai até a sua casa ou comércio, mede no lugar e depois volta para instalar. Quem mede é quem instala. Combine o dia da visita pelo WhatsApp.",
+      "Fazemos. A gente vai até a sua casa ou comércio, mede no lugar e depois volta para instalar. Quem mede é quem instala. O dia da visita a gente combina pelo WhatsApp.",
   },
   {
     pergunta: "Trabalham com quais tipos de vidro?",

@@ -124,8 +124,8 @@ export default function PoliticaDePrivacidade() {
 
           <h2 className={sectionTitle}>Seus direitos</h2>
           <p className={paragraph}>
-            Você pode pedir a qualquer momento para saber quais dados seus temos
-            das conversas, corrigir ou apagar essas informações. É só falar com a
+            Você pode pedir a qualquer momento para saber quais dados seus guardamos
+            das conversas, e também para corrigir ou apagar essas informações. É só falar com a
             gente por um dos contatos abaixo.
           </p>
 

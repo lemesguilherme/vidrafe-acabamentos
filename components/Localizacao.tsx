@@ -27,7 +27,8 @@ export default function Localizacao() {
             defaults: { ease: "power2.out", duration: 0.7 },
             scrollTrigger: { trigger: scope.current, start: "top 75%", once: true },
           })
-          .from(".local-map", { autoAlpha: 0, y: 20 })
+          .from(".local-rule", { scaleX: 0, duration: 0.6 })
+          .from(".local-map", { autoAlpha: 0, y: 20 }, "-=0.3")
           .from(".local-info", { autoAlpha: 0, y: 20 }, "-=0.5");
       });
     },
@@ -40,7 +41,7 @@ export default function Localizacao() {
         <h2 className="font-heading text-3xl font-bold text-navy sm:text-4xl">
           Onde a gente fica
         </h2>
-        <span className="mt-4 block h-[3px] w-16 bg-gold" aria-hidden="true" />
+        <span className="local-rule mt-4 block h-[3px] w-16 origin-left bg-brick" aria-hidden="true" />
 
         <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="local-map lg:col-span-7">

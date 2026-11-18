@@ -25,6 +25,7 @@ export default function About() {
           })
           .from(".about-media", { autoAlpha: 0, y: 24 })
           .from(".about-text", { autoAlpha: 0, y: 20 }, "-=0.5")
+          .from(".about-rule", { scaleX: 0, duration: 0.6 }, "-=0.35")
           .from(".about-person", { autoAlpha: 0, y: 16, stagger: 0.12 }, "-=0.4");
       });
     },
@@ -77,7 +78,7 @@ export default function About() {
           <h2 className="font-heading text-3xl font-bold text-navy sm:text-4xl">
             Quem faz a Vidrafe
           </h2>
-          <span className="mt-4 block h-[3px] w-16 bg-gold" aria-hidden="true" />
+          <span className="about-rule mt-4 block h-[3px] w-16 origin-left bg-brick" aria-hidden="true" />
 
           <p className="mt-6 max-w-2xl font-body text-base leading-relaxed text-navy/80 sm:text-lg">
             A Vidrafe é uma vidraçaria e loja de acabamentos de {company.city}.

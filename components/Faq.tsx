@@ -62,7 +62,7 @@ export default function Faq() {
             Perguntas frequentes
           </h2>
           <span className="faq-rule mt-4 block h-[3px] w-16 origin-left bg-brick" aria-hidden="true" />
-          <p className="mt-6 max-w-sm font-body text-base leading-relaxed text-navy/75">
+          <p className="mt-6 max-w-sm font-body text-base leading-relaxed text-navy/80">
             O que o pessoal mais pergunta antes de chamar a gente para medir
             um box, um espelho ou um forro.
           </p>

@@ -42,8 +42,8 @@ export default function NotFound() {
           </h1>
           <p className="mt-5 max-w-xl font-body text-base leading-relaxed text-navy/80 sm:text-lg">
             O link pode estar errado ou ser de uma página antiga. Volta pro
-            início do site ou chama a gente no WhatsApp que a gente te ajuda
-            com o orçamento.
+            início do site ou chama no WhatsApp que a gente te ajuda com o
+            orçamento.
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
