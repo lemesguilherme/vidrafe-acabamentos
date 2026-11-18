@@ -22,6 +22,7 @@ export default function Hero() {
         gsap
           .timeline({ defaults: { ease: "power2.out", duration: 0.7 } })
           .from(".hero-eyebrow", { autoAlpha: 0, y: 16 })
+          .from(".hero-rule", { scaleX: 0, duration: 0.5 }, "-=0.35")
           .from(".hero-title", { autoAlpha: 0, y: 24 }, "-=0.45")
           .from(".hero-sub", { autoAlpha: 0, y: 20 }, "-=0.5")
           .from(".hero-cta", { autoAlpha: 0, y: 16, stagger: 0.12 }, "-=0.45")
@@ -77,7 +78,7 @@ export default function Hero() {
       <div className="mx-auto w-full max-w-6xl px-5 pb-28 pt-32 sm:px-8 sm:pb-24 lg:pb-20 lg:pt-28">
         <div className="max-w-3xl lg:max-w-[calc(55vw-max(2rem,calc((100vw-72rem)/2+2rem))-2rem)]">
           <p className="hero-eyebrow flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-gold sm:text-sm">
-            <span className="block h-[2px] w-8 bg-brick" aria-hidden="true" />
+            <span className="hero-rule block h-[2px] w-8 origin-left bg-brick" aria-hidden="true" />
             Vidraçaria e acabamentos
           </p>
 
@@ -98,17 +99,20 @@ export default function Hero() {
               {...waContexto("hero")}
               target="_blank"
               rel="noopener noreferrer"
-              className="hero-cta inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-whatsapp px-7 py-3.5 font-body lg:px-5 font-semibold text-white transition-colors hover:bg-whatsapp-dark"
+              className="hero-cta inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-whatsapp px-7 py-3.5 font-body lg:px-5 font-semibold text-white transition hover:bg-whatsapp-dark active:scale-[0.97]"
             >
               <FaWhatsapp className="text-xl" aria-hidden="true" />
               Pedir orçamento pelo WhatsApp
             </a>
             <a
               href="#galeria"
-              className="hero-cta inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border-2 border-white/80 px-7 py-3 font-body lg:px-5 font-semibold text-white transition-colors hover:border-white hover:bg-white hover:text-navy"
+              className="hero-cta group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border-2 border-white/80 px-7 py-3 font-body lg:px-5 font-semibold text-white transition hover:border-white hover:bg-white hover:text-navy active:scale-[0.97]"
             >
               Ver nossos trabalhos
-              <ArrowRight className="h-5 w-5" aria-hidden="true" />
+              <ArrowRight
+                className="h-5 w-5 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+                aria-hidden="true"
+              />
             </a>
           </div>
 

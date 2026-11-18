@@ -117,7 +117,7 @@ export default function Navbar() {
             {...waContexto("navbar")}
             target="_blank"
             rel="noopener noreferrer"
-            className={`hidden items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 font-body text-sm font-semibold text-white transition-colors hover:bg-whatsapp-dark sm:inline-flex ${
+            className={`hidden items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 font-body text-sm font-semibold text-white transition hover:bg-whatsapp-dark active:scale-[0.97] sm:inline-flex ${
               solid ? "focus-visible:outline-navy" : ""
             }`}
           >
@@ -178,7 +178,7 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}
-            className="mt-5 flex items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3.5 font-body font-semibold text-white transition-colors hover:bg-whatsapp-dark focus-visible:outline-navy"
+            className="mt-5 flex items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3.5 font-body font-semibold text-white transition hover:bg-whatsapp-dark active:scale-[0.97] focus-visible:outline-navy"
           >
             <FaWhatsapp className="text-xl" aria-hidden="true" />
             Fale no WhatsApp

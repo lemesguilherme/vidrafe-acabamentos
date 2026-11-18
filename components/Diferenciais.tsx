@@ -29,6 +29,7 @@ export default function Diferenciais() {
             scrollTrigger: { trigger: scope.current, start: "top 75%", once: true },
           })
           .from(".diferenciais-head", { autoAlpha: 0, y: 20 })
+          .from(".diferenciais-rule", { scaleX: 0, duration: 0.6 }, "-=0.35")
           .from(".diferencial-card", { autoAlpha: 0, y: 20, stagger: 0.1 }, "-=0.45");
       });
     },
@@ -42,7 +43,7 @@ export default function Diferenciais() {
           <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
             Por que chamar a Vidrafe
           </h2>
-          <span className="mt-4 block h-[3px] w-16 bg-brick" aria-hidden="true" />
+          <span className="diferenciais-rule mt-4 block h-[3px] w-16 origin-left bg-brick" aria-hidden="true" />
         </div>
 
         {/* Grade alinhada: todos os cards com a mesma altura na linha. */}

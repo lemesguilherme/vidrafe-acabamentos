@@ -28,6 +28,7 @@ export default function CtaFinal() {
             scrollTrigger: { trigger: scope.current, start: "top 80%", once: true },
           })
           .from(".cta-final-text", { autoAlpha: 0, y: 20 })
+          .from(".cta-final-rule", { scaleX: 0, duration: 0.6 }, "-=0.35")
           .from(".cta-final-button", { autoAlpha: 0, y: 16 }, "-=0.45");
       });
     },
@@ -43,7 +44,7 @@ export default function CtaFinal() {
     >
       <div className="mx-auto grid max-w-6xl gap-10 px-5 sm:px-8 lg:grid-cols-12 lg:items-end">
         <div className="cta-final-text lg:col-span-7">
-          <span className="block h-[3px] w-16 bg-brick" aria-hidden="true" />
+          <span className="cta-final-rule block h-[3px] w-16 origin-left bg-brick" aria-hidden="true" />
           <h2
             id="cta-final-titulo"
             className="mt-6 font-heading text-3xl font-bold leading-tight text-navy sm:text-5xl"
@@ -62,7 +63,7 @@ export default function CtaFinal() {
             {...waContexto("cta_final")}
             target="_blank"
             rel="noopener noreferrer"
-            className="cta-final-button group flex items-center gap-4 rounded-md bg-whatsapp px-5 py-5 text-white shadow-lg shadow-whatsapp-dark/30 ring-1 ring-whatsapp-dark/40 transition-colors hover:bg-whatsapp-dark focus-visible:outline-navy"
+            className="cta-final-button group flex items-center gap-4 rounded-md bg-whatsapp px-5 py-5 text-white shadow-lg shadow-whatsapp-dark/30 ring-1 ring-whatsapp-dark/40 transition hover:bg-whatsapp-dark active:scale-[0.98] focus-visible:outline-navy"
           >
             <FaWhatsapp className="shrink-0 text-3xl" aria-hidden="true" />
             <span className="flex-1 font-body text-lg font-semibold">Chamar no WhatsApp</span>

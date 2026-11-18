@@ -67,7 +67,7 @@ export default function Localizacao() {
               <a
                 href={company.mapsDirections}
                 {...external}
-                className="mt-4 inline-flex items-center justify-center rounded-full border-2 border-navy px-6 py-2.5 font-body text-sm font-semibold text-navy transition-colors hover:bg-navy hover:text-white focus-visible:outline-navy"
+                className="mt-4 inline-flex items-center justify-center rounded-full border-2 border-navy px-6 py-2.5 font-body text-sm font-semibold text-navy transition active:scale-[0.97] hover:bg-navy hover:text-white focus-visible:outline-navy"
               >
                 Como chegar
               </a>

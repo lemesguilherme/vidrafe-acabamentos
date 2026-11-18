@@ -30,6 +30,7 @@ export default function Faq() {
             scrollTrigger: { trigger: scope.current, start: "top 75%", once: true },
           })
           .from(".faq-head", { autoAlpha: 0, y: 20 })
+          .from(".faq-rule", { scaleX: 0, duration: 0.6 }, "-=0.35")
           .from(".faq-item", { autoAlpha: 0, y: 16, stagger: 0.08 }, "-=0.45")
           .from(".faq-footer", { autoAlpha: 0, y: 12 }, "-=0.3");
       });
@@ -60,7 +61,7 @@ export default function Faq() {
           >
             Perguntas frequentes
           </h2>
-          <span className="mt-4 block h-[3px] w-16 bg-brick" aria-hidden="true" />
+          <span className="faq-rule mt-4 block h-[3px] w-16 origin-left bg-brick" aria-hidden="true" />
           <p className="mt-6 max-w-sm font-body text-base leading-relaxed text-navy/75">
             O que o pessoal mais pergunta antes de chamar a gente para medir
             um box, um espelho ou um forro.

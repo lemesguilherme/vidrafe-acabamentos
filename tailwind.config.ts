@@ -2,6 +2,9 @@ import type { Config } from "tailwindcss";
 
 // Tokens de cor extraidos da logo (ver design.md). Inegociaveis.
 const config: Config = {
+  // hover: so em aparelho com mouse. No celular o toque nao deixa o
+  // estado de hover "grudado" no botao depois de abrir o WhatsApp.
+  future: { hoverOnlyWhenSupported: true },
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",

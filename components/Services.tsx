@@ -91,7 +91,7 @@ function ServiceBlock({
           {...waContexto(contexto)}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition-colors hover:bg-whatsapp-dark focus-visible:outline-navy sm:self-auto"
+          className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition hover:bg-whatsapp-dark active:scale-[0.97] focus-visible:outline-navy sm:self-auto"
         >
           <FaWhatsapp className="text-xl" aria-hidden="true" />
           Pedir orçamento no WhatsApp
