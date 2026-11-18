@@ -1,13 +1,25 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type CSSProperties } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Clock, Hammer, MapPin, ShieldCheck, type LucideIcon } from "lucide-react";
 import { diferenciais } from "@/data/site";
+import SpotlightCard from "@/components/SpotlightCard";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+/*
+  Cards com o SpotlightCard do React Bits (components/SpotlightCard.tsx): uma luz
+  gold fraca segue o mouse e acende de leve a borda. Superficie e sombra sao as
+  mesmas de antes. Sem flare no clique, sem grao, sem luz ambiente; no celular o
+  card fica como era. prefers-reduced-motion: a luz acompanha sem suavizar.
+*/
+const cardStyle = {
+  "--spotlight-card-surface": "#22345A",
+  "--spotlight-card-shadow": "0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.2)",
+} as CSSProperties;
 
 const icons: Record<(typeof diferenciais)[number]["icon"], LucideIcon> = {
   MapPin,
@@ -51,17 +63,25 @@ export default function Diferenciais() {
           {diferenciais.map((item) => {
             const Icon = icons[item.icon];
             return (
-              <li
-                key={item.title}
-                className="diferencial-card flex h-full flex-col rounded-md border-t-[3px] border-gold bg-[#22345A] p-6 shadow-lg shadow-black/20"
-              >
-                <Icon className="h-8 w-8 text-gold" aria-hidden="true" />
-                <h3 className="mt-5 font-heading text-xl font-semibold text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-3 font-body text-[15px] leading-relaxed text-white/80">
-                  {item.text}
-                </p>
+              <li key={item.title} className="diferencial-card h-full">
+                <SpotlightCard
+                  theme="dark"
+                  spotlightColor="#FFD700"
+                  intensity={0.1}
+                  spotlightSize={260}
+                  borderGlow={0.45}
+                  flare={false}
+                  style={cardStyle}
+                  className="flex h-full flex-col rounded-md border-t-[3px] border-gold p-6"
+                >
+                  <Icon className="h-8 w-8 text-gold" aria-hidden="true" />
+                  <h3 className="mt-5 font-heading text-xl font-semibold text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 font-body text-[15px] leading-relaxed text-white/80">
+                    {item.text}
+                  </p>
+                </SpotlightCard>
               </li>
             );
           })}

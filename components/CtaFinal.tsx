@@ -8,6 +8,7 @@ import { ArrowUpRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { company, waMessages } from "@/data/site";
 import { waContexto, waLink } from "@/lib/whatsapp";
+import CtaBrilho from "@/components/CtaBrilho";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -58,20 +59,27 @@ export default function CtaFinal() {
         </div>
 
         <div className="lg:col-span-5">
-          <a
-            href={waLink("junior", waMessages.default)}
-            {...waContexto("cta_final")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cta-final-button group flex items-center gap-4 rounded-md bg-whatsapp px-5 py-5 text-white shadow-lg shadow-whatsapp-dark/30 ring-1 ring-whatsapp-dark/40 transition hover:bg-whatsapp-dark active:scale-[0.98] focus-visible:outline-navy"
+          {/* Sombra e ring ficam no wrapper: o GlareHover corta o que passa da borda. */}
+          <CtaBrilho
+            focoNavy
+            raio="0.375rem"
+            className="cta-final-button w-full shadow-lg shadow-whatsapp-dark/30 ring-1 ring-whatsapp-dark/40"
           >
-            <FaWhatsapp className="shrink-0 text-3xl" aria-hidden="true" />
-            <span className="flex-1 font-body text-lg font-semibold">Chamar no WhatsApp</span>
-            <ArrowUpRight
-              className="h-5 w-5 shrink-0 text-white/90 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
-              aria-hidden="true"
-            />
-          </a>
+            <a
+              href={waLink("junior", waMessages.default)}
+              {...waContexto("cta_final")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex w-full items-center gap-4 rounded-md bg-whatsapp px-5 py-5 text-white transition hover:bg-whatsapp-dark focus-visible:outline-none active:scale-[0.98]"
+            >
+              <FaWhatsapp className="shrink-0 text-3xl" aria-hidden="true" />
+              <span className="flex-1 font-body text-lg font-semibold">Chamar no WhatsApp</span>
+              <ArrowUpRight
+                className="h-5 w-5 shrink-0 text-white/90 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                aria-hidden="true"
+              />
+            </a>
+          </CtaBrilho>
         </div>
       </div>
     </section>

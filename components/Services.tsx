@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { contacts, services, waMessages } from "@/data/site";
+import CtaBrilho from "@/components/CtaBrilho";
 import { waContexto, waLink, type WaContexto } from "@/lib/whatsapp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -86,16 +87,18 @@ function ServiceBlock({
           <h3 className="font-heading text-2xl font-bold text-navy sm:text-3xl">{title}</h3>
           <p className="mt-1 font-body text-sm text-navy/70 sm:text-base">{who}</p>
         </div>
-        <a
-          href={waLink("junior", waMessages.default)}
-          {...waContexto(contexto)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition hover:bg-whatsapp-dark active:scale-[0.97] focus-visible:outline-navy sm:self-auto"
-        >
-          <FaWhatsapp className="text-xl" aria-hidden="true" />
-          Pedir orçamento pelo WhatsApp
-        </a>
+        <CtaBrilho focoNavy className="shrink-0 self-start sm:self-auto">
+          <a
+            href={waLink("junior", waMessages.default)}
+            {...waContexto(contexto)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition hover:bg-whatsapp-dark focus-visible:outline-none active:scale-[0.97]"
+          >
+            <FaWhatsapp className="text-xl" aria-hidden="true" />
+            Pedir orçamento pelo WhatsApp
+          </a>
+        </CtaBrilho>
       </div>
 
       <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

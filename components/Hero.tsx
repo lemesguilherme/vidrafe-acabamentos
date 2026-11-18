@@ -7,8 +7,40 @@ import { ArrowRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { company, waMessages } from "@/data/site";
 import { waContexto, waLink } from "@/lib/whatsapp";
+import SplitText from "@/components/SplitText";
+import CtaBrilho from "@/components/CtaBrilho";
 
 gsap.registerPlugin(useGSAP);
+
+/*
+  Titulo do hero com o SplitText do React Bits (components/SplitText.tsx):
+  palavra por palavra, subindo pouco e saindo de um desfoque leve. Duas
+  instancias porque a cidade e gold; a segunda comeca quando a primeira acaba.
+  O texto ja vem no HTML estatico (o LCP nao espera o JS) e o componente nao
+  anima com prefers-reduced-motion.
+*/
+const TITULO = "Vidraçaria e acabamento feitos com capricho em";
+const PALAVRA_MS = 45;
+const INICIO_CIDADE = 0.15 + (TITULO.split(" ").length * PALAVRA_MS) / 1000;
+const tituloAnim = {
+  tag: "span" as const,
+  splitType: "words" as const,
+  trigger: "load" as const,
+  textAlign: "left" as const,
+  delay: PALAVRA_MS,
+  duration: 0.9,
+  ease: "power3.out",
+  from: { opacity: 0, y: 14, filter: "blur(6px)" },
+  // O aria-label fica no h1 (span sem papel nao pode ter aria-label).
+  aria: "none" as const,
+};
+const tituloFim = (delay: number) => ({
+  opacity: 1,
+  y: 0,
+  filter: "blur(0px)",
+  delay,
+  clearProps: "filter",
+});
 
 export default function Hero() {
   const scope = useRef<HTMLElement>(null);
@@ -23,8 +55,8 @@ export default function Hero() {
           .timeline({ defaults: { ease: "power2.out", duration: 0.7 } })
           .from(".hero-eyebrow", { autoAlpha: 0, y: 16 })
           .from(".hero-rule", { scaleX: 0, duration: 0.5 }, "-=0.35")
-          .from(".hero-title", { autoAlpha: 0, y: 24 }, "-=0.45")
-          .from(".hero-sub", { autoAlpha: 0, y: 20 }, "-=0.5")
+          // O titulo anima sozinho (SplitText); o subtitulo entra enquanto ele termina.
+          .from(".hero-sub", { autoAlpha: 0, y: 20 }, 0.75)
           .from(".hero-cta", { autoAlpha: 0, y: 16, stagger: 0.12 }, "-=0.45")
           .from(".hero-meta", { autoAlpha: 0 }, "-=0.3");
       });
@@ -82,9 +114,17 @@ export default function Hero() {
             Loja física e atendimento na obra
           </p>
 
-          <h1 className="hero-title mt-5 font-heading text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-[2.75rem] xl:text-[3.25rem]">
-            Vidraçaria e acabamento feitos com capricho em{" "}
-            <span className="text-gold">{company.city}</span>
+          <h1
+            aria-label={`${TITULO} ${company.city}`}
+            className="hero-title mt-5 font-heading text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-[2.75rem] xl:text-[3.25rem]"
+          >
+            <SplitText {...tituloAnim} text={TITULO} className="inline" to={tituloFim(0.15)} />{" "}
+            <SplitText
+              {...tituloAnim}
+              text={company.city}
+              className="inline text-gold"
+              to={tituloFim(INICIO_CIDADE)}
+            />
           </h1>
 
           <p className="hero-sub mt-6 max-w-2xl font-body text-base leading-relaxed text-white/85 sm:text-lg">
@@ -94,26 +134,34 @@ export default function Hero() {
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 lg:gap-3">
-            <a
-              href={waLink("junior", waMessages.default)}
-              {...waContexto("hero")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hero-cta inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-whatsapp px-7 py-3.5 font-body lg:px-5 font-semibold text-white transition hover:bg-whatsapp-dark active:scale-[0.97]"
-            >
-              <FaWhatsapp className="text-xl" aria-hidden="true" />
-              Pedir orçamento pelo WhatsApp
-            </a>
-            <a
-              href="#galeria"
-              className="hero-cta group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border-2 border-white/80 px-7 py-3 font-body lg:px-5 font-semibold text-white transition hover:border-white hover:bg-white hover:text-navy active:scale-[0.97]"
-            >
-              Ver nossos trabalhos
-              <ArrowRight
-                className="h-5 w-5 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
-                aria-hidden="true"
-              />
-            </a>
+            <CtaBrilho className="hero-cta">
+              <a
+                href={waLink("junior", waMessages.default)}
+                {...waContexto("hero")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full bg-whatsapp px-7 py-3.5 font-body lg:px-5 font-semibold text-white transition hover:bg-whatsapp-dark focus-visible:outline-none active:scale-[0.97]"
+              >
+                <FaWhatsapp className="text-xl" aria-hidden="true" />
+                Pedir orçamento pelo WhatsApp
+              </a>
+            </CtaBrilho>
+            {/* O GSAP anima o wrapper, nunca o link: o link tem transicao CSS de
+                opacity/transform (hover e active:scale) e, se o GSAP recriar a
+                animacao no meio dela, le um valor transicionando como estado final
+                e o botao fica preso invisivel (bug que foi pro ar). */}
+            <div className="hero-cta flex">
+              <a
+                href="#galeria"
+                className="group inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border-2 border-white/80 px-7 py-3 font-body lg:px-5 font-semibold text-white transition hover:border-white hover:bg-white hover:text-navy active:scale-[0.97]"
+              >
+                Ver nossos trabalhos
+                <ArrowRight
+                  className="h-5 w-5 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+                  aria-hidden="true"
+                />
+              </a>
+            </div>
           </div>
 
           <p className="hero-meta mt-8 font-body text-sm text-white/65">
