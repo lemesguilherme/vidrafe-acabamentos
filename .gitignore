@@ -27,3 +27,8 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# galeria: originais ficam so na maquina; versiona o .webp gerado (npm run galeria)
+/public/galeria/**/*.[jJ][pP][gG]
+/public/galeria/**/*.[jJ][pP][eE][gG]
+/public/galeria/**/*.[pP][nN][gG]

@@ -38,6 +38,73 @@
   }
 }
 
+/*
+  Galeria (components/GaleriaCoverflow.tsx): cards do lado esmaecidos, o do
+  centro aceso. O Swiper controla a duracao inline; aqui so entra a opacity
+  junto do transform que ele ja anima.
+*/
+.galeria-coverflow .swiper-slide {
+  opacity: 0.45;
+  transition-property: transform, opacity;
+}
+.galeria-coverflow .swiper-slide-active {
+  opacity: 1;
+}
+
+/*
+  Lightbox da galeria: "Modal open / close" do transitions.dev (06-modal.md),
+  CSS copiado como veio. A orquestracao (.is-open / .is-closing) fica no
+  Lightbox em components/Gallery.tsx. O fundo escuro acompanha o mesmo tempo.
+*/
+:root {
+  --modal-open-dur: 250ms;
+  --modal-close-dur: 150ms;
+  --modal-scale: 0.96;
+  --modal-scale-close: 0.96;
+  --modal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.t-modal {
+  transform-origin: center;
+  transform: scale(var(--modal-scale));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--modal-open-dur) var(--modal-ease),
+    opacity   var(--modal-open-dur) var(--modal-ease);
+  will-change: transform, opacity;
+}
+.t-modal.is-open {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+.t-modal.is-closing {
+  transform: scale(var(--modal-scale-close));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--modal-close-dur) var(--modal-ease),
+    opacity   var(--modal-close-dur) var(--modal-ease);
+}
+
+.galeria-lightbox-fundo {
+  opacity: 0;
+  transition: opacity var(--modal-open-dur) var(--modal-ease);
+}
+.galeria-lightbox-fundo.is-open {
+  opacity: 1;
+}
+.galeria-lightbox-fundo.is-closing {
+  opacity: 0;
+  transition-duration: var(--modal-close-dur);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-modal { transition: none !important; }
+  .galeria-lightbox-fundo { transition: none !important; }
+}
+
 /* Respeitar quem pede menos movimento. */
 @media (prefers-reduced-motion: reduce) {
   *,

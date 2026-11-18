@@ -112,21 +112,20 @@ export const services = {
   Galeria: abas por profissional e categorias. Sem filtro "Todos" (regra do briefing).
 
   COMO ADICIONAR AS FOTOS REAIS:
-  1. Salvar os arquivos em public/galeria/, nomeados por categoria e numero
-     (ex: vidros-01.jpg, vidros-02.jpg, box-01.jpg, drywall-01.jpg).
-  2. Colocar os caminhos no array `images` da categoria:
-       images: ["/galeria/vidros-01.jpg", "/galeria/vidros-02.jpg"]
-  Pronto. A categoria troca sozinha os placeholders pelas fotos clicaveis
-  com lightbox. `alt` e a descricao base usada no texto alternativo de cada foto.
+  1. Jogar os originais (JPEG/PNG) na pasta da categoria: public/galeria/<slug>/.
+  2. Rodar `npm run galeria`: converte pra WebP e atualiza data/galeria.gerada.ts.
+  3. Commitar os .webp e o manifesto (os originais ficam fora do git).
+  As fotos NAO sao listadas aqui: vem do manifesto, pelo `slug` (= nome da pasta).
 
-  `color` e a cor do placeholder enquanto nao ha foto: paleta escura e terrosa
-  derivada do navy e do brick, uma cor distinta por categoria.
+  `alt` e a descricao da categoria: vira o texto alternativo e a legenda das fotos.
+  `color` e a cor do aviso "fotos em breve" enquanto a pasta esta vazia: paleta
+  escura e terrosa derivada do navy e do brick, uma cor distinta por categoria.
 */
 export type GalleryCategory = {
-  name: string;
+  label: string;
+  slug: string;
   alt: string;
   color: string;
-  images: string[];
 };
 
 export type GalleryTab = {
@@ -140,39 +139,23 @@ export const gallery: Record<"vidracaria" | "forros", GalleryTab> = {
     label: "Joel · Vidraçaria",
     owner: "joel",
     categories: [
-      { name: "Vidros", alt: "Vidro temperado instalado pela Vidrafe", color: "#2C3D5B", images: [] },
-      { name: "Espelhos", alt: "Espelho sob medida instalado pela Vidrafe", color: "#4A5363", images: [] },
-      { name: "Box p/ Banheiro", alt: "Box de banheiro em vidro instalado pela Vidrafe", color: "#2F4A4C", images: [] },
-      { name: "Portas & Janelas", alt: "Porta ou janela de vidro instalada pela Vidrafe", color: "#5C2B27", images: [] },
-      { name: "Esquadrias", alt: "Esquadria de alumínio instalada pela Vidrafe", color: "#5A5A42", images: [] },
+      { label: "Vidros", slug: "vidros", alt: "Vidro temperado instalado pela Vidrafe", color: "#2C3D5B" },
+      { label: "Espelhos", slug: "espelhos", alt: "Espelho sob medida instalado pela Vidrafe", color: "#4A5363" },
+      { label: "Box p/ Banheiro", slug: "box-banheiro", alt: "Box de banheiro em vidro instalado pela Vidrafe", color: "#2F4A4C" },
+      { label: "Portas & Janelas", slug: "portas-janelas", alt: "Porta ou janela de vidro instalada pela Vidrafe", color: "#5C2B27" },
+      { label: "Esquadrias", slug: "esquadrias", alt: "Esquadria de alumínio instalada pela Vidrafe", color: "#5A5A42" },
     ],
   },
   forros: {
     label: "Joel Júnior · Forros & Drywall",
     owner: "junior",
     categories: [
-      {
-        name: "Forro PVC Branco",
-        alt: "Forro PVC branco instalado pela Vidrafe",
-        color: "#6B6A63",
-        images: [
-          "/galeria/forro-branco-01-antes.jpeg",
-          "/galeria/forro-branco-02-antes.jpeg",
-          "/galeria/forro-branco-03-andamento.jpeg",
-          "/galeria/forro-branco-04-andamento.jpeg",
-          "/galeria/forro-branco-05-depois.jpeg",
-          "/galeria/forro-branco-06-depois.jpeg",
-          "/galeria/forro-branco-07-depois.jpeg",
-        ],
-      },
-      {
-        name: "Forro Amadeirado",
-        alt: "Forro PVC amadeirado instalado pela Vidrafe",
-        color: "#6A4630",
-        images: ["/galeria/forro-amadeirado-02.jpeg", "/galeria/forro-amadeirado-01.jpeg"],
-      },
-      { name: "Drywall", alt: "Parede ou sanca de drywall feita pela Vidrafe", color: "#46423F", images: [] },
-      { name: "Luminárias LED", alt: "Iluminação em LED instalada pela Vidrafe", color: "#6E5F26", images: [] },
+      { label: "Forro PVC Branco", slug: "forro-pvc-branco", alt: "Forro PVC branco instalado pela Vidrafe", color: "#6B6A63" },
+      { label: "Forro Amadeirado", slug: "forro-pvc-amadeirado", alt: "Forro PVC amadeirado instalado pela Vidrafe", color: "#6A4630" },
+      { label: "Forro Cerejeira", slug: "forro-pvc-cerejeira", alt: "Forro PVC cerejeira instalado pela Vidrafe", color: "#5E2F2A" },
+      { label: "Divisórias em Drywall", slug: "drywall-divisorias", alt: "Divisória de drywall feita pela Vidrafe", color: "#46423F" },
+      { label: "Forro de Drywall", slug: "drywall-forro", alt: "Forro e sanca de drywall feitos pela Vidrafe", color: "#3F4650" },
+      { label: "Luminárias LED", slug: "luminarias-led", alt: "Iluminação em LED instalada pela Vidrafe", color: "#6E5F26" },
     ],
   },
 };
