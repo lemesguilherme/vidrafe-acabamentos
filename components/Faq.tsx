@@ -4,22 +4,32 @@ import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Plus } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { faq, waMessages } from "@/data/site";
 import { waContexto, waLink } from "@/lib/whatsapp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
+const numero = (i: number) => String(i + 1).padStart(2, "0");
+
 /*
-  Perguntas frequentes em accordion. Fundo off-white: fica entre a Localizacao
-  (branca) e o CTA final (gold), sem repetir a cor de nenhum vizinho.
-  Varias perguntas podem ficar abertas ao mesmo tempo; a primeira ja abre.
+  Perguntas frequentes em lista numerada (01/ 02/ ...), no mesmo jeito dos
+  Servicos: so uma aberta por vez e a primeira ja abre. Fundo off-white: fica
+  entre a Localizacao (branca) e o CTA final (gold), sem repetir vizinho.
+
+  O texto vem do `faq` em data/site.ts, o mesmo array que gera o JSON-LD
+  FAQPage em app/page.tsx: o que aparece aqui e o que o Google le batem sempre.
 */
 export default function Faq() {
   const scope = useRef<HTMLElement>(null);
-  const [abertas, setAbertas] = useState<Set<number>>(() => new Set([0]));
+  const [aberta, setAberta] = useState<number | null>(0);
 
+  /*
+    Reveal no scroll. Alvos sao wrappers sem transicao CSS (.faq-head, o <li>
+    de cada pergunta e o paragrafo do rodape); o botao e o link ficam dentro e
+    nunca sao animados direto pelo GSAP (bug dos botoes sumidos, ver Hero.tsx).
+  */
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
@@ -31,20 +41,12 @@ export default function Faq() {
           })
           .from(".faq-head", { autoAlpha: 0, y: 20 })
           .from(".faq-rule", { scaleX: 0, duration: 0.6 }, "-=0.35")
-          .from(".faq-item", { autoAlpha: 0, y: 16, stagger: 0.08 }, "-=0.45")
+          .from(".faq-item", { autoAlpha: 0, y: 16, stagger: 0.07, duration: 0.5 }, "-=0.45")
           .from(".faq-footer", { autoAlpha: 0, y: 12 }, "-=0.3");
       });
     },
     { scope },
   );
-
-  const alternar = (i: number) =>
-    setAbertas((atual) => {
-      const proxima = new Set(atual);
-      if (proxima.has(i)) proxima.delete(i);
-      else proxima.add(i);
-      return proxima;
-    });
 
   return (
     <section
@@ -69,9 +71,9 @@ export default function Faq() {
         </div>
 
         <div className="lg:col-span-8">
-          <ul className="border-t border-navy/15">
+          <ol className="border-t border-navy/15">
             {faq.map((item, i) => {
-              const aberta = abertas.has(i);
+              const estaAberta = aberta === i;
               const botaoId = `faq-pergunta-${i}`;
               const painelId = `faq-resposta-${i}`;
               return (
@@ -80,26 +82,33 @@ export default function Faq() {
                     <button
                       type="button"
                       id={botaoId}
-                      aria-expanded={aberta}
+                      aria-expanded={estaAberta}
                       aria-controls={painelId}
-                      onClick={() => alternar(i)}
-                      className="group flex w-full items-center justify-between gap-6 py-5 text-left font-heading text-lg font-semibold text-navy transition-colors hover:text-brick focus-visible:outline-navy motion-reduce:transition-none sm:text-xl"
+                      onClick={() => setAberta(estaAberta ? null : i)}
+                      className="group flex w-full items-start gap-4 py-5 text-left focus-visible:outline-navy sm:gap-6"
                     >
-                      {item.pergunta}
+                      {/* Numero em Playfair com lining-nums (senao a fonte desenha "o1"). */}
                       <span
-                        aria-hidden="true"
-                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors motion-reduce:transition-none ${
-                          aberta
-                            ? "border-gold bg-gold text-navy"
-                            : "border-navy/25 text-navy group-hover:border-brick group-hover:text-brick"
+                        className={`w-9 shrink-0 pt-0.5 font-heading text-base lining-nums tabular-nums transition-colors motion-reduce:transition-none sm:w-12 sm:text-lg ${
+                          estaAberta ? "text-brick" : "text-navy/45"
                         }`}
                       >
-                        <Plus
-                          className={`h-4 w-4 transition-transform duration-300 motion-reduce:transition-none ${
-                            aberta ? "rotate-45" : ""
-                          }`}
-                        />
+                        {numero(i)}/
                       </span>
+                      <span
+                        className={`flex-1 font-heading text-lg font-semibold leading-snug transition-colors motion-reduce:transition-none sm:text-xl ${
+                          estaAberta ? "text-navy" : "text-navy group-hover:text-brick"
+                        }`}
+                      >
+                        {item.pergunta}
+                      </span>
+                      {/* Chevron que gira (o +/- e dos Servicos; nao repetir indicador). */}
+                      <ChevronDown
+                        aria-hidden="true"
+                        className={`mt-1 h-5 w-5 shrink-0 transition-[transform,color] duration-300 motion-reduce:transition-none ${
+                          estaAberta ? "rotate-180 text-brick" : "text-navy/60 group-hover:text-brick"
+                        }`}
+                      />
                     </button>
                   </h3>
                   {/*
@@ -110,13 +119,14 @@ export default function Faq() {
                     id={painelId}
                     role="region"
                     aria-labelledby={botaoId}
-                    inert={!aberta}
-                    className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
-                      aberta ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    inert={!estaAberta}
+                    className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+                      estaAberta ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="max-w-2xl pb-6 pr-12 font-body text-base leading-relaxed text-navy/80">
+                      {/* Recuo igual ao do numero: a resposta alinha com a pergunta. */}
+                      <p className="max-w-2xl pb-6 pl-[3.25rem] pr-9 font-body text-base leading-relaxed text-navy/80 sm:pl-[4.5rem] sm:pr-11">
                         {item.resposta}
                       </p>
                     </div>
@@ -124,7 +134,7 @@ export default function Faq() {
                 </li>
               );
             })}
-          </ul>
+          </ol>
 
           <p className="faq-footer mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 font-body text-base text-navy/80">
             Ficou com outra dúvida?
