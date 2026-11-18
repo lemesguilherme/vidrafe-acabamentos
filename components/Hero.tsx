@@ -79,7 +79,7 @@ export default function Hero() {
         <div className="max-w-3xl lg:max-w-[calc(55vw-max(2rem,calc((100vw-72rem)/2+2rem))-2rem)]">
           <p className="hero-eyebrow flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.2em] text-gold sm:text-sm">
             <span className="hero-rule block h-[2px] w-8 origin-left bg-brick" aria-hidden="true" />
-            Vidraçaria e acabamentos
+            Loja física e atendimento na obra
           </p>
 
           <h1 className="hero-title mt-5 font-heading text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-[2.75rem] xl:text-[3.25rem]">
