@@ -58,7 +58,8 @@ export default function CtaFinal() {
           </p>
         </div>
 
-        <div className="lg:col-span-5">
+        {/* flex-col: o botao estica na coluna toda (o GlareHover fixa width: auto inline). */}
+        <div className="flex flex-col lg:col-span-5">
           {/* Sombra e ring ficam no wrapper: o GlareHover corta o que passa da borda. */}
           <CtaBrilho
             focoNavy

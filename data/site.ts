@@ -65,6 +65,49 @@ export const waMessages = {
   default: "Olá! Vi o site da Vidrafe e gostaria de pedir um orçamento.",
 } as const;
 
+/*
+  Equipe (secao Sobre, components/About.tsx), na ordem Joel -> Joel Júnior.
+
+  PREENCHER COM A VERDADE (nao inventar ano, numero nem historia):
+  - `desde`: ano em que comecou, ex. "2004". Vazio = a linha do "desde" some.
+  - `bio`: uma ou duas frases reais. Enquanto comecar com "PREENCHER" ou estiver
+    vazia, o componente NAO mostra (o texto de lembrete nunca vai pro ar).
+
+  `foto`: /equipe/<slug>.webp, gerada por `npm run equipe` a partir de
+  public/equipe/originais/<slug>.jpg|png. Sem a foto, aparece o retrato
+  placeholder no mesmo recorte (nunca imagem quebrada).
+
+  `whatsapp`: os DOIS vao pro junior, regra do cliente (Fase 12, ver `contacts`).
+  Por isso o CTA do Joel fala do servico ("orcamento de vidracaria") e nao
+  promete conversar com ele.
+*/
+export const equipe = [
+  {
+    slug: "joel",
+    nome: contacts.joel.name,
+    papel: "Vidraçaria",
+    desde: "",
+    bio: "PREENCHER: uma frase real sobre o Joel",
+    foto: "/equipe/joel.webp",
+    alt: "Retrato do Joel, responsável pela vidraçaria da Vidrafe Acabamentos",
+    whatsapp: "junior",
+    cta: "Pedir orçamento de vidraçaria",
+    contexto: "sobre_joel",
+  },
+  {
+    slug: "joel-junior",
+    nome: contacts.junior.name,
+    papel: "Forros & Drywall",
+    desde: "",
+    bio: "PREENCHER: uma frase real sobre o Joel Júnior",
+    foto: "/equipe/joel-junior.webp",
+    alt: "Retrato do Joel Júnior, responsável por forros e drywall da Vidrafe Acabamentos",
+    whatsapp: "junior",
+    cta: "Falar com o Júnior no WhatsApp",
+    contexto: "sobre_junior",
+  },
+] as const;
+
 export const navLinks = [
   { label: "Início", href: "#inicio" },
   { label: "Sobre", href: "#sobre" },
@@ -73,34 +116,117 @@ export const navLinks = [
   { label: "Localização", href: "#localizacao" },
 ] as const;
 
-// Servicos por profissional (ver prd.md). `owner` diz quem executa o servico,
-// nao pra onde vai o WhatsApp: o destino e sempre o junior.
-export const services = {
-  vidracaria: {
-    title: "Vidraçaria & Esquadrias",
-    owner: "joel" as const,
-    items: [
-      { label: "Vidros", detail: "temperados, comuns e laminados", icon: "Square" },
-      { label: "Espelhos", detail: "sob medida", icon: "RectangleVertical" },
-      { label: "Portas", detail: "pivotantes, de correr e de abrir", icon: "DoorOpen" },
-      { label: "Janelas", detail: "residenciais e comerciais", icon: "AppWindow" },
-      { label: "Box para banheiro", detail: "canto, frontal e especiais", icon: "ShowerHead" },
-      { label: "Armário para pia", detail: "em vidro, sob medida", icon: "Container" },
-      { label: "Esquadrias em alumínio", detail: "", icon: "Frame" },
-      { label: "Cobertura em policarbonato", detail: "", icon: "Umbrella" },
-    ],
+/*
+  Servicos (lista numerada da secao Servicos e destaques do rodape).
+
+  `area` diz QUEM FAZ o servico (Vidracaria = Joel, Forros & Drywall = Joel
+  Júnior), nao pra onde vai o WhatsApp: o CTA de todos vai pro junior (Fase 12).
+  Cada CTA rastreia pelo `contexto` proprio (lib/whatsapp.ts).
+
+  `galeria` (opcional) e o slug de uma categoria da galeria: a primeira foto
+  "Depois" dela (ou a primeira foto) aparece no servico aberto. Pasta vazia =
+  servico sem foto, e a foto surge sozinha quando a galeria ganhar fotos.
+
+  Tags e textos vem do que a Vidrafe faz de verdade (lista anterior de servicos
+  e FAQ). Nada de servico, material ou prazo que nao foi confirmado.
+*/
+export type AreaServico = "Vidraçaria" | "Forros & Drywall";
+
+export const areaResponsavel: Record<AreaServico, keyof typeof contacts> = {
+  "Vidraçaria": "joel",
+  "Forros & Drywall": "junior",
+};
+
+export const servicos = [
+  {
+    slug: "box",
+    titulo: "Box para banheiro",
+    area: "Vidraçaria",
+    resumo: "Box de vidro feito na medida do seu banheiro, de canto, frontal ou em formato especial.",
+    tags: ["Canto", "Frontal", "Especiais"],
+    galeria: "box-banheiro",
+    contexto: "servico_box",
   },
-  forros: {
-    title: "Forros & Drywall",
-    owner: "junior" as const,
-    items: [
-      { label: "Forro PVC", detail: "branco e amadeirado", icon: "PanelTop" },
-      { label: "Drywall", detail: "divisórias, sancas e rebaixamentos", icon: "BrickWall" },
-      { label: "Luminárias LED", detail: "spots, painéis e fitas", icon: "Lightbulb" },
-      { label: "Acabamentos em geral", detail: "", icon: "PaintRoller" },
-    ],
+  {
+    slug: "espelhos",
+    titulo: "Espelhos e armário de pia",
+    area: "Vidraçaria",
+    resumo: "Espelho cortado na medida da parede e armário de pia em vidro, sob medida pro seu cômodo.",
+    tags: ["Espelho sob medida", "Armário para pia em vidro"],
+    galeria: "espelhos",
+    contexto: "servico_espelhos",
   },
-} as const;
+  {
+    slug: "vidros",
+    titulo: "Vidros",
+    area: "Vidraçaria",
+    resumo: "Vidro temperado, comum ou laminado pra box, porta, janela e armário de pia. Na dúvida, a gente explica a diferença.",
+    tags: ["Temperado", "Comum", "Laminado"],
+    galeria: "vidros",
+    contexto: "servico_vidros",
+  },
+  {
+    slug: "portas-janelas",
+    titulo: "Portas e janelas",
+    area: "Vidraçaria",
+    resumo: "Portas de vidro pivotantes, de correr ou de abrir, e janelas pra casa e pro comércio.",
+    tags: ["Porta pivotante", "De correr", "De abrir", "Janela residencial", "Janela comercial"],
+    galeria: "portas-janelas",
+    contexto: "servico_portas_janelas",
+  },
+  {
+    slug: "esquadrias",
+    titulo: "Esquadrias em alumínio",
+    area: "Vidraçaria",
+    resumo: "Esquadria de alumínio medida no vão e instalada por quem mediu.",
+    tags: [],
+    galeria: "esquadrias",
+    contexto: "servico_esquadrias",
+  },
+  {
+    slug: "policarbonato",
+    titulo: "Cobertura em policarbonato",
+    area: "Vidraçaria",
+    resumo: "Cobertura em policarbonato medida no local e instalada pela gente.",
+    tags: [],
+    contexto: "servico_policarbonato",
+  },
+  {
+    slug: "forro-pvc",
+    titulo: "Forro PVC",
+    area: "Forros & Drywall",
+    resumo: "Forro PVC branco, amadeirado ou cerejeira, com o acabamento conferido antes da gente ir embora.",
+    tags: ["Branco", "Amadeirado", "Cerejeira"],
+    galeria: "forro-pvc-branco",
+    contexto: "servico_forro_pvc",
+  },
+  {
+    slug: "drywall",
+    titulo: "Drywall",
+    area: "Forros & Drywall",
+    resumo: "Divisória, sanca e rebaixamento em drywall pra mudar o ambiente sem quebra-quebra.",
+    tags: ["Divisórias", "Sancas", "Rebaixamentos"],
+    galeria: "drywall-divisorias",
+    contexto: "servico_drywall",
+  },
+  {
+    slug: "led",
+    titulo: "Luminárias LED",
+    area: "Forros & Drywall",
+    resumo: "Spots, painéis e fitas de LED instalados junto com o forro ou o drywall.",
+    tags: ["Spots", "Painéis", "Fitas"],
+    galeria: "luminarias-led",
+    contexto: "servico_led",
+  },
+] as const satisfies readonly {
+  slug: string;
+  titulo: string;
+  area: AreaServico;
+  resumo: string;
+  tags: readonly string[];
+  galeria?: string;
+  contexto: `servico_${string}`;
+}[];
 
 /*
   Icones Lucide reservados para os diferenciais (fase futura).

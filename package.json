@@ -9,7 +9,8 @@
     "lint": "next lint",
     "assets": "node scripts/gerar-assets.mjs",
     "midia": "node scripts/otimizar-imagens.mjs",
-    "galeria": "node scripts/gerar-galeria.mjs"
+    "galeria": "node scripts/gerar-galeria.mjs",
+    "equipe": "node scripts/gerar-equipe.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

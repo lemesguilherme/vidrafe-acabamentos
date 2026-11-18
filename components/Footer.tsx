@@ -1,19 +1,10 @@
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
-import { company, contacts, navLinks, services, waMessages } from "@/data/site";
+import { company, contacts, navLinks, servicos, waMessages } from "@/data/site";
 import { waContexto, waLink } from "@/lib/whatsapp";
 
-// Servicos de destaque no rodape (nao precisa listar os 12).
-const destaques = [
-  "Vidros",
-  "Box para banheiro",
-  "Espelhos",
-  "Esquadrias em alumínio",
-  "Forro PVC",
-  "Drywall",
-];
-const footerServices = [...services.vidracaria.items, ...services.forros.items].filter(
-  (item) => destaques.includes(item.label),
-);
+// Servicos de destaque no rodape (nao precisa listar todos), pelo slug.
+const destaques = ["vidros", "box", "espelhos", "esquadrias", "forro-pvc", "drywall"];
+const footerServices = servicos.filter((item) => destaques.includes(item.slug));
 
 // Numero unico de atendimento (Joel Junior), a pedido do cliente.
 const whatsappHref = waLink("junior", waMessages.default);
@@ -68,9 +59,9 @@ export default function Footer() {
           <h2 className={titleClass}>Serviços</h2>
           <ul className="mt-4 flex flex-col gap-1.5 text-[15px]">
             {footerServices.map((item) => (
-              <li key={item.label}>
+              <li key={item.slug}>
                 <a href="/#servicos" className={linkClass}>
-                  {item.label}
+                  {item.titulo}
                 </a>
               </li>
             ))}

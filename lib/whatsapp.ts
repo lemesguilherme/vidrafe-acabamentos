@@ -23,15 +23,16 @@ export type WaContexto =
   | "hero"
   | "navbar"
   | "navbar_mobile"
-  | "servicos_joel"
-  | "servicos_junior"
   | "galeria"
   | "localizacao"
   | "faq"
   | "cta_final"
   | "flutuante"
   | "footer"
-  | "pagina_404";
+  | "pagina_404"
+  | "sobre_joel"
+  | "sobre_junior"
+  | `servico_${string}`;
 
 export const WA_CONTEXTO_ATTR = "data-wa-contexto";
 
