@@ -15,13 +15,13 @@ import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, EffectCoverflow, Keyboard } from "swiper/modules";
 import type { Swiper as SwiperInstance } from "swiper";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import type { FotoGaleria } from "@/data/galeria.gerada";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import type { ItemGaleria } from "@/data/site";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 
 type Props = {
-  fotos: FotoGaleria[];
+  fotos: ItemGaleria[];
   alt: string;
   /** Indice inicial (volta pro ultimo visto no lightbox). */
   inicio: number;
@@ -65,9 +65,9 @@ export default function GaleriaCoverflow({ fotos, alt, inicio, onAbrir, onMudar 
           nextSlideMessage: "Próxima foto",
           firstSlideMessage: "Esta é a primeira foto",
           lastSlideMessage: "Esta é a última foto",
-          slideLabelMessage: "Foto {{index}} de {{slidesLength}}",
+          slideLabelMessage: "{{index}} de {{slidesLength}}",
           containerRoleDescriptionMessage: "carrossel",
-          itemRoleDescriptionMessage: "foto",
+          itemRoleDescriptionMessage: "item da galeria",
         }}
         onSwiper={(s) => {
           swiperRef.current = s;
@@ -78,34 +78,74 @@ export default function GaleriaCoverflow({ fotos, alt, inicio, onAbrir, onMudar 
         }}
         className="!overflow-visible !py-2"
       >
-        {fotos.map((foto, i) => (
-          <SwiperSlide key={foto.src} className="!w-[64vw] max-w-[280px] sm:!w-[280px] sm:max-w-none lg:!w-[300px]">
-            <button
-              type="button"
-              tabIndex={i === ativo ? 0 : -1}
-              aria-label={
-                i === ativo
-                  ? `Ampliar foto ${i + 1} de ${total}: ${alt}`
-                  : `Mostrar foto ${i + 1} de ${total}`
-              }
-              onClick={(e) => {
-                if (i === ativo) onAbrir(i, e.currentTarget);
-                else swiperRef.current?.slideTo(i);
-              }}
-              className="galeria-card block aspect-[3/4] w-full overflow-hidden rounded-md bg-black/20 shadow-xl shadow-black/40 ring-1 ring-white/10 focus-visible:outline-gold"
+        {fotos.map((foto, i) => {
+          const video = foto.tipo === "video";
+          const nome = video ? "vídeo" : "foto";
+          const eager = Math.abs(i - inicio) <= 2;
+          return (
+            <SwiperSlide
+              key={video ? foto.mp4 : foto.src}
+              className="!w-[64vw] max-w-[280px] sm:!w-[280px] sm:max-w-none lg:!w-[300px]"
             >
-              <img
-                src={foto.src}
-                alt={`${alt}${foto.etapa ? `, ${foto.etapa.toLowerCase()}` : ""}, foto ${i + 1}`}
-                width={foto.width}
-                height={foto.height}
-                loading={Math.abs(i - inicio) <= 2 ? "eager" : "lazy"}
-                draggable={false}
-                className="h-full w-full object-cover"
-              />
-            </button>
-          </SwiperSlide>
-        ))}
+              <button
+                type="button"
+                tabIndex={i === ativo ? 0 : -1}
+                aria-label={
+                  i === ativo
+                    ? video
+                      ? `Assistir vídeo, ${i + 1} de ${total}: ${foto.alt} (${foto.duracao})`
+                      : `Ampliar foto ${i + 1} de ${total}: ${alt}`
+                    : `Mostrar ${nome} ${i + 1} de ${total}`
+                }
+                onClick={(e) => {
+                  if (i === ativo) onAbrir(i, e.currentTarget);
+                  else swiperRef.current?.slideTo(i);
+                }}
+                className="galeria-card group relative block aspect-[3/4] w-full overflow-hidden rounded-md bg-black/20 shadow-xl shadow-black/40 ring-1 ring-white/10 focus-visible:outline-gold"
+              >
+                {video ? (
+                  <>
+                    {/* Card de video = poster parado + selo de play. Sem autoplay (tem fala). */}
+                    <img
+                      src={foto.poster}
+                      alt=""
+                      width={foto.width}
+                      height={foto.height}
+                      loading={eager ? "eager" : "lazy"}
+                      draggable={false}
+                      className="h-full w-full object-cover"
+                    />
+                    <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10" />
+                    {/* Hover anima o wrapper do selo, nunca o botao (licao do bug da v1). */}
+                    <span
+                      aria-hidden="true"
+                      className="galeria-play absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gold text-navy shadow-lg shadow-black/40 ring-4 ring-gold/30 transition-transform duration-300 group-hover:scale-110 motion-reduce:transition-none"
+                    >
+                      <Play className="ml-1 h-7 w-7" fill="currentColor" strokeWidth={1.5} />
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-sm bg-black/55 px-2 py-1 font-body text-xs font-semibold text-white"
+                    >
+                      Vídeo
+                      <span className="tabular-nums text-gold">{foto.duracao}</span>
+                    </span>
+                  </>
+                ) : (
+                  <img
+                    src={foto.src}
+                    alt={`${alt}${foto.etapa ? `, ${foto.etapa.toLowerCase()}` : ""}, foto ${i + 1}`}
+                    width={foto.width}
+                    height={foto.height}
+                    loading={eager ? "eager" : "lazy"}
+                    draggable={false}
+                    className="h-full w-full object-cover"
+                  />
+                )}
+              </button>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
 
       {/* Setas so a partir do sm: no celular o gesto e o swipe. */}

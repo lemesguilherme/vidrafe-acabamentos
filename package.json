@@ -10,7 +10,8 @@
     "assets": "node scripts/gerar-assets.mjs",
     "midia": "node scripts/otimizar-imagens.mjs",
     "galeria": "node scripts/gerar-galeria.mjs",
-    "equipe": "node scripts/gerar-equipe.mjs"
+    "equipe": "node scripts/gerar-equipe.mjs",
+    "videos": "node scripts/gerar-videos.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

@@ -7,8 +7,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ChevronLeft, ChevronRight, Image as ImageIcon, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import { company, contacts, gallery, waMessages, type GalleryCategory } from "@/data/site";
-import { fotosGaleria, type FotoGaleria } from "@/data/galeria.gerada";
+import {
+  company,
+  contacts,
+  gallery,
+  videosGaleria,
+  waMessages,
+  type GalleryCategory,
+  type ItemGaleria,
+} from "@/data/site";
+import { fotosGaleria } from "@/data/galeria.gerada";
 import { waContexto, waLink } from "@/lib/whatsapp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -17,7 +25,21 @@ type TabKey = keyof typeof gallery;
 
 const tabKeys: TabKey[] = ["vidracaria", "forros"];
 
-const fotosDe = (cat: GalleryCategory): FotoGaleria[] => fotosGaleria[cat.slug] ?? [];
+// Videos manuais (data/site.ts) abrem a categoria; as fotos geradas vem depois.
+const fotosDe = (cat: GalleryCategory): ItemGaleria[] => [
+  ...(videosGaleria[cat.slug] ?? []),
+  ...(fotosGaleria[cat.slug] ?? []),
+];
+
+// Texto do leitor de tela no chip: "19 fotos e 1 vídeo".
+const descreverQtd = (itens: ItemGaleria[]) => {
+  const videos = itens.filter((i) => i.tipo === "video").length;
+  const fotos = itens.length - videos;
+  const partes = [];
+  if (fotos) partes.push(`${fotos} ${fotos === 1 ? "foto" : "fotos"}`);
+  if (videos) partes.push(`${videos} ${videos === 1 ? "vídeo" : "vídeos"}`);
+  return partes.join(" e ");
+};
 
 // Abre na primeira aba/categoria que tem foto. Quando chegarem as fotos de
 // vidracaria, a primeira aba volta a ser a padrao sozinha.
@@ -193,7 +215,8 @@ export default function Gallery() {
           <div role="group" aria-label="Categorias" className="mt-6 flex flex-wrap gap-2">
             {activeTab.categories.map((cat, i) => {
               const active = i === catIndex;
-              const qtd = fotosDe(cat).length;
+              const itens = fotosDe(cat);
+              const qtd = itens.length;
               return (
                 <button
                   key={cat.slug}
@@ -211,9 +234,8 @@ export default function Gallery() {
                     <span
                       className={`text-xs tabular-nums ${active ? "text-gold" : "text-navy/55"}`}
                     >
-                      <span className="sr-only">, </span>
-                      {qtd}
-                      <span className="sr-only"> fotos</span>
+                      <span className="sr-only">, {descreverQtd(itens)}</span>
+                      <span aria-hidden="true">{qtd}</span>
                     </span>
                   )}
                 </button>
@@ -246,7 +268,7 @@ export default function Gallery() {
               )}
               <div className="mt-6 flex items-baseline justify-between gap-4 border-t border-white/10 pt-4 font-body text-sm">
                 <p className="text-white/80">
-                  {category.alt}
+                  {foto?.tipo === "video" ? foto.alt : category.alt}
                   {foto?.etapa && <span className="text-gold"> · {foto.etapa}</span>}
                 </p>
                 <p className="shrink-0 tabular-nums text-white/60" aria-live="polite">
@@ -325,7 +347,7 @@ function EmBreve({ category }: { category: GalleryCategory }) {
 }
 
 type LightboxProps = {
-  fotos: FotoGaleria[];
+  fotos: ItemGaleria[];
   category: GalleryCategory;
   index: number;
   onNavigate: (i: number) => void;
@@ -339,19 +361,29 @@ const tempoFechar = () =>
 function Lightbox({ fotos, category, index, onNavigate, onClose }: LightboxProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const toqueX = useRef<number | null>(null);
   const [fase, setFase] = useState<"entrando" | "aberto" | "saindo">("entrando");
   const total = fotos.length;
   const foto = fotos[index];
+  const tipoItem = foto.tipo === "video" ? "vídeo" : "foto";
 
   const prev = useCallback(() => onNavigate((index - 1 + total) % total), [index, total, onNavigate]);
   const next = useCallback(() => onNavigate((index + 1) % total), [index, total, onNavigate]);
 
   // Fechar: troca .is-open por .is-closing e so desmonta depois do tempo de saida.
+  // O video para na hora, sem deixar a voz tocando durante o fade.
   const fechar = useCallback(() => {
+    videoRef.current?.pause();
     setFase("saindo");
     window.setTimeout(onClose, tempoFechar());
   }, [onClose]);
+
+  // Trocar de item pausa o video que estava tocando (o <video> e remontado pela key).
+  useEffect(() => {
+    const video = videoRef.current;
+    return () => video?.pause();
+  }, [index]);
 
   // Entrada no frame seguinte (pra transicao do .is-open rodar), foco no fechar
   // e trava o scroll do body enquanto aberto.
@@ -369,12 +401,14 @@ function Lightbox({ fotos, category, index, onNavigate, onClose }: LightboxProps
   // Esc, setas e foco preso dentro do modal.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      // Com o foco no video, as setas sao do player (avancar/voltar o video).
+      const noVideo = document.activeElement instanceof HTMLVideoElement;
       if (e.key === "Escape") {
         e.preventDefault();
         fechar();
-      } else if (e.key === "ArrowLeft") {
+      } else if (e.key === "ArrowLeft" && !noVideo) {
         prev();
-      } else if (e.key === "ArrowRight") {
+      } else if (e.key === "ArrowRight" && !noVideo) {
         next();
       } else if (e.key === "Tab" && dialogRef.current) {
         const focusables = dialogRef.current.querySelectorAll<HTMLElement>("button");
@@ -400,13 +434,14 @@ function Lightbox({ fotos, category, index, onNavigate, onClose }: LightboxProps
       ref={dialogRef}
       role="dialog"
       aria-modal="true"
-      aria-label={`${category.label}, foto ${index + 1} de ${total}`}
+      aria-label={`${category.label}, ${tipoItem} ${index + 1} de ${total}`}
       onClick={(e) => {
         if (e.target === e.currentTarget) fechar(); // clique fora da imagem
       }}
-      // Swipe no celular: arrastar pro lado troca de foto.
+      // Swipe no celular: arrastar pro lado troca de foto. Toque no video fica
+      // com o player (arrastar a barra de tempo nao pode trocar de item).
       onTouchStart={(e) => {
-        toqueX.current = e.touches[0].clientX;
+        toqueX.current = e.target instanceof HTMLVideoElement ? null : e.touches[0].clientX;
       }}
       onTouchEnd={(e) => {
         if (toqueX.current === null || total < 2) return;
@@ -438,14 +473,35 @@ function Lightbox({ fotos, category, index, onNavigate, onClose }: LightboxProps
       )}
 
       <figure className={`t-modal ${estado} flex max-h-full flex-col items-center`}>
-        <img
-          key={foto.src}
-          src={foto.src}
-          alt={`${category.alt}${foto.etapa ? `, ${foto.etapa.toLowerCase()}` : ""}, foto ${index + 1}`}
-          width={foto.width}
-          height={foto.height}
-          className="h-auto max-h-[80vh] w-auto max-w-full rounded-md object-contain"
-        />
+        {foto.tipo === "video" ? (
+          // Sem autoplay: tem a voz do Junior, entao toca so quando a pessoa da play.
+          // width/height + aspect-ratio reservam o espaco antes do poster carregar.
+          <video
+            key={foto.mp4}
+            ref={videoRef}
+            poster={foto.poster}
+            width={foto.width}
+            height={foto.height}
+            controls
+            playsInline
+            preload="metadata"
+            aria-label={`Vídeo: ${foto.alt}`}
+            style={{ aspectRatio: `${foto.width} / ${foto.height}` }}
+            className="h-[80vh] max-h-[80vh] w-auto max-w-full rounded-md bg-black object-contain"
+          >
+            <source src={foto.webm} type="video/webm; codecs=vp9,opus" />
+            <source src={foto.mp4} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            key={foto.src}
+            src={foto.src}
+            alt={`${category.alt}${foto.etapa ? `, ${foto.etapa.toLowerCase()}` : ""}, foto ${index + 1}`}
+            width={foto.width}
+            height={foto.height}
+            className="h-auto max-h-[80vh] w-auto max-w-full rounded-md object-contain"
+          />
+        )}
         <figcaption className="mt-4 font-body text-sm text-white/80">
           {category.label}
           {foto.etapa && <span className="text-gold"> · {foto.etapa}</span>}

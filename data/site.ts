@@ -3,6 +3,7 @@
   Qualquer numero, servico ou categoria usado em mais de um lugar vive aqui,
   nunca espalhado pelos componentes.
 */
+import type { FotoGaleria } from "@/data/galeria.gerada";
 
 export const company = {
   // Dominio provisorio: atualizar pelo dominio final na hora do deploy.
@@ -289,6 +290,44 @@ export const gallery: Record<"vidracaria" | "forros", GalleryTab> = {
       { label: "Luminárias LED", slug: "luminarias-led", alt: "Iluminação em LED instalada pela Vidrafe", color: "#6E5F26" },
     ],
   },
+};
+
+/*
+  Videos da galeria: itens MANUAIS (o npm run galeria so le imagens). Entram
+  ANTES das fotos geradas da categoria, como abertura. Os arquivos saem do
+  npm run videos (scripts/gerar-videos.mjs) em public/videos/.
+  Sem autoplay: tem fala, entao so toca quando a pessoa da play no lightbox.
+*/
+export type VideoGaleria = {
+  tipo: "video";
+  mp4: string;
+  webm: string;
+  poster: string;
+  width: number;
+  height: number;
+  /** Descricao do video: vira o rotulo acessivel e a legenda. */
+  alt: string;
+  etapa: string;
+  /** Duracao mostrada no card, ex. "0:37". */
+  duracao: string;
+};
+
+export type ItemGaleria = (FotoGaleria & { tipo?: undefined }) | VideoGaleria;
+
+export const videosGaleria: Record<string, VideoGaleria[]> = {
+  "forro-pvc-amadeirado": [
+    {
+      tipo: "video",
+      mp4: "/videos/forro-amadeirado-espaco.mp4",
+      webm: "/videos/forro-amadeirado-espaco.webm",
+      poster: "/videos/forro-amadeirado-espaco-poster.webp",
+      width: 720,
+      height: 1280,
+      alt: "Joel Júnior mostrando a área de lazer antes do forro amadeirado",
+      etapa: "O espaço",
+      duracao: "0:37",
+    },
+  ],
 };
 
 // Diferenciais. Usam os 4 icones reservados, que nao aparecem em servicos.
