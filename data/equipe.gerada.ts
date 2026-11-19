@@ -4,4 +4,10 @@
 */
 export type RetratoEquipe = { src: string; width: number; height: number };
 
-export const retratosEquipe: Record<string, RetratoEquipe> = {};
+export const retratosEquipe: Record<string, RetratoEquipe> = {
+  "joel-junior": {
+    "src": "/equipe/joel-junior.webp",
+    "width": 750,
+    "height": 1000
+  }
+};

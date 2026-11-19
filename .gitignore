@@ -41,3 +41,8 @@ next-env.d.ts
 /public/galeria/**/*.[mM][oO][vV]
 /public/galeria/**/*.[wW][eE][bB][mM]
 /public/galeria/**/*.[aA][vV][iI]
+
+# equipe: originais soltos na raiz de public/equipe ficam fora; so o .webp e versionado
+/public/equipe/*.jpg
+/public/equipe/*.jpeg
+/public/equipe/*.png
