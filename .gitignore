@@ -35,3 +35,9 @@ next-env.d.ts
 
 # equipe: originais dos retratos ficam so na maquina; versiona o .webp (npm run equipe)
 /public/equipe/originais/
+
+# galeria: videos brutos ficam fora do git ate o passo de otimizacao de video
+/public/galeria/**/*.[mM][pP]4
+/public/galeria/**/*.[mM][oO][vV]
+/public/galeria/**/*.[wW][eE][bB][mM]
+/public/galeria/**/*.[aA][vV][iI]
