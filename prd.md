@@ -197,4 +197,4 @@ A construção é faseada. Cada fase é um prompt, analisamos o resultado e só 
 - **Fase 6 — CTA final + Footer + botão flutuante.**
 - **Fase 7 — SEO, metadados, favicon, sitemap, performance, polimento.**
 
-Repositório: `https://github.com/lemesguilherme/vidrafe` · Deploy: Vercel (root = onde estiver o `package.json`).
+Repositório: `https://github.com/lemesguilherme/vidrafe-acabamentos` · Deploy: Vercel (root = onde estiver o `package.json`).

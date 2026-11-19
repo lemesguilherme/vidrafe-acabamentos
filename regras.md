@@ -12,7 +12,7 @@
 - **Lucide React** (ícones de serviço) + **react-icons** (`FaWhatsapp`, `FaInstagram`)
 - **Google Fonts**: Playfair Display + Inter
 - **Deploy**: Vercel — root directory = pasta onde está o `package.json`
-- **Repo**: `https://github.com/lemesguilherme/vidrafe`
+- **Repo**: `https://github.com/lemesguilherme/vidrafe-acabamentos`
 
 ---
 
