@@ -47,11 +47,11 @@ export default function BotaoFlutuante() {
       aria-label={`Conversar com o ${contacts.junior.name} no WhatsApp`}
       aria-hidden={escondido || undefined}
       tabIndex={escondido ? -1 : undefined}
-      className={`fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-lg shadow-black/25 ring-4 ring-whatsapp/20 transition hover:scale-105 active:scale-95 hover:bg-whatsapp-dark motion-reduce:transition-none sm:bottom-6 sm:right-6 sm:h-16 sm:w-16 ${
+      className={`fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-md shadow-black/30 focus-visible:shadow-[0_0_0_4px_#1B2A4A] transition hover:scale-105 active:scale-95 hover:bg-whatsapp-dark motion-reduce:transition-none sm:bottom-6 sm:right-6 ${
         escondido ? "pointer-events-none translate-y-3 opacity-0" : ""
       }`}
     >
-      <FaWhatsapp className="text-3xl sm:text-[2rem]" aria-hidden="true" />
+      <FaWhatsapp className="text-3xl" aria-hidden="true" />
     </a>
   );
 }

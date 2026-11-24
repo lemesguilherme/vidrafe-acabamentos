@@ -102,7 +102,7 @@ O que faz um site **não** parecer IA:
 - Primário: pill, fundo gold, texto navy, ícone FaWhatsapp, hover escurece levemente o gold.
 - Secundário: contorno navy, texto navy, hover preenche navy/texto branco.
 - WhatsApp: verde sólido só em 2 lugares (botão flutuante e CTA do hero). Na faixa final (fundo gold) o botão é **pill navy com texto branco**, ícone do WhatsApp e seta em gold, tudo agrupado no centro: é o primário da marca sobre gold e não briga com o amarelo. Na Localização (fundo navy) o WhatsApp é **pill gold sólido com texto navy**, mais forte que o "Como chegar" (contorno). No mobile o flutuante some enquanto os botões do hero estão na tela, pra não cobrir nenhum CTA. Sobre, Serviços e Galeria usam o `LinkWhatsApp` (link com ícone, sublinhado no acento e seta, alvo de 44px) e a navbar usa contorno discreto.
-- Todo CTA de WhatsApp carrega o número correto (ver `prd.md`) e mensagem pré-preenchida.
+- Todo CTA de WhatsApp carrega o número correto (ver `prd.md`) e mensagem pré-preenchida, contextual quando dá: as frentes (Serviços e Sobre) usam a mensagem da frente e a galeria a do serviço da categoria aberta (`servicos[].whatsapp` em `data/site.ts`).
 
 ### Galeria
 - Abas no topo (duas), underline de acento na aba ativa.
@@ -117,7 +117,7 @@ O que faz um site **não** parecer IA:
 - Fundo dark (#111827), logo, colunas (navegação, serviços, contato), dois números, FaInstagram, link Política de Privacidade.
 
 ### Botão flutuante
-- Canto inferior, navy com detalhe gold, FaWhatsapp, 48px no mobile, sempre visível.
+- Canto inferior, verde do WhatsApp (um dos 2 verdes do site), FaWhatsapp, 56px em todo tamanho, sombra discreta (sem halo). Foco com anel navy + contorno gold, visível em fundo claro e escuro. No mobile some enquanto os botões do hero estão na tela.
 
 ---
 
