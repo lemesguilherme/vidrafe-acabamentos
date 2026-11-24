@@ -7,8 +7,7 @@ import { useGSAP } from "@gsap/react";
 import { CalendarDays, Store } from "lucide-react";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { company, contacts, waMessages } from "@/data/site";
-import { waLink } from "@/lib/whatsapp";
-import LinkWhatsApp from "@/components/LinkWhatsApp";
+import { waContexto, waLink } from "@/lib/whatsapp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -20,8 +19,9 @@ const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 /*
   Localizacao em bloco navy: tres cartoes (WhatsApp, endereco, horario) e o
   mapa embaixo. Sem formulario: todo contato vai pro WhatsApp. Navy aqui da
-  contraste entre Depoimentos e FAQ (as duas off-white) sem encostar em outra
-  secao escura.
+  contraste entre as secoes off-white vizinhas (Depoimentos e FAQ, ou so o FAQ
+  enquanto os depoimentos estao ocultos; ver app/page.tsx) sem encostar em
+  outra secao escura.
 
   Endereco, horario e mapa vem do `company` (data/site.ts). Se o endereco mudar
   (NAP do Google Meu Negocio), muda la e no schema LocalBusiness juntos.
@@ -77,12 +77,20 @@ export default function Localizacao() {
               <p className="mt-1 font-body text-sm text-white/75">
                 Orçamento de vidraçaria, forro e drywall
               </p>
-              {/* Secundario: o cartao ja mostra o numero e a faixa gold logo
-                  depois tem o CTA forte; aqui e um link integrado ao cartao. */}
-              <div className="mt-auto flex pt-6">
-                <LinkWhatsApp href={whatsappHref} contexto="localizacao" tom="escuro">
+              {/* Acao principal do bloco: pill gold solido com texto navy
+                  (primario da marca sobre navy). Mais forte que o "Como
+                  chegar", que e contorno. Verde solido fica so no hero e no
+                  flutuante. */}
+              <div className="mt-auto pt-6">
+                <a
+                  href={whatsappHref}
+                  {...waContexto("localizacao")}
+                  {...external}
+                  className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-gold px-5 py-2.5 font-body font-semibold text-navy transition hover:bg-[#F0C800] active:scale-[0.97] focus-visible:outline-gold"
+                >
+                  <FaWhatsapp className="shrink-0 text-lg" aria-hidden="true" />
                   Chamar no WhatsApp
-                </LinkWhatsApp>
+                </a>
               </div>
             </Cartao>
           </li>
@@ -100,7 +108,7 @@ export default function Localizacao() {
                   href={company.mapsDirections}
                   {...external}
                   aria-label="Como chegar na loja (abre o Google Maps)"
-                  className="inline-flex w-full items-center justify-center rounded-full border-2 border-white/80 px-5 py-2.5 font-body font-semibold text-white transition hover:border-white hover:bg-white hover:text-navy active:scale-[0.97] focus-visible:outline-gold"
+                  className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-white/40 px-5 py-2.5 font-body font-semibold text-white transition hover:border-white hover:bg-white/10 active:scale-[0.97] focus-visible:outline-gold"
                 >
                   Como chegar
                 </a>

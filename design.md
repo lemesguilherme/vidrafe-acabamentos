@@ -52,7 +52,7 @@ O que faz um site **não** parecer IA:
 1. **Assimetria proposital.** Nem tudo centralizado e espelhado. Blocos de serviço podem ter pesos diferentes; o "Sobre" pode ter foto de um lado e texto do outro sem simetria perfeita.
 2. **Decoração só com propósito.** Nenhum shape geométrico flutuando no hero. Nenhum gradiente decorativo sem função. O detalhe gold existe porque está na logo, não porque "preenche".
 3. **Sombra com parcimônia.** Sombra só onde há elevação real (card sobre fundo, lightbox, botão flutuante). Não em todo elemento.
-4. **Raio de borda contido.** Cantos levemente arredondados (4–8px em cards, pill só nos botões de CTA). Nada de `rounded-3xl` em tudo.
+4. **Raio de borda contido.** Cantos levemente arredondados (4–8px em cards; todo botão é pill: CTAs, chips da galeria e links da navbar). Nada de `rounded-3xl` em tudo.
 5. **Respiro.** Espaçamento generoso entre seções. Densidade confortável, não apertada nem vazia demais.
 6. **Fotos reais no centro.** O site vive das fotos da fachada e dos trabalhos. O layout serve às fotos, não o contrário.
 
@@ -101,7 +101,7 @@ O que faz um site **não** parecer IA:
 ### Botões / CTA
 - Primário: pill, fundo gold, texto navy, ícone FaWhatsapp, hover escurece levemente o gold.
 - Secundário: contorno navy, texto navy, hover preenche navy/texto branco.
-- WhatsApp: verde sólido só em 2 lugares (botão flutuante e CTA do hero). Na faixa final (fundo gold) o botão é **navy com texto branco** e ícone do WhatsApp em gold: é o primário da marca sobre gold e não briga com o amarelo. No mobile o flutuante some enquanto os botões do hero estão na tela, pra não cobrir nenhum CTA. O resto usa o `LinkWhatsApp` (link com ícone, sublinhado no acento e seta, alvo de 44px) e a navbar usa contorno discreto.
+- WhatsApp: verde sólido só em 2 lugares (botão flutuante e CTA do hero). Na faixa final (fundo gold) o botão é **pill navy com texto branco**, ícone do WhatsApp e seta em gold, tudo agrupado no centro: é o primário da marca sobre gold e não briga com o amarelo. Na Localização (fundo navy) o WhatsApp é **pill gold sólido com texto navy**, mais forte que o "Como chegar" (contorno). No mobile o flutuante some enquanto os botões do hero estão na tela, pra não cobrir nenhum CTA. Sobre, Serviços e Galeria usam o `LinkWhatsApp` (link com ícone, sublinhado no acento e seta, alvo de 44px) e a navbar usa contorno discreto.
 - Todo CTA de WhatsApp carrega o número correto (ver `prd.md`) e mensagem pré-preenchida.
 
 ### Galeria
