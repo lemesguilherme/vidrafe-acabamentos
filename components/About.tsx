@@ -225,7 +225,7 @@ function PessoaBloco({ pessoa, invertido }: { pessoa: Pessoa; invertido: boolean
 
         {/* CTA secundario (link com seta): verde solido so nos 3 principais. */}
         <div className="mt-6 flex">
-          <LinkWhatsApp href={waLink(pessoa.whatsapp, waMessages.default)} contexto={pessoa.contexto}>
+          <LinkWhatsApp href={waLink(pessoa.whatsapp, waMessages[pessoa.mensagem])} contexto={pessoa.contexto}>
             {pessoa.cta}
           </LinkWhatsApp>
         </div>

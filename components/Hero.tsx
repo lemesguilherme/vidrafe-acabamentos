@@ -98,12 +98,11 @@ export default function Hero() {
             className="hero-revelar mt-4 max-w-2xl font-body text-base leading-[1.6] text-white/90 sm:text-lg lg:mt-6 lg:text-white/85"
           >
             Box de banheiro, espelhos, portas de vidro, esquadrias de alumínio,
-            forro PVC e drywall.{" "}
-            <span className="lg:hidden">Você fala direto com o Joel e o Joel Júnior.</span>
-            <span className="hidden lg:inline">
-              Aqui você conversa direto com o Joel e o Joel Júnior, que são quem
-              põe a mão na obra.
-            </span>
+            forro PVC e drywall. Aqui você conversa direto com o Joel e o Joel
+            Júnior
+            {/* Uma frase so no DOM (sem copia mobile/desktop pro crawler): no
+                celular o fim some e a frase fecha no ponto. */}
+            <span className="max-lg:hidden">, que são quem põe a mão na obra</span>.
           </p>
 
           {/* data-hero-ctas: o BotaoFlutuante se esconde no mobile enquanto

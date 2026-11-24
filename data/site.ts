@@ -75,11 +75,15 @@ export const contacts = {
   },
 } as const;
 
-// Mensagem pre-preenchida (obrigatorio, foi falha na v1). Desde a Fase 12 todos
-// os botoes usam `default` e o destino e sempre o junior. O rastreamento por
-// ponto de contato e feito pelo waContexto (lib/whatsapp.ts), nao pela mensagem.
+// Mensagem pre-preenchida (obrigatorio, foi falha na v1). O destino e sempre o
+// junior (Fase 12). Botoes gerais usam `default`; os de uma frente usam a
+// mensagem da frente, e os de um servico (galeria) a mensagem do servico, em
+// `servicos[].whatsapp`. O rastreamento por ponto de contato e feito pelo
+// waContexto (lib/whatsapp.ts), nao pela mensagem.
 export const waMessages = {
   default: "Olá! Vi o site da Vidrafe e gostaria de pedir um orçamento.",
+  vidracaria: "Olá! Vi o site da Vidrafe e gostaria de pedir um orçamento de vidraçaria.",
+  forros: "Olá! Vi o site da Vidrafe e gostaria de pedir um orçamento de forro ou drywall.",
 } as const;
 
 /*
@@ -109,6 +113,7 @@ export const equipe = [
     alt: "Retrato do Joel, responsável pela vidraçaria da Vidrafe Acabamentos",
     whatsapp: "junior",
     cta: "Pedir orçamento de vidraçaria",
+    mensagem: "vidracaria",
     contexto: "sobre_joel",
   },
   {
@@ -121,6 +126,7 @@ export const equipe = [
     alt: "Retrato do Joel Júnior, responsável por forros e drywall da Vidrafe Acabamentos",
     whatsapp: "junior",
     cta: "Falar com o Júnior",
+    mensagem: "forros",
     contexto: "sobre_junior",
   },
 ] as const;
@@ -171,6 +177,7 @@ export const areaResponsavel: Record<AreaServico, keyof typeof contacts> = {
 export const servicos = [
   {
     slug: "box",
+    whatsapp: "Olá! Gostaria de solicitar um orçamento para instalação de box de banheiro.",
     titulo: "Box para banheiro",
     area: "Vidraçaria",
     resumo: "Box de vidro feito na medida do seu banheiro, de canto, frontal ou em formato especial.",
@@ -179,6 +186,7 @@ export const servicos = [
   },
   {
     slug: "espelhos",
+    whatsapp: "Olá! Gostaria de solicitar um orçamento de espelho ou armário de pia em vidro.",
     titulo: "Espelhos e armário de pia",
     area: "Vidraçaria",
     resumo: "Espelho cortado na medida da parede e armário de pia em vidro, sob medida pro seu cômodo.",
@@ -187,6 +195,7 @@ export const servicos = [
   },
   {
     slug: "vidros",
+    whatsapp: "Olá! Gostaria de solicitar um orçamento de vidro.",
     titulo: "Vidros",
     area: "Vidraçaria",
     resumo: "Vidro temperado, comum ou laminado pra box, porta, janela e armário de pia. Na dúvida, a gente explica a diferença.",
@@ -195,6 +204,7 @@ export const servicos = [
   },
   {
     slug: "portas-janelas",
+    whatsapp: "Olá! Gostaria de solicitar um orçamento de porta ou janela de vidro.",
     titulo: "Portas e janelas",
     area: "Vidraçaria",
     resumo: "Portas de vidro pivotantes, de correr ou de abrir, e janelas pra casa e pro comércio.",
@@ -203,6 +213,7 @@ export const servicos = [
   },
   {
     slug: "esquadrias",
+    whatsapp: "Olá! Gostaria de solicitar um orçamento de esquadria de alumínio.",
     titulo: "Esquadrias em alumínio",
     area: "Vidraçaria",
     resumo: "Esquadria de alumínio medida no vão e instalada por quem mediu.",
@@ -211,6 +222,7 @@ export const servicos = [
   },
   {
     slug: "policarbonato",
+    whatsapp: "Olá! Gostaria de solicitar um orçamento de cobertura em policarbonato.",
     titulo: "Cobertura em policarbonato",
     area: "Vidraçaria",
     resumo: "Cobertura em policarbonato medida no local e instalada pela gente.",
@@ -219,6 +231,7 @@ export const servicos = [
   },
   {
     slug: "forro-pvc",
+    whatsapp: "Olá! Gostaria de solicitar um orçamento de forro PVC.",
     titulo: "Forro PVC",
     area: "Forros & Drywall",
     resumo: "Forro PVC branco, amadeirado ou cerejeira, com o acabamento conferido antes da gente ir embora.",
@@ -227,6 +240,7 @@ export const servicos = [
   },
   {
     slug: "drywall",
+    whatsapp: "Olá! Gostaria de solicitar um orçamento de drywall.",
     titulo: "Drywall",
     area: "Forros & Drywall",
     resumo: "Divisória, sanca e rebaixamento em drywall pra mudar o ambiente sem quebra-quebra.",
@@ -235,6 +249,7 @@ export const servicos = [
   },
   {
     slug: "led",
+    whatsapp: "Olá! Gostaria de solicitar um orçamento de luminárias LED.",
     titulo: "Luminárias LED",
     area: "Forros & Drywall",
     resumo: "Spots, painéis e fitas de LED instalados junto com o forro ou o drywall.",
@@ -243,12 +258,18 @@ export const servicos = [
   },
 ] as const satisfies readonly {
   slug: string;
+  whatsapp: string;
   titulo: string;
   area: AreaServico;
   resumo: string;
   tags: readonly string[];
   icon: string;
 }[];
+
+// Mensagem de WhatsApp de um servico (pelo slug); cai na padrao se nao achar.
+export function mensagemDoServico(slug: string): string {
+  return servicos.find((s) => s.slug === slug)?.whatsapp ?? waMessages.default;
+}
 
 /*
   Icones Lucide reservados para os diferenciais (fase futura).
@@ -272,6 +293,8 @@ export const servicos = [
 export type GalleryCategory = {
   label: string;
   slug: string;
+  /** slug em `servicos`: o CTA da galeria usa a mensagem de WhatsApp dele. */
+  servico: string;
   alt: string;
   color: string;
 };
@@ -287,24 +310,24 @@ export const gallery: Record<"vidracaria" | "forros", GalleryTab> = {
     label: "Joel · Vidraçaria",
     owner: "joel",
     categories: [
-      { label: "Vidros", slug: "vidros", alt: "Vidro temperado instalado pela Vidrafe", color: "#2C3D5B" },
-      { label: "Espelhos", slug: "espelhos", alt: "Espelho sob medida instalado pela Vidrafe", color: "#4A5363" },
-      { label: "Box p/ Banheiro", slug: "box-banheiro", alt: "Box de banheiro em vidro instalado pela Vidrafe", color: "#2F4A4C" },
-      { label: "Portas & Janelas", slug: "portas-janelas", alt: "Porta ou janela de vidro instalada pela Vidrafe", color: "#5C2B27" },
-      { label: "Esquadrias", slug: "esquadrias", alt: "Esquadria de alumínio instalada pela Vidrafe", color: "#5A5A42" },
+      { label: "Vidros", slug: "vidros", servico: "vidros", alt: "Vidro temperado instalado pela Vidrafe", color: "#2C3D5B" },
+      { label: "Espelhos", slug: "espelhos", servico: "espelhos", alt: "Espelho sob medida instalado pela Vidrafe", color: "#4A5363" },
+      { label: "Box p/ Banheiro", slug: "box-banheiro", servico: "box", alt: "Box de banheiro em vidro instalado pela Vidrafe", color: "#2F4A4C" },
+      { label: "Portas & Janelas", slug: "portas-janelas", servico: "portas-janelas", alt: "Porta ou janela de vidro instalada pela Vidrafe", color: "#5C2B27" },
+      { label: "Esquadrias", slug: "esquadrias", servico: "esquadrias", alt: "Esquadria de alumínio instalada pela Vidrafe", color: "#5A5A42" },
     ],
   },
   forros: {
     label: "Joel Júnior · Forros & Drywall",
     owner: "junior",
     categories: [
-      { label: "Forro PVC Branco", slug: "forro-pvc-branco", alt: "Forro PVC branco instalado pela Vidrafe", color: "#6B6A63" },
-      { label: "Forro Amadeirado", slug: "forro-pvc-amadeirado", alt: "Forro PVC amadeirado instalado pela Vidrafe", color: "#6A4630" },
-      { label: "Forro Cerejeira", slug: "forro-pvc-cerejeira", alt: "Forro PVC cerejeira instalado pela Vidrafe", color: "#5E2F2A" },
-      { label: "Forro Ripado", slug: "forro-ripado", alt: "Forro ripado instalado pela Vidrafe", color: "#7A5A36" },
-      { label: "Divisórias em Drywall", slug: "drywall-divisorias", alt: "Divisória de drywall feita pela Vidrafe", color: "#46423F" },
-      { label: "Forro de Drywall", slug: "drywall-forro", alt: "Forro e sanca de drywall feitos pela Vidrafe", color: "#3F4650" },
-      { label: "Luminárias LED", slug: "luminarias-led", alt: "Iluminação em LED instalada pela Vidrafe", color: "#6E5F26" },
+      { label: "Forro PVC Branco", slug: "forro-pvc-branco", servico: "forro-pvc", alt: "Forro PVC branco instalado pela Vidrafe", color: "#6B6A63" },
+      { label: "Forro Amadeirado", slug: "forro-pvc-amadeirado", servico: "forro-pvc", alt: "Forro PVC amadeirado instalado pela Vidrafe", color: "#6A4630" },
+      { label: "Forro Cerejeira", slug: "forro-pvc-cerejeira", servico: "forro-pvc", alt: "Forro PVC cerejeira instalado pela Vidrafe", color: "#5E2F2A" },
+      { label: "Forro Ripado", slug: "forro-ripado", servico: "forro-pvc", alt: "Forro ripado instalado pela Vidrafe", color: "#7A5A36" },
+      { label: "Divisórias em Drywall", slug: "drywall-divisorias", servico: "drywall", alt: "Divisória de drywall feita pela Vidrafe", color: "#46423F" },
+      { label: "Forro de Drywall", slug: "drywall-forro", servico: "drywall", alt: "Forro e sanca de drywall feitos pela Vidrafe", color: "#3F4650" },
+      { label: "Luminárias LED", slug: "luminarias-led", servico: "led", alt: "Iluminação em LED instalada pela Vidrafe", color: "#6E5F26" },
     ],
   },
 };

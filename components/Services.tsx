@@ -39,9 +39,14 @@ const icons: Record<Servico["icon"], LucideIcon> = {
 
 // As duas frentes, na ordem da pagina. O CTA de ambas vai pro junior (Fase 12);
 // o contexto separa o rastreio.
-const frentes: { area: AreaServico; apelido: string; contexto: WaContexto }[] = [
-  { area: "Vidraçaria", apelido: "Joel", contexto: "servicos_joel" },
-  { area: "Forros & Drywall", apelido: "Júnior", contexto: "servicos_junior" },
+const frentes: {
+  area: AreaServico;
+  apelido: string;
+  contexto: WaContexto;
+  mensagem: keyof typeof waMessages;
+}[] = [
+  { area: "Vidraçaria", apelido: "Joel", contexto: "servicos_joel", mensagem: "vidracaria" },
+  { area: "Forros & Drywall", apelido: "Júnior", contexto: "servicos_junior", mensagem: "forros" },
 ];
 
 export default function Services() {
@@ -119,11 +124,13 @@ function Frente({
   area,
   apelido,
   contexto,
+  mensagem,
   itens,
 }: {
   area: AreaServico;
   apelido: string;
   contexto: WaContexto;
+  mensagem: keyof typeof waMessages;
   itens: Servico[];
 }) {
   const responsavel = contacts[areaResponsavel[area]].name;
@@ -139,9 +146,10 @@ function Frente({
             Quem mede e instala é o {responsavel}.
           </p>
         </div>
-        {/* CTA secundario (link com seta): verde solido so nos 3 principais. */}
+        {/* CTA secundario (link com seta), com a mensagem da frente. Verde solido
+            fica so no hero e no flutuante. */}
         <div className="mt-5 flex">
-          <LinkWhatsApp href={waLink("junior", waMessages.default)} contexto={contexto}>
+          <LinkWhatsApp href={waLink("junior", waMessages[mensagem])} contexto={contexto}>
             Pedir orçamento
           </LinkWhatsApp>
         </div>

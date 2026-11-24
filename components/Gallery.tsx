@@ -11,7 +11,7 @@ import {
   contacts,
   gallery,
   videosGaleria,
-  waMessages,
+  mensagemDoServico,
   type GalleryCategory,
   type ItemGaleria,
 } from "@/data/site";
@@ -53,17 +53,16 @@ const GaleriaCoverflow = dynamic(() => import("@/components/GaleriaCoverflow"), 
   loading: CarregandoPalco,
 });
 
-// CTA por aba. Todos vao para o numero padrao (Joel Junior), a pedido do cliente.
-const tabCta: Record<TabKey, { text: string; label: string; href: string }> = {
+// CTA por aba. Todos vao para o numero padrao (Joel Junior), a pedido do cliente;
+// a mensagem e a do servico da categoria aberta (ex.: box -> orcamento de box).
+const tabCta: Record<TabKey, { text: string; label: string }> = {
   vidracaria: {
     text: "Viu algo parecido com o que você quer? Manda a referência pelo WhatsApp.",
     label: "Pedir orçamento pelo WhatsApp",
-    href: waLink("junior", waMessages.default),
   },
   forros: {
     text: "Viu algo parecido com o que você quer? Manda a referência pro Joel Júnior.",
     label: `Pedir orçamento ao ${contacts.junior.name}`,
-    href: waLink("junior", waMessages.default),
   },
 };
 
@@ -264,7 +263,7 @@ export default function Gallery() {
         {/* CTA contextual da aba */}
         <div className="mt-10 flex flex-col gap-4 border-l-4 border-gold pl-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-xl font-body text-base text-navy/80">{tabCta[tab].text}</p>
-          <LinkWhatsApp href={tabCta[tab].href} contexto="galeria" className="shrink-0 sm:self-auto">
+          <LinkWhatsApp href={waLink("junior", mensagemDoServico(category.servico))} contexto="galeria" className="shrink-0 sm:self-auto">
             {tabCta[tab].label}
           </LinkWhatsApp>
         </div>
