@@ -179,15 +179,16 @@ function PessoaBloco({ pessoa, invertido }: { pessoa: Pessoa; invertido: boolean
 
           <figure className="group relative aspect-[4/5] overflow-hidden rounded-md bg-neutral-800">
             {retrato ? (
-              // P&B que ganha cor no hover (so em aparelho com mouse). Com
-              // reduced-motion a troca e instantanea, sem animar o filtro.
+              // Com mouse: P&B que ganha cor no hover. Sem hover (celular,
+              // tablet), ja aparece colorido, senao ficaria preso no P&B.
+              // Com reduced-motion a troca e instantanea, sem animar o filtro.
               <img
                 src={retrato.src}
                 alt={pessoa.alt}
                 width={retrato.width}
                 height={retrato.height}
                 loading="lazy"
-                className="h-full w-full object-cover grayscale transition-[filter] duration-700 group-hover:grayscale-0 motion-reduce:transition-none"
+                className="h-full w-full object-cover [@media(hover:hover)]:grayscale transition-[filter] duration-700 group-hover:grayscale-0 motion-reduce:transition-none"
               />
             ) : (
               <RetratoEmBreve nome={pessoa.nome} />
