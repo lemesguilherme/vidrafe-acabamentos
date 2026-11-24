@@ -72,11 +72,7 @@ export default function CtaFinal() {
         {/* flex-col: o botao estica na coluna toda (o GlareHover fixa width: auto inline). */}
         <div className="cta-final-acao flex flex-col lg:col-span-5 lg:col-start-8">
           {/* Sombra e ring ficam no wrapper: o GlareHover corta o que passa da borda. */}
-          <CtaBrilho
-            focoNavy
-            raio="0.375rem"
-            className="cta-final-button w-full shadow-lg shadow-navy/25"
-          >
+          <CtaBrilho focoNavy className="cta-final-button w-full shadow-lg shadow-navy/25">
             {/* Navy e nao verde: sobre o gold o verde brigava com o amarelo. Navy
                 com texto branco e o botao primario da marca (design.md); o icone
                 do WhatsApp em gold diz pra onde vai. Verde solido so no hero e no
@@ -86,10 +82,10 @@ export default function CtaFinal() {
               {...waContexto("cta_final")}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex w-full items-center gap-4 rounded-md bg-navy px-5 py-5 text-white transition hover:bg-[#24375f] focus-visible:outline-none active:scale-[0.98] sm:px-6 sm:py-6"
+              className="group flex w-full items-center justify-center gap-3 rounded-full bg-navy px-6 py-4 text-white transition hover:bg-[#24375f] focus-visible:outline-none active:scale-[0.98] sm:py-5"
             >
-              <FaWhatsapp className="shrink-0 text-3xl text-gold" aria-hidden="true" />
-              <span className="flex-1 whitespace-nowrap font-body text-lg font-semibold sm:text-xl">
+              <FaWhatsapp className="shrink-0 text-2xl text-gold sm:text-[1.75rem]" aria-hidden="true" />
+              <span className="whitespace-nowrap font-body text-lg font-semibold sm:text-xl">
                 Chamar no WhatsApp
               </span>
               <ArrowUpRight
