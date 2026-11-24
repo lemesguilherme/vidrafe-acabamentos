@@ -87,7 +87,7 @@ export default function Services() {
             Tudo que a gente mede e instala
           </h2>
           <span
-            className="services-rule mt-4 block h-[3px] w-16 origin-left bg-brick"
+            className="services-rule mt-4 block h-[3px] w-16 origin-left bg-accent"
             aria-hidden="true"
           />
           <p className="mt-6 font-body text-base leading-relaxed text-navy/80 sm:text-lg">
@@ -132,9 +132,9 @@ function Frente({
   return (
     <div className="servico-frente grid gap-8 lg:grid-cols-12 lg:gap-12">
       <div className="servico-frente-cab lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
-        <div className="border-l-4 border-brick pl-5">
+        <div className="border-l-4 border-accent pl-5">
           <h3 className="font-heading text-2xl font-bold text-navy sm:text-3xl">
-            {area} <span className="text-brick">· {apelido}</span>
+            {area} <span className="text-accent">· {apelido}</span>
           </h3>
           <p className="mt-2 font-body text-sm text-navy/70 sm:text-base">
             Quem mede e instala é o {responsavel}.

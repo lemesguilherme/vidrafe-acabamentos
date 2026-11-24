@@ -56,7 +56,7 @@ export default function CtaFinal() {
 
       <div className="relative mx-auto grid max-w-6xl gap-10 px-5 sm:px-8 lg:grid-cols-12 lg:items-end lg:gap-12">
         <div className="cta-final-text lg:col-span-7">
-          <span className="cta-final-rule block h-[3px] w-16 origin-left bg-brick" aria-hidden="true" />
+          <span className="cta-final-rule block h-[3px] w-16 origin-left bg-accent-sobreGold" aria-hidden="true" />
           <h2
             id="cta-final-titulo"
             className="mt-6 font-heading text-[2rem] font-bold leading-[1.1] text-navy sm:text-5xl lg:text-[3.4rem]"

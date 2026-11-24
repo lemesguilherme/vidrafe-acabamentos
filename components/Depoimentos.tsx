@@ -62,10 +62,10 @@ function DepoimentoCard({ item, ilustrativo }: { item: Depoimento; ilustrativo: 
   const rating = item.rating ? Math.max(0, Math.min(5, Math.round(item.rating))) : 0;
 
   return (
-    <li className="depoimento-card relative flex flex-col overflow-hidden rounded-md border-t-[3px] border-brick bg-white p-6 pt-7 shadow-sm sm:p-8">
+    <li className="depoimento-card relative flex flex-col overflow-hidden rounded-md border-t-[3px] border-accent bg-white p-6 pt-7 shadow-sm sm:p-8">
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -top-3 right-5 select-none font-heading text-[7rem] leading-none text-brick/10"
+        className="pointer-events-none absolute -top-3 right-5 select-none font-heading text-[7rem] leading-none text-accent/10"
       >
         &ldquo;
       </span>
@@ -95,7 +95,7 @@ function DepoimentoCard({ item, ilustrativo }: { item: Depoimento; ilustrativo: 
         <figcaption className="mt-6 border-t border-navy/10 pt-5 font-body">
           <span className="block text-base font-semibold text-navy">{item.author}</span>
           <span className="mt-1 flex items-center gap-2 text-sm text-navy/75">
-            <span aria-hidden="true" className="h-[2px] w-4 bg-brick" />
+            <span aria-hidden="true" className="h-[2px] w-4 bg-accent" />
             {item.service}
           </span>
           {item.sourceUrl ? (
@@ -103,7 +103,7 @@ function DepoimentoCard({ item, ilustrativo }: { item: Depoimento; ilustrativo: 
               href={item.sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-block text-sm font-medium text-navy underline decoration-brick/40 underline-offset-4 transition-colors hover:decoration-brick focus-visible:outline-navy"
+              className="mt-2 inline-block text-sm font-medium text-navy underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent focus-visible:outline-navy"
             >
               Ver avaliação no {item.source}
             </a>

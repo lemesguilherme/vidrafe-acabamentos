@@ -98,11 +98,11 @@ export default function Navbar() {
                   }`}
                 >
                   {link.label}
-                  {/* Underline da secao atual: brick no fundo branco, gold sobre o hero. */}
+                  {/* Underline da secao atual: accent no fundo branco, gold sobre o hero. */}
                   <span
                     aria-hidden="true"
                     className={`absolute inset-x-0 -bottom-0.5 h-[3px] rounded-full transition-opacity motion-reduce:transition-none ${
-                      solid ? "bg-brick" : "bg-gold"
+                      solid ? "bg-accent" : "bg-gold"
                     } ${current ? "opacity-100" : "opacity-0"}`}
                   />
                 </a>
@@ -158,13 +158,13 @@ export default function Navbar() {
                     href={link.href}
                     onClick={() => setOpen(false)}
                     aria-current={current ? "location" : undefined}
-                    className={`flex items-center gap-3 border-b border-navy/10 py-3.5 font-body text-base font-semibold transition-colors hover:text-brick focus-visible:outline-navy motion-reduce:transition-none ${
-                      current ? "text-brick" : "text-navy"
+                    className={`flex items-center gap-3 border-b border-navy/10 py-3.5 font-body text-base font-semibold transition-colors hover:text-accent focus-visible:outline-navy motion-reduce:transition-none ${
+                      current ? "text-accent" : "text-navy"
                     }`}
                   >
                     <span
                       aria-hidden="true"
-                      className={`h-4 w-[3px] rounded-full ${current ? "bg-brick" : "bg-transparent"}`}
+                      className={`h-4 w-[3px] rounded-full ${current ? "bg-accent" : "bg-transparent"}`}
                     />
                     {link.label}
                   </a>

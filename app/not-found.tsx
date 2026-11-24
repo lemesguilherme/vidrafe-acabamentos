@@ -33,7 +33,7 @@ export default function NotFound() {
 
       <main className="bg-offwhite py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
-          <p className="font-heading text-7xl font-bold leading-none text-brick/80 sm:text-8xl">
+          <p className="font-heading text-7xl font-bold leading-none text-accent/80 sm:text-8xl">
             404
           </p>
           <span className="mt-6 block h-[3px] w-16 bg-gold" aria-hidden="true" />

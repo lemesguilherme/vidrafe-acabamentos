@@ -44,7 +44,7 @@ export default function PoliticaDePrivacidade() {
           </a>
           <a
             href="/"
-            className="inline-flex items-center gap-2 rounded-md font-body text-sm font-medium text-navy transition-colors hover:text-brick focus-visible:outline-navy"
+            className="inline-flex items-center gap-2 rounded-md font-body text-sm font-medium text-navy transition-colors hover:text-accent focus-visible:outline-navy"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             Voltar para o site
@@ -57,7 +57,7 @@ export default function PoliticaDePrivacidade() {
           <h1 className="font-heading text-4xl font-bold text-navy sm:text-5xl">
             Política de Privacidade
           </h1>
-          <span className="mt-5 block h-[3px] w-16 bg-brick" aria-hidden="true" />
+          <span className="mt-5 block h-[3px] w-16 bg-accent" aria-hidden="true" />
           <p className="mt-6 text-sm text-navy/60">Última atualização: novembro de 2026</p>
 
           <p className={paragraph}>
@@ -83,7 +83,7 @@ export default function PoliticaDePrivacidade() {
               href="https://vercel.com/docs/analytics/privacy-policy"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-brick"
+              className="font-medium text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-accent"
             >
               vercel.com/docs/analytics/privacy-policy
             </a>
@@ -115,7 +115,7 @@ export default function PoliticaDePrivacidade() {
               href="https://policies.google.com/privacy"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-brick"
+              className="font-medium text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-accent"
             >
               policies.google.com/privacy
             </a>
@@ -139,7 +139,7 @@ export default function PoliticaDePrivacidade() {
               E-mail:{" "}
               <a
                 href={`mailto:${company.email}`}
-                className="font-medium text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-brick"
+                className="font-medium text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-accent"
               >
                 {company.email}
               </a>

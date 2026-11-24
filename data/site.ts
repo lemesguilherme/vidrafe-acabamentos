@@ -267,7 +267,7 @@ export const servicos = [
 
   `alt` e a descricao da categoria: vira o texto alternativo e a legenda das fotos.
   `color` e a cor do aviso "fotos em breve" enquanto a pasta esta vazia: paleta
-  escura e terrosa derivada do navy e do brick, uma cor distinta por categoria.
+  escura e terrosa derivada do navy e do vermelho da logo, uma cor distinta por categoria.
 */
 export type GalleryCategory = {
   label: string;

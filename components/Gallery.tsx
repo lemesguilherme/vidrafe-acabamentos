@@ -191,7 +191,7 @@ export default function Gallery() {
                   onClick={() => selectTab(key)}
                   className={`-mb-px shrink-0 whitespace-nowrap border-b-[3px] pb-3 font-body text-sm font-semibold transition-colors focus-visible:outline-navy sm:text-base ${
                     selected
-                      ? "border-brick text-navy"
+                      ? "border-accent text-navy"
                       : "border-transparent text-navy/55 hover:text-navy"
                   }`}
                 >

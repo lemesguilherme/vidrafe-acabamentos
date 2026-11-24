@@ -90,14 +90,14 @@ export default function Faq() {
                       {/* Numero na fonte de titulo, com lining-nums e tabular-nums pra alinhar. */}
                       <span
                         className={`w-9 shrink-0 pt-0.5 font-heading text-base lining-nums tabular-nums transition-colors motion-reduce:transition-none sm:w-12 sm:text-lg ${
-                          estaAberta ? "text-brick" : "text-navy/70"
+                          estaAberta ? "text-accent" : "text-navy/70"
                         }`}
                       >
                         {numero(i)}/
                       </span>
                       <span
                         className={`flex-1 font-heading text-lg font-semibold leading-snug transition-colors motion-reduce:transition-none sm:text-xl ${
-                          estaAberta ? "text-navy" : "text-navy group-hover:text-brick"
+                          estaAberta ? "text-navy" : "text-navy group-hover:text-accent"
                         }`}
                       >
                         {item.pergunta}
@@ -106,7 +106,7 @@ export default function Faq() {
                       <ChevronDown
                         aria-hidden="true"
                         className={`mt-1 h-5 w-5 shrink-0 transition-[transform,color] duration-300 motion-reduce:transition-none ${
-                          estaAberta ? "rotate-180 text-brick" : "text-navy/60 group-hover:text-brick"
+                          estaAberta ? "rotate-180 text-accent" : "text-navy/60 group-hover:text-accent"
                         }`}
                       />
                     </button>

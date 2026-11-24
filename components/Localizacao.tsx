@@ -58,7 +58,7 @@ export default function Localizacao() {
             Onde a gente fica
           </h2>
           <span
-            className="local-rule mt-4 block h-[3px] w-16 origin-left bg-brick"
+            className="local-rule mt-4 block h-[3px] w-16 origin-left bg-accent-escuro"
             aria-hidden="true"
           />
           <p className="mt-6 font-body text-base leading-relaxed text-white/80 sm:text-lg">

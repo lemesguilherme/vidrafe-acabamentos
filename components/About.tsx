@@ -102,7 +102,7 @@ export default function About() {
             Quem faz a Vidrafe
           </h2>
           <span
-            className="about-rule mt-4 block h-[3px] w-16 origin-left bg-brick"
+            className="about-rule mt-4 block h-[3px] w-16 origin-left bg-accent"
             aria-hidden="true"
           />
           <p className="mt-6 font-body text-base leading-relaxed text-navy/80 sm:text-lg">
@@ -125,7 +125,7 @@ export default function About() {
               >
                 <dt className="mt-1 font-body text-sm text-navy/70">{n.rotulo}</dt>
                 <dd className="font-heading text-4xl font-bold leading-none text-navy lining-nums tabular-nums sm:text-5xl">
-                  {n.prefixo && <span className="text-brick">{n.prefixo}</span>}
+                  {n.prefixo && <span className="text-accent">{n.prefixo}</span>}
                   <span
                     className="numero-valor"
                     data-alvo={contavel(n.valor) ? n.valor.trim() : undefined}
@@ -150,7 +150,7 @@ export default function About() {
 
 /*
   Um profissional: retrato de um lado, nome/funcao/bio/CTA do outro, alternando.
-  No mobile empilha (retrato em cima). A linha brick fina sai do retrato e
+  No mobile empilha (retrato em cima). A linha accent fina sai do retrato e
   chega no nome (so no desktop, onde os dois ficam lado a lado).
 */
 function PessoaBloco({ pessoa, invertido }: { pessoa: Pessoa; invertido: boolean }) {
@@ -165,7 +165,7 @@ function PessoaBloco({ pessoa, invertido }: { pessoa: Pessoa; invertido: boolean
           invertido ? "lg:order-2" : ""
         }`}
       >
-        {/* Acento atras do retrato: bloco navy deslocado com a base brick, como a
+        {/* Acento atras do retrato: bloco navy deslocado com a base accent, como a
             casa navy e a janela vermelha da logo. Solido, sem blur nem gradiente. */}
         <div className="relative">
           <span
@@ -174,7 +174,7 @@ function PessoaBloco({ pessoa, invertido }: { pessoa: Pessoa; invertido: boolean
               invertido ? "-translate-x-4" : "translate-x-4"
             }`}
           >
-            <span className="absolute inset-x-0 bottom-0 h-1.5 rounded-b-md bg-brick" />
+            <span className="absolute inset-x-0 bottom-0 h-1.5 rounded-b-md bg-accent" />
           </span>
 
           <figure className="group relative aspect-[4/5] overflow-hidden rounded-md bg-neutral-800">
@@ -207,7 +207,7 @@ function PessoaBloco({ pessoa, invertido }: { pessoa: Pessoa; invertido: boolean
         <div className={`mt-2 flex items-center gap-5 ${invertido ? "flex-row-reverse justify-end" : ""}`}>
           <span
             aria-hidden="true"
-            className={`equipe-linha hidden h-px bg-brick/70 lg:block ${
+            className={`equipe-linha hidden h-px bg-accent/70 lg:block ${
               invertido ? "-mr-16 min-w-12 flex-1 origin-right" : "-ml-16 w-28 flex-none origin-left"
             }`}
           />

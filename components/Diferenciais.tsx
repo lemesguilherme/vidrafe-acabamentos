@@ -55,7 +55,7 @@ export default function Diferenciais() {
           <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
             Por que chamar a Vidrafe
           </h2>
-          <span className="diferenciais-rule mt-4 block h-[3px] w-16 origin-left bg-brick" aria-hidden="true" />
+          <span className="diferenciais-rule mt-4 block h-[3px] w-16 origin-left bg-accent-escuro" aria-hidden="true" />
         </div>
 
         {/* Grade alinhada: todos os cards com a mesma altura na linha. */}
