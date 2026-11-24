@@ -135,7 +135,7 @@ export default function Navbar() {
             aria-expanded={open}
             aria-controls="menu-mobile"
             aria-label={open ? "Fechar menu" : "Abrir menu"}
-            className={`rounded-md p-2 transition-colors lg:hidden ${
+            className={`rounded-md p-2.5 transition-colors lg:hidden ${
               solid ? "text-navy focus-visible:outline-navy" : "text-white"
             }`}
           >

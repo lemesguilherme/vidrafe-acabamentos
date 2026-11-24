@@ -189,7 +189,7 @@ export default function Gallery() {
                   aria-controls={panelId}
                   tabIndex={selected ? 0 : -1}
                   onClick={() => selectTab(key)}
-                  className={`-mb-px shrink-0 whitespace-nowrap border-b-[3px] pb-3 font-body text-sm font-semibold transition-colors focus-visible:outline-navy sm:text-base ${
+                  className={`-mb-px inline-flex min-h-11 shrink-0 items-end whitespace-nowrap border-b-[3px] pb-3 font-body text-sm font-semibold transition-colors focus-visible:outline-navy sm:text-base ${
                     selected
                       ? "border-accent text-navy"
                       : "border-transparent text-navy/55 hover:text-navy"
@@ -211,7 +211,7 @@ export default function Gallery() {
                   type="button"
                   aria-pressed={active}
                   onClick={() => selectCategoria(i)}
-                  className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 font-body text-sm font-medium transition-colors focus-visible:outline-navy ${
+                  className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-4 py-2 font-body text-sm font-medium transition-colors focus-visible:outline-navy ${
                     active
                       ? "border-navy bg-navy text-white"
                       : "border-navy/20 bg-white text-navy hover:border-gold hover:bg-gold/15"

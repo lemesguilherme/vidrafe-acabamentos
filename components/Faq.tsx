@@ -143,7 +143,7 @@ export default function Faq() {
               {...waContexto("faq")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-semibold text-navy underline decoration-brick/50 decoration-2 underline-offset-4 transition-colors hover:decoration-brick focus-visible:outline-navy motion-reduce:transition-none"
+              className="inline-flex min-h-11 items-center gap-2 font-semibold text-navy underline decoration-accent/50 decoration-2 underline-offset-4 transition-colors hover:decoration-accent focus-visible:outline-navy motion-reduce:transition-none"
             >
               <FaWhatsapp className="text-xl text-whatsapp" aria-hidden="true" />
               Pergunta pro Joel Júnior no WhatsApp

@@ -10,8 +10,9 @@ const footerServices = servicos.filter((item) => destaques.includes(item.slug));
 const whatsappHref = waLink("junior", waMessages.default);
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
-// py-1 aumenta a area de toque no celular sem mudar o visual.
-const linkClass = "inline-block py-1 transition-colors hover:text-gold";
+// py-1 aumenta a area de toque sem mudar o visual; no celular (max-lg:py-3)
+// cada link vira um alvo de toque de 44px+.
+const linkClass = "inline-block py-1 max-lg:py-3 transition-colors hover:text-gold";
 const titleClass = "font-heading text-lg font-semibold text-gold";
 
 // Ano gerado na build (site estatico): atualiza a cada novo deploy.
@@ -70,7 +71,7 @@ export default function Footer() {
 
         <div className="col-span-2 lg:col-span-3">
           <h2 className={titleClass}>Contato</h2>
-          <ul className="mt-4 flex flex-col gap-5 text-[15px] leading-relaxed">
+          <ul className="mt-4 flex flex-col gap-3 text-[15px] leading-[1.6] lg:gap-5">
             <li>
               <a href={whatsappHref} {...external} {...waContexto("footer")} className={`inline-flex items-start gap-2.5 ${linkClass}`}>
                 <FaWhatsapp className="mt-0.5 text-lg text-whatsapp" aria-hidden="true" />
