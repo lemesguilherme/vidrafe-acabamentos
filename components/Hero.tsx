@@ -82,7 +82,7 @@ export default function Hero() {
             style={ordem(0)}
             className="hero-revelar flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.12em] text-gold sm:text-sm lg:tracking-[0.2em]"
           >
-            <span className="hidden h-[2px] w-8 bg-accent-escuro lg:block" aria-hidden="true" />
+            <span className="hidden h-1.5 w-1.5 shrink-0 rounded-full bg-gold lg:block" aria-hidden="true" />
             Loja física e atendimento na obra
           </p>
 
