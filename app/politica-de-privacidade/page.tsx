@@ -103,7 +103,9 @@ export default function PoliticaDePrivacidade() {
             <Secao n={1} titulo="Quem é o responsável pelos dados">
               <p>
                 O controlador dos dados, ou seja, quem decide como eles são
-                usados, é a <strong className="font-semibold text-navy">{company.name}</strong>.
+                usados, é a <strong className="font-semibold text-navy">{company.name}</strong>,
+                nome fantasia de {company.legalName}, inscrita no CNPJ sob o nº{" "}
+                <span className="whitespace-nowrap">{company.cnpj}</span>.
               </p>
               <ul className="mt-3 space-y-1">
                 <li>Endereço: {enderecoCompleto}</li>

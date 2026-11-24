@@ -9,6 +9,10 @@ export const company = {
   // Dominio provisorio: atualizar pelo dominio final na hora do deploy.
   siteUrl: "https://vidrafe-acabamentos.vercel.app",
   name: "Vidrafe Acabamentos",
+  // Identificacao do controlador (politica de privacidade). `name` e o nome
+  // fantasia; `legalName` e a razao social que consta no CNPJ.
+  legalName: "Valquiria Geacaiaba de Azevedo Silva",
+  cnpj: "12.943.497/0001-60",
   shortName: "Vidrafe",
   city: "Santa Bárbara de Goiás",
   state: "GO",
