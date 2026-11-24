@@ -137,7 +137,9 @@ export default function About() {
           </dl>
         )}
 
-        <ul className="mt-16 flex flex-col gap-20 sm:mt-20 lg:gap-28">
+        {/* Container mais estreito que a secao: aproxima o texto do retrato e
+            a linha conectora nao fica comprida demais no widescreen. */}
+        <ul className="mx-auto mt-16 flex max-w-4xl flex-col gap-20 sm:mt-20 lg:gap-28">
           {equipe.map((pessoa, i) => (
             <PessoaBloco key={pessoa.slug} pessoa={pessoa} invertido={i % 2 === 1} />
           ))}
@@ -196,8 +198,8 @@ function PessoaBloco({ pessoa, invertido }: { pessoa: Pessoa; invertido: boolean
         </div>
       </div>
 
-      <div className={`equipe-texto lg:col-span-7 ${invertido ? "lg:order-1" : ""}`}>
-        <p className="font-body text-sm font-semibold text-brick">
+      <div className={`equipe-texto lg:col-span-7 ${invertido ? "lg:order-1 lg:pl-20" : ""}`}>
+        <p className="font-body text-sm font-semibold text-accent">
           {pessoa.papel}
           {temDesde && <span className="text-navy/60"> · desde {pessoa.desde}</span>}
         </p>
