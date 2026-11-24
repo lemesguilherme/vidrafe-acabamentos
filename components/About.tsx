@@ -97,14 +97,14 @@ export default function About() {
     <section id="sobre" ref={scope} className="overflow-x-clip bg-white py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="about-intro max-w-2xl">
-          <h2 className="font-heading text-3xl font-bold text-navy sm:text-4xl">
+          <h2 className="font-heading text-[2rem] font-extrabold leading-[1.1] text-navy sm:text-[2.75rem]">
             Quem faz a Vidrafe
           </h2>
           <span
             className="about-rule mt-4 block h-[3px] w-16 origin-left bg-accent"
             aria-hidden="true"
           />
-          <p className="mt-6 font-body text-base leading-relaxed text-navy/80 sm:text-lg">
+          <p className="mt-6 font-body text-base leading-[1.6] text-navy/80 sm:text-lg">
             A Vidrafe é uma vidraçaria e loja de acabamentos de {company.city}.
             A gente mede, corta e instala box, espelho, porta de vidro,
             esquadria, forro e drywall em casa e comércio da cidade e da região.
@@ -218,7 +218,7 @@ function PessoaBloco({ pessoa, invertido }: { pessoa: Pessoa; invertido: boolean
         </div>
 
         {temBio && (
-          <p className="mt-5 max-w-xl font-body text-base leading-relaxed text-navy/80 sm:text-lg">
+          <p className="mt-5 max-w-xl font-body text-base leading-[1.6] text-navy/80 sm:text-lg">
             {pessoa.bio}
           </p>
         )}

@@ -35,7 +35,7 @@ export default function Footer() {
               {company.name}
             </span>
           </a>
-          <p className="mt-5 max-w-xs text-[15px] leading-relaxed">
+          <p className="mt-5 max-w-xs text-[15px] leading-[1.6]">
             Vidraçaria, forro PVC e drywall em {company.city} e região. Feito com
             capricho por quem atende o seu WhatsApp.
           </p>
@@ -94,11 +94,11 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <address className="not-italic leading-relaxed">
+              <address className="not-italic leading-[1.6]">
                 {company.address}, {company.city} - {company.state}, {company.cep}
               </address>
             </li>
-            <li className="leading-relaxed">
+            <li className="leading-[1.6]">
               {company.hours.weekdays}, {company.hours.weekdayHours}
               <br />
               {company.hours.weekend}

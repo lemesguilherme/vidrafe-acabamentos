@@ -59,12 +59,12 @@ export default function Faq() {
         <div className="faq-head lg:col-span-4">
           <h2
             id="faq-titulo"
-            className="font-heading text-3xl font-bold text-navy sm:text-4xl"
+            className="font-heading text-[2rem] font-extrabold leading-[1.1] text-navy sm:text-[2.75rem]"
           >
             Perguntas frequentes
           </h2>
-          <span className="faq-rule mt-4 block h-[3px] w-16 origin-left bg-brick" aria-hidden="true" />
-          <p className="mt-6 max-w-sm font-body text-base leading-relaxed text-navy/80">
+          <span className="faq-rule mt-4 block h-[3px] w-16 origin-left bg-accent" aria-hidden="true" />
+          <p className="mt-6 max-w-sm font-body text-base leading-[1.6] text-navy/80">
             O que o pessoal mais pergunta antes de chamar a gente para medir
             um box, um espelho ou um forro.
           </p>
@@ -126,7 +126,7 @@ export default function Faq() {
                   >
                     <div className="overflow-hidden">
                       {/* Recuo igual ao do numero: a resposta alinha com a pergunta. */}
-                      <p className="max-w-2xl pb-6 pl-[3.25rem] pr-9 font-body text-base leading-relaxed text-navy/80 sm:pl-[4.5rem] sm:pr-11">
+                      <p className="max-w-2xl pb-6 pl-[3.25rem] pr-9 font-body text-base leading-[1.6] text-navy/80 sm:pl-[4.5rem] sm:pr-11">
                         {item.resposta}
                       </p>
                     </div>

@@ -82,14 +82,14 @@ export default function Services() {
     <section id="servicos" ref={scope} className="bg-offwhite py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="services-head max-w-2xl">
-          <h2 className="font-heading text-3xl font-bold text-navy sm:text-4xl">
+          <h2 className="font-heading text-[2rem] font-extrabold leading-[1.1] text-navy sm:text-[2.75rem]">
             Tudo que a gente mede e instala
           </h2>
           <span
             className="services-rule mt-4 block h-[3px] w-16 origin-left bg-accent"
             aria-hidden="true"
           />
-          <p className="mt-6 font-body text-base leading-relaxed text-navy/80 sm:text-lg">
+          <p className="mt-6 font-body text-base leading-[1.6] text-navy/80 sm:text-lg">
             São duas frentes de trabalho, cada uma com o seu responsável. O
             orçamento é pelo mesmo WhatsApp, seja vidro ou forro.
           </p>
@@ -158,7 +158,7 @@ function Frente({
               <h4 className="mt-4 font-heading text-lg font-semibold leading-snug text-navy">
                 {servico.titulo}
               </h4>
-              <p className="mt-1.5 font-body text-sm leading-relaxed text-navy/75">
+              <p className="mt-1.5 font-body text-sm leading-[1.6] text-navy/75">
                 {servico.resumo}
               </p>
               {servico.tags.length > 0 && (

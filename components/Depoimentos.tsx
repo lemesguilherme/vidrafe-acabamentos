@@ -32,11 +32,11 @@ export default function Depoimentos() {
     <section id="depoimentos" ref={scope} className="bg-offwhite py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="depoimentos-head max-w-2xl">
-          <h2 className="font-heading text-3xl font-bold text-navy sm:text-4xl">
+          <h2 className="font-heading text-[2rem] font-extrabold leading-[1.1] text-navy sm:text-[2.75rem]">
             O que os clientes contam
           </h2>
           {depoimentosIlustrativos && (
-            <p className="mt-4 font-body text-base leading-relaxed text-navy/80">
+            <p className="mt-4 font-body text-base leading-[1.6] text-navy/80">
               Os textos abaixo são exemplos ilustrativos e serão trocados por
               depoimentos reais de clientes da Vidrafe.
             </p>

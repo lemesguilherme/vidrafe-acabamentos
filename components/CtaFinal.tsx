@@ -63,7 +63,7 @@ export default function CtaFinal() {
           >
             Manda a medida no WhatsApp que a gente passa o orçamento
           </h2>
-          <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-navy/85 sm:text-lg">
+          <p className="mt-6 max-w-xl font-body text-base leading-[1.6] text-navy/85 sm:text-lg">
             Box, espelho, porta de vidro, forro ou drywall em {company.city} e
             região. Você fala direto com quem vai na sua obra.
           </p>

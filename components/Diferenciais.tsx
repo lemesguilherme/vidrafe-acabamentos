@@ -52,7 +52,7 @@ export default function Diferenciais() {
     <section id="diferenciais" ref={scope} className="bg-navy py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="diferenciais-head max-w-2xl">
-          <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="font-heading text-[2rem] font-extrabold leading-[1.1] text-white sm:text-[2.75rem]">
             Por que chamar a Vidrafe
           </h2>
           <span className="diferenciais-rule mt-4 block h-[3px] w-16 origin-left bg-accent-escuro" aria-hidden="true" />
@@ -78,7 +78,7 @@ export default function Diferenciais() {
                   <h3 className="mt-5 font-heading text-xl font-semibold text-white">
                     {item.title}
                   </h3>
-                  <p className="mt-3 font-body text-[15px] leading-relaxed text-white/80">
+                  <p className="mt-3 font-body text-[15px] leading-[1.6] text-white/80">
                     {item.text}
                   </p>
                 </SpotlightCard>

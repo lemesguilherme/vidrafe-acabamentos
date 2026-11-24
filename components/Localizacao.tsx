@@ -54,14 +54,14 @@ export default function Localizacao() {
     <section id="localizacao" ref={scope} className="bg-navy py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="local-head max-w-2xl">
-          <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="font-heading text-[2rem] font-extrabold leading-[1.1] text-white sm:text-[2.75rem]">
             Onde a gente fica
           </h2>
           <span
             className="local-rule mt-4 block h-[3px] w-16 origin-left bg-accent-escuro"
             aria-hidden="true"
           />
-          <p className="mt-6 font-body text-base leading-relaxed text-white/80 sm:text-lg">
+          <p className="mt-6 font-body text-base leading-[1.6] text-white/80 sm:text-lg">
             A loja fica em {company.city}. Pra orçamento, o caminho mais rápido é
             o WhatsApp; se preferir ver pessoalmente, é só passar lá no horário
             de atendimento.
@@ -89,7 +89,7 @@ export default function Localizacao() {
 
           <li className="local-card">
             <Cartao rotulo="Endereço" titulo="A loja" icone={<Store className="h-5 w-5" />}>
-              <address className="font-body text-base not-italic leading-relaxed text-white/85">
+              <address className="font-body text-base not-italic leading-[1.6] text-white/85">
                 {company.address}
                 <br />
                 {company.city} - {company.state},{" "}
@@ -110,7 +110,7 @@ export default function Localizacao() {
 
           <li className="local-card">
             <Cartao rotulo="Horário" titulo="Atendimento" icone={<CalendarDays className="h-5 w-5" />}>
-              <p className="font-body text-base leading-relaxed text-white/85">
+              <p className="font-body text-base leading-[1.6] text-white/85">
                 <span className="font-semibold text-white">{company.hours.weekdays}</span>
                 <br />
                 {company.hours.weekdayHours}

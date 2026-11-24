@@ -156,10 +156,10 @@ export default function Gallery() {
     <section id="galeria" ref={scope} className="overflow-x-clip bg-white py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="gallery-head max-w-2xl">
-          <h2 className="font-heading text-3xl font-bold text-navy sm:text-4xl">
+          <h2 className="font-heading text-[2rem] font-extrabold leading-[1.1] text-navy sm:text-[2.75rem]">
             Trabalhos que a gente entregou
           </h2>
-          <p className="mt-4 font-body text-base leading-relaxed text-navy/80 sm:text-lg">
+          <p className="mt-4 font-body text-base leading-[1.6] text-navy/80 sm:text-lg">
             Box, espelhos, portas, forro e drywall instalados em casas e
             comércios de {company.city} e região. Escolha o serviço e veja como
             fica pronto.
