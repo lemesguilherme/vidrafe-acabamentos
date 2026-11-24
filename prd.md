@@ -19,10 +19,10 @@ A empresa está em crescimento real (15k+ no Instagram, 100k+ no TikTok), então
 | Campo | Valor |
 |---|---|
 | Nome | Vidrafe Acabamentos |
-| Endereço | Av. Castelo Branco, Qd. 01 - Lt. 8, Residencial Tempo Novo, Santa Bárbara de Goiás - GO, 75398-000 |
+| Endereço | Rua Sebastiana Rosa da Rocha, Quadra 03 Lote 06, Setor Ana Alves, Santa Bárbara de Goiás - GO, 75398-000 |
 | Instagram | @vidrafe |
 | E-mail | vidrafe@hotmail.com |
-| Horário | Seg a Sex 08:00–18:00 · Sáb 08:00–12:00 |
+| Horário | Seg a Sex 08:00–12:00 e 13:00–18:00 · Sáb e Dom fechado |
 
 ### Profissionais
 

@@ -13,17 +13,33 @@ export const company = {
   city: "Santa Bárbara de Goiás",
   state: "GO",
   cep: "75398-000",
-  address: "Av. Castelo Branco, Qd. 01 - Lt. 8, Residencial Tempo Novo",
+  // Endereco e horario conferidos com a ficha VIDRAFE ACABAMENTOS no Google Maps
+  // (a mesma do mapsEmbed e do mapsDirections). Mudou la, muda aqui.
+  address: "Rua Sebastiana Rosa da Rocha, Quadra 03 Lote 06, Setor Ana Alves",
   email: "vidrafe@hotmail.com",
   instagram: "@vidrafe",
   instagramUrl: "https://www.instagram.com/vidrafe",
   mapsEmbed:
     "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2273.779682617698!2d-49.696796233557144!3d-16.575188325180473!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935e12ce174b21ab%3A0xdbb3a1d0319c1a19!2sVIDRAFE%20ACABAMENTOS!5e0!3m2!1spt-BR!2sus!4v1787018669826!5m2!1spt-BR!2sus",
   mapsDirections: "https://maps.app.goo.gl/RLknMNTMubvvJFM79",
-  geo: { latitude: -16.575188, longitude: -49.696796 },
+  // Coordenadas do pin da ficha no Maps (nao do centro do mapa).
+  geo: { latitude: -16.575, longitude: -49.6972045 },
+  /*
+    Horario: `weekdays` + `weekdayHours` e `weekend` sao o texto exibido (hero,
+    Localizacao, rodape); dias e turnos separados pra cada tela quebrar a linha
+    no lugar certo. `schema` alimenta o openingHoursSpecification do JSON-LD
+    (app/layout.tsx): dois turnos de seg a sex, com o almoco entre eles, e
+    sab/dom fechados (00:00-00:00 e como o schema.org marca dia fechado).
+  */
   hours: {
-    weekdays: "Seg a Sex, 08:00 às 18:00",
-    saturday: "Sáb, 08:00 às 12:00",
+    weekdays: "Seg a Sex",
+    weekdayHours: "08:00 às 12:00 e 13:00 às 18:00",
+    weekend: "Sáb e Dom, fechado",
+    schema: [
+      { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "12:00" },
+      { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "13:00", closes: "18:00" },
+      { days: ["Saturday", "Sunday"], opens: "00:00", closes: "00:00" },
+    ],
   },
 } as const;
 
@@ -334,7 +350,7 @@ export const videosGaleria: Record<string, VideoGaleria[]> = {
 export const diferenciais = [
   {
     title: "Daqui de Santa Bárbara",
-    text: "A loja fica na Av. Castelo Branco e a gente atende a cidade e a região. Precisou de um ajuste depois, é só chamar.",
+    text: "A loja fica no Setor Ana Alves e a gente atende a cidade e a região. Precisou de um ajuste depois, é só chamar.",
     icon: "MapPin",
   },
   {

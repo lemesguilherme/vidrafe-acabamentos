@@ -167,9 +167,11 @@ export default function Hero() {
           </div>
 
           <p className="hero-meta mt-8 font-body text-sm text-white/65">
-            <span className="block sm:inline">{company.hours.weekdays}</span>
+            <span className="block sm:inline">
+              {company.hours.weekdays}, {company.hours.weekdayHours}
+            </span>
             <span className="hidden sm:inline"> · </span>
-            <span className="block sm:inline">{company.hours.saturday}</span>
+            <span className="block sm:inline">{company.hours.weekend}</span>
           </p>
         </div>
       </div>

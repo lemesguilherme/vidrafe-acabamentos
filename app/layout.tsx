@@ -90,20 +90,13 @@ const localBusinessJsonLd = {
     latitude: company.geo.latitude,
     longitude: company.geo.longitude,
   },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "08:00",
-      closes: "18:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: "Saturday",
-      opens: "08:00",
-      closes: "12:00",
-    },
-  ],
+  // Vem de company.hours.schema: seg a sex em dois turnos, sab e dom fechados.
+  openingHoursSpecification: company.hours.schema.map((h) => ({
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: h.days,
+    opens: h.opens,
+    closes: h.closes,
+  })),
   sameAs: [company.instagramUrl],
 };
 

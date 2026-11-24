@@ -99,9 +99,9 @@ export default function Footer() {
               </address>
             </li>
             <li className="leading-relaxed">
-              {company.hours.weekdays}
+              {company.hours.weekdays}, {company.hours.weekdayHours}
               <br />
-              {company.hours.saturday}
+              {company.hours.weekend}
             </li>
           </ul>
         </div>

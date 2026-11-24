@@ -117,9 +117,11 @@ export default function Localizacao() {
           <li className="local-card">
             <Cartao rotulo="Horário" titulo="Atendimento" icone={<CalendarDays className="h-5 w-5" />}>
               <p className="font-body text-base leading-relaxed text-white/85">
-                {company.hours.weekdays}
+                <span className="font-semibold text-white">{company.hours.weekdays}</span>
                 <br />
-                {company.hours.saturday}
+                {company.hours.weekdayHours}
+                <br />
+                <span className="mt-2 inline-block">{company.hours.weekend}</span>
               </p>
               <a
                 href={company.instagramUrl}
