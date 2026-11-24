@@ -70,20 +70,22 @@ export default function Hero() {
       ref={scope}
       className="relative isolate flex min-h-screen items-end overflow-hidden bg-navy lg:items-center"
     >
-      {/* Foto da fachada (public/hero-fachada.webp, 1013x1800, gerada por npm run midia
-          a partir de midia/originais/hero-fachada.jpeg), que e vertical.
+      {/* Foto da fachada (public/fachada-vidrafe.webp, 1280x1707, gerada por npm run midia
+          a partir de midia/originais/fachada-vidrafe.jpeg), que e vertical 3:4.
+          Desktop e mobile usam a mesma foto; o object-position puxa pra fachada
+          (metade de baixo) e, no celular, pro lado da placa.
           Ate lg: fundo cheio atras do texto. A partir de lg: lado direito, onde a
           proporcao vertical encaixa sem cortar so o meio da fachada. A foto comeca
           um pouco sob o fim da coluna de texto e a mascara faz ela surgir do navy
           do section aos poucos, sem emenda seca entre os dois lados. */}
       <div className="absolute inset-0 -z-20 lg:left-auto lg:w-[55%] lg:[mask-image:linear-gradient(to_right,transparent,rgba(0,0,0,0.2)_15%,rgba(0,0,0,0.65)_30%,rgba(0,0,0,0.92)_42%,#000_52%)]">
         <img
-          src="/hero-fachada.webp"
+          src="/fachada-vidrafe.webp"
           alt="Fachada da Vidrafe Acabamentos em Santa Bárbara de Goiás"
-          width={1013}
-          height={1800}
+          width={1280}
+          height={1707}
           fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover object-[68%_60%] lg:object-[50%_70%]"
         />
 
         {/* Desktop: veu navy no topo, pra navbar ficar legivel sobre o ceu. */}

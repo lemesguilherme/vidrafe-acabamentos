@@ -39,11 +39,14 @@ export const LIMITE_BYTES = 300 * 1024;
 export async function converterParaWebp(
   entrada,
   saida = entrada.replace(/\.(jpe?g|png)$/i, ".webp"),
-  { largura = LARGURAS.galeria, qualidade = QUALIDADE } = {},
+  { largura = LARGURAS.galeria, qualidade = QUALIDADE, contraste = 1 } = {},
 ) {
-  const info = await sharp(entrada)
+  let img = sharp(entrada)
     .rotate()
-    .resize({ width: largura, height: largura, fit: "inside", withoutEnlargement: true })
+    .resize({ width: largura, height: largura, fit: "inside", withoutEnlargement: true });
+  // Contraste leve opcional, centrado no cinza medio (1 = sem ajuste).
+  if (contraste !== 1) img = img.linear(contraste, 128 * (1 - contraste));
+  const info = await img
     .webp({ quality: qualidade, effort: 6 })
     .toFile(saida);
 
@@ -58,7 +61,9 @@ const kb = (bytes) => `${Math.round(bytes / 1024)} KB`;
 
 // Assets ja usados no site. A galeria tem fluxo proprio e nao entra aqui.
 const ASSETS = [
-  { entrada: "midia/originais/hero-fachada.jpeg", saida: "public/hero-fachada.webp", largura: LARGURAS.hero },
+  // Hero (desktop e mobile usam a mesma). Foto vertical 3:4: o lado maior fica
+  // em ~1700px, e o contraste leve segura a fachada sob o overlay navy.
+  { entrada: "midia/originais/fachada-vidrafe.jpeg", saida: "public/fachada-vidrafe.webp", largura: 1707, contraste: 1.04 },
 ];
 
 function lerArgs(argv) {
