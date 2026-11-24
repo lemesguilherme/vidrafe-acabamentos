@@ -222,7 +222,7 @@ export const servicos = [
     titulo: "Forro PVC",
     area: "Forros & Drywall",
     resumo: "Forro PVC branco, amadeirado ou cerejeira, com o acabamento conferido antes da gente ir embora.",
-    tags: ["Branco", "Amadeirado", "Cerejeira"],
+    tags: ["Branco", "Amadeirado", "Cerejeira", "Ripado"],
     icon: "PanelTop",
   },
   {
@@ -301,6 +301,7 @@ export const gallery: Record<"vidracaria" | "forros", GalleryTab> = {
       { label: "Forro PVC Branco", slug: "forro-pvc-branco", alt: "Forro PVC branco instalado pela Vidrafe", color: "#6B6A63" },
       { label: "Forro Amadeirado", slug: "forro-pvc-amadeirado", alt: "Forro PVC amadeirado instalado pela Vidrafe", color: "#6A4630" },
       { label: "Forro Cerejeira", slug: "forro-pvc-cerejeira", alt: "Forro PVC cerejeira instalado pela Vidrafe", color: "#5E2F2A" },
+      { label: "Forro Ripado", slug: "forro-ripado", alt: "Forro ripado instalado pela Vidrafe", color: "#7A5A36" },
       { label: "Divisórias em Drywall", slug: "drywall-divisorias", alt: "Divisória de drywall feita pela Vidrafe", color: "#46423F" },
       { label: "Forro de Drywall", slug: "drywall-forro", alt: "Forro e sanca de drywall feitos pela Vidrafe", color: "#3F4650" },
       { label: "Luminárias LED", slug: "luminarias-led", alt: "Iluminação em LED instalada pela Vidrafe", color: "#6E5F26" },

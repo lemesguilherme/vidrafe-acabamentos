@@ -155,241 +155,243 @@ export const fotosGaleria: Record<string, FotoGaleria[]> = {
   "esquadrias": [],
   "forro-pvc-amadeirado": [
     {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-01.webp",
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra1-01.webp",
       "width": 1200,
       "height": 1600
     },
     {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-02.webp",
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra1-02.webp",
       "width": 1200,
       "height": 1600
     },
     {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-03.webp",
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra1-03.webp",
       "width": 1200,
       "height": 1600
     },
     {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-04.webp",
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra1-04.webp",
       "width": 1200,
       "height": 1600
     },
     {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-05.webp",
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra1-05.webp",
       "width": 1200,
       "height": 1600
     },
     {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-06.webp",
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra1-06.webp",
       "width": 1200,
       "height": 1600
     },
     {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-07.webp",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-08.webp",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-09.webp",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-10.webp",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-11.webp",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-12.webp",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-antes.webp",
-      "width": 1200,
-      "height": 1600,
-      "etapa": "Antes"
-    },
-    {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-banheiro-01.webp",
-      "width": 900,
-      "height": 1600
-    },
-    {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-banheiro-02.webp",
-      "width": 900,
-      "height": 1600
-    },
-    {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-banheiro-03.webp",
-      "width": 900,
-      "height": 1600
-    },
-    {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-banheiro-04.webp",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-beiral-01.webp",
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra1-07-beiral.webp",
       "width": 1280,
       "height": 1600
     },
     {
-      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-beiral-02.webp",
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra1-08-beiral.webp",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra2-01.webp",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra2-02.webp",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra2-03.webp",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra2-04.webp",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra2-05.webp",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra3-01-banheiro.webp",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra3-02-banheiro.webp",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra3-03-banheiro.webp",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "src": "/galeria/forro-pvc-amadeirado/forro-amadeirado-obra3-04-banheiro.webp",
       "width": 1200,
       "height": 1600
     }
   ],
   "forro-pvc-branco": [
     {
-      "src": "/galeria/forro-pvc-branco/forro-branco-01-antes.webp",
+      "src": "/galeria/forro-pvc-branco/forro-branco-obra1-01-antes.webp",
       "width": 1200,
       "height": 1600,
       "etapa": "Antes"
     },
     {
-      "src": "/galeria/forro-pvc-branco/forro-branco-02-antes.webp",
+      "src": "/galeria/forro-pvc-branco/forro-branco-obra1-02-antes.webp",
       "width": 1200,
       "height": 1600,
       "etapa": "Antes"
     },
     {
-      "src": "/galeria/forro-pvc-branco/forro-branco-03-andamento.webp",
+      "src": "/galeria/forro-pvc-branco/forro-branco-obra1-03-andamento.webp",
       "width": 1200,
       "height": 1600,
       "etapa": "Durante"
     },
     {
-      "src": "/galeria/forro-pvc-branco/forro-branco-03-antes.webp",
+      "src": "/galeria/forro-pvc-branco/forro-branco-obra1-04-andamento.webp",
+      "width": 1200,
+      "height": 1600,
+      "etapa": "Durante"
+    },
+    {
+      "src": "/galeria/forro-pvc-branco/forro-branco-obra1-05-depois.webp",
+      "width": 1200,
+      "height": 1600,
+      "etapa": "Depois"
+    },
+    {
+      "src": "/galeria/forro-pvc-branco/forro-branco-obra1-06-depois.webp",
+      "width": 1200,
+      "height": 1600,
+      "etapa": "Depois"
+    },
+    {
+      "src": "/galeria/forro-pvc-branco/forro-branco-obra1-07-depois.webp",
+      "width": 1200,
+      "height": 1600,
+      "etapa": "Depois"
+    },
+    {
+      "src": "/galeria/forro-pvc-branco/forro-branco-obra1-08-depois.webp",
+      "width": 1200,
+      "height": 1600,
+      "etapa": "Depois"
+    },
+    {
+      "src": "/galeria/forro-pvc-branco/forro-branco-obra2-01-antes.webp",
       "width": 1200,
       "height": 1600,
       "etapa": "Antes"
     },
     {
-      "src": "/galeria/forro-pvc-branco/forro-branco-03-depois.webp",
+      "src": "/galeria/forro-pvc-branco/forro-branco-obra2-02-depois.webp",
       "width": 1086,
       "height": 1448,
-      "etapa": "Depois"
-    },
-    {
-      "src": "/galeria/forro-pvc-branco/forro-branco-04-andamento.webp",
-      "width": 1200,
-      "height": 1600,
-      "etapa": "Durante"
-    },
-    {
-      "src": "/galeria/forro-pvc-branco/forro-branco-04-depois.webp",
-      "width": 1200,
-      "height": 1600,
-      "etapa": "Depois"
-    },
-    {
-      "src": "/galeria/forro-pvc-branco/forro-branco-05-depois.webp",
-      "width": 1200,
-      "height": 1600,
-      "etapa": "Depois"
-    },
-    {
-      "src": "/galeria/forro-pvc-branco/forro-branco-06-depois.webp",
-      "width": 1200,
-      "height": 1600,
-      "etapa": "Depois"
-    },
-    {
-      "src": "/galeria/forro-pvc-branco/forro-branco-07-depois.webp",
-      "width": 1200,
-      "height": 1600,
       "etapa": "Depois"
     }
   ],
   "forro-pvc-cerejeira": [
     {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-01.webp",
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-01-antes.webp",
       "width": 1200,
-      "height": 1600
+      "height": 1600,
+      "etapa": "Antes"
     },
     {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-02.webp",
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-02-antes.webp",
+      "width": 1200,
+      "height": 1600,
+      "etapa": "Antes"
+    },
+    {
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-03-antes.webp",
+      "width": 1200,
+      "height": 1600,
+      "etapa": "Antes"
+    },
+    {
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-04-antes.webp",
+      "width": 1200,
+      "height": 1600,
+      "etapa": "Antes"
+    },
+    {
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-05-antes.webp",
+      "width": 1200,
+      "height": 1600,
+      "etapa": "Antes"
+    },
+    {
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-06-depois.webp",
       "width": 1600,
-      "height": 1200
+      "height": 1200,
+      "etapa": "Depois"
     },
     {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-03.webp",
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-07-depois.webp",
       "width": 1200,
-      "height": 1600
+      "height": 1600,
+      "etapa": "Depois"
     },
     {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-04.webp",
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-08-depois.webp",
+      "width": 1200,
+      "height": 1600,
+      "etapa": "Depois"
+    },
+    {
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-09-depois.webp",
+      "width": 1200,
+      "height": 1600,
+      "etapa": "Depois"
+    },
+    {
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-10-depois.webp",
       "width": 1600,
-      "height": 1200
+      "height": 1200,
+      "etapa": "Depois"
     },
     {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-05.webp",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-06.webp",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-07.webp",
-      "width": 1200,
-      "height": 1600
-    },
-    {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-antes-01.webp",
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-11-depois.webp",
       "width": 1200,
       "height": 1600,
-      "etapa": "Antes"
+      "etapa": "Depois"
     },
     {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-antes-02.webp",
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-12-depois.webp",
       "width": 1200,
       "height": 1600,
-      "etapa": "Antes"
+      "etapa": "Depois"
     },
     {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-antes-03.webp",
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-13-depois.webp",
       "width": 1200,
       "height": 1600,
-      "etapa": "Antes"
+      "etapa": "Depois"
     },
     {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-antes-04.webp",
-      "width": 1200,
-      "height": 1600,
-      "etapa": "Antes"
-    },
-    {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-antes-05.webp",
-      "width": 1200,
-      "height": 1600,
-      "etapa": "Antes"
-    },
-    {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-antes-depois-01.webp",
-      "width": 1200,
-      "height": 1600,
-      "etapa": "Antes"
-    },
-    {
-      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-antes-depois.webp",
+      "src": "/galeria/forro-pvc-cerejeira/forro-cerejeira-obra1-14-comparativo.webp",
       "width": 828,
-      "height": 1472,
-      "etapa": "Antes"
+      "height": 1472
+    }
+  ],
+  "forro-ripado": [
+    {
+      "src": "/galeria/forro-ripado/forro-ripado.webp",
+      "width": 1200,
+      "height": 1600
     }
   ],
   "luminarias-led": [],

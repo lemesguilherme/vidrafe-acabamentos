@@ -32,6 +32,8 @@ next-env.d.ts
 /public/galeria/**/*.[jJ][pP][gG]
 /public/galeria/**/*.[jJ][pP][eE][gG]
 /public/galeria/**/*.[pP][nN][gG]
+# galeria: fotos tiradas da galeria ficam guardadas aqui, so na maquina
+/public/galeria/_removidas/
 
 # equipe: originais dos retratos ficam so na maquina; versiona o .webp (npm run equipe)
 /public/equipe/originais/

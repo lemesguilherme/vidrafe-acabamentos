@@ -31,16 +31,6 @@ const fotosDe = (cat: GalleryCategory): ItemGaleria[] => [
   ...(fotosGaleria[cat.slug] ?? []),
 ];
 
-// Texto do leitor de tela no chip: "19 fotos e 1 vídeo".
-const descreverQtd = (itens: ItemGaleria[]) => {
-  const videos = itens.filter((i) => i.tipo === "video").length;
-  const fotos = itens.length - videos;
-  const partes = [];
-  if (fotos) partes.push(`${fotos} ${fotos === 1 ? "foto" : "fotos"}`);
-  if (videos) partes.push(`${videos} ${videos === 1 ? "vídeo" : "vídeos"}`);
-  return partes.join(" e ");
-};
-
 // Abre na primeira aba/categoria que tem foto. Quando chegarem as fotos de
 // vidracaria, a primeira aba volta a ser a padrao sozinha.
 const abaInicial = tabKeys.find((k) => gallery[k].categories.some((c) => fotosDe(c).length)) ?? tabKeys[0];
@@ -211,12 +201,10 @@ export default function Gallery() {
             })}
           </div>
 
-          {/* Filtros de categoria, sem "Todos". O numero diz quantas fotos ha. */}
+          {/* Filtros de categoria, sem "Todos". So o nome, sem contagem de fotos. */}
           <div role="group" aria-label="Categorias" className="mt-6 flex flex-wrap gap-2">
             {activeTab.categories.map((cat, i) => {
               const active = i === catIndex;
-              const itens = fotosDe(cat);
-              const qtd = itens.length;
               return (
                 <button
                   key={cat.slug}
@@ -230,14 +218,6 @@ export default function Gallery() {
                   }`}
                 >
                   {cat.label}
-                  {qtd > 0 && (
-                    <span
-                      className={`text-xs tabular-nums ${active ? "text-gold" : "text-navy/55"}`}
-                    >
-                      <span className="sr-only">, {descreverQtd(itens)}</span>
-                      <span aria-hidden="true">{qtd}</span>
-                    </span>
-                  )}
                 </button>
               );
             })}

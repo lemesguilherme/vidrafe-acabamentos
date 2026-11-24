@@ -12,6 +12,10 @@
 
   Ordem das fotos: nome do arquivo em ordem natural (foto-2 antes de foto-10).
   Se o nome tiver "antes", "andamento" ou "depois", a legenda mostra a etapa.
+  Convencao pra agrupar por obra: <prefixo>-obra<N>-<SS>[-etapa].ext, ex.
+  forro-branco-obra1-03-andamento.jpeg. A obra vem primeiro e o SS ordena
+  antes -> durante -> depois dentro dela (o nome da etapa sozinho nao ordena:
+  "andamento" viria antes de "antes").
 
   Idempotente: se o .webp existe e e mais novo que o original, pula. WebP sem
   original (foto apagada) e removido, pra galeria nao mostrar o que saiu.
@@ -50,8 +54,10 @@ let convertidas = 0;
 let puladas = 0;
 let removidas = 0;
 
+// Pasta com "_" na frente nao e categoria: public/galeria/_removidas/ guarda as
+// fotos tiradas da galeria (fora do git), pra nada se perder.
 const categorias = (await readdir(PASTA, { withFileTypes: true }))
-  .filter((d) => d.isDirectory())
+  .filter((d) => d.isDirectory() && !d.name.startsWith("_"))
   .map((d) => d.name)
   .sort(ordemNatural);
 
