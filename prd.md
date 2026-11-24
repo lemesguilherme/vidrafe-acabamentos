@@ -21,7 +21,7 @@ A empresa está em crescimento real (15k+ no Instagram, 100k+ no TikTok), então
 | Nome | Vidrafe Acabamentos |
 | Endereço | Rua Sebastiana Rosa da Rocha, Quadra 03 Lote 06, Setor Ana Alves, Santa Bárbara de Goiás - GO, 75398-000 |
 | Instagram | @vidrafe |
-| E-mail | vidrafe@hotmail.com |
+| E-mail | contato.vidrafe@gmail.com |
 | Horário | Seg a Sex 08:00–12:00 e 13:00–18:00 · Sáb e Dom fechado |
 
 ### Profissionais

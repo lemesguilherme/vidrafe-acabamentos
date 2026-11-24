@@ -16,7 +16,7 @@ export const company = {
   // Endereco e horario conferidos com a ficha VIDRAFE ACABAMENTOS no Google Maps
   // (a mesma do mapsEmbed e do mapsDirections). Mudou la, muda aqui.
   address: "Rua Sebastiana Rosa da Rocha, Quadra 03 Lote 06, Setor Ana Alves",
-  email: "vidrafe@hotmail.com",
+  email: "contato.vidrafe@gmail.com",
   instagram: "@vidrafe",
   instagramUrl: "https://www.instagram.com/vidrafe",
   mapsEmbed:

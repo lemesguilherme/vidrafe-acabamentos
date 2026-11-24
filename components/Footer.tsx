@@ -1,6 +1,7 @@
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { company, contacts, navLinks, servicos, waMessages } from "@/data/site";
 import { waContexto, waLink } from "@/lib/whatsapp";
+import AnoAtual from "@/components/AnoAtual";
 
 // Servicos de destaque no rodape (nao precisa listar todos), pelo slug.
 const destaques = ["vidros", "box", "espelhos", "esquadrias", "forro-pvc", "drywall"];
@@ -15,7 +16,7 @@ const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 const linkClass = "inline-block py-1 max-lg:py-3 transition-colors hover:text-gold";
 const titleClass = "font-heading text-lg font-semibold text-gold";
 
-// Ano gerado na build (site estatico): atualiza a cada novo deploy.
+// Ano da build (vai no HTML estatico); o AnoAtual troca pelo ano do navegador.
 const year = new Date().getFullYear();
 
 export default function Footer() {
@@ -111,8 +112,12 @@ export default function Footer() {
       {/* pb maior no mobile para o botao flutuante nao cobrir a ultima linha. */}
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 pb-24 pt-6 text-sm text-white/70 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:pb-6">
+          {/* No celular empilha: "Todos os direitos reservados" desce pra linha
+              de baixo inteira em vez de quebrar no meio. */}
           <p>
-            © {year} {company.name}
+            © <AnoAtual anoDaBuild={year} /> {company.name}
+            <span className="max-sm:hidden" aria-hidden="true"> · </span>
+            <span className="max-sm:block"> Todos os direitos reservados</span>
           </p>
           <a href="/politica-de-privacidade" className={linkClass}>
             Política de Privacidade
