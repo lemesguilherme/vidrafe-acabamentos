@@ -10,7 +10,7 @@ import Faq from "@/components/Faq";
 import CtaFinal from "@/components/CtaFinal";
 import Footer from "@/components/Footer";
 import BotaoFlutuante from "@/components/BotaoFlutuante";
-import { faq } from "@/data/site";
+import { depoimentosIlustrativos, faq } from "@/data/site";
 
 // JSON-LD FAQPage gerado do mesmo array da secao Faq (texto nao duplicado).
 // Fica so na home: a pagina de privacidade nao tem as perguntas.
@@ -23,6 +23,8 @@ const faqJsonLd = {
     acceptedAnswer: { "@type": "Answer", text: item.resposta },
   })),
 };
+
+const mostrarDepoimentos = !depoimentosIlustrativos;
 
 export default function Home() {
   return (
@@ -38,9 +40,21 @@ export default function Home() {
         <Services />
         <Gallery />
         <Diferenciais />
-        <Depoimentos />
-        <Localizacao />
-        <Faq />
+        {/* Depoimentos so vao ao ar quando forem reais (flag em data/site.ts).
+            Sem eles, o FAQ (off-white) sobe pra ficar entre Diferenciais e
+            Localizacao, que sao as duas navy, e o ritmo claro/escuro se mantem. */}
+        {mostrarDepoimentos ? (
+          <>
+            <Depoimentos />
+            <Localizacao />
+            <Faq />
+          </>
+        ) : (
+          <>
+            <Faq />
+            <Localizacao />
+          </>
+        )}
         <CtaFinal />
       </main>
       <Footer />

@@ -380,8 +380,10 @@ export const diferenciais = [
   3. Se a avaliacao veio do Google, preencher `source: "Google"`,
      `sourceUrl` com o link da avaliacao e `rating` (1 a 5). O card passa a
      mostrar as estrelas e o link sozinho; sem esses campos, nada aparece.
-  4. Quando todos forem reais, mudar `depoimentosIlustrativos` para false:
-     o selo "Depoimento ilustrativo" some da secao automaticamente.
+  4. Quando todos forem reais, mudar `depoimentosIlustrativos` para false.
+     Essa flag e o interruptor da secao: enquanto for true, Depoimentos NAO
+     aparece no site (nada de "ilustrativo" no ar) e o FAQ sobe pro lugar
+     dela (app/page.tsx). Com false, a secao volta sem o selo.
 */
 export const depoimentosIlustrativos = true;
 

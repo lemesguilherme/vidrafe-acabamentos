@@ -129,7 +129,7 @@ Moradores e comércios de Santa Bárbara de Goiás e região (Goiânia e cidades
 - 3 a 4 cards, ícones únicos que não repetem dos serviços
 
 ### 7. Depoimentos
-- Placeholder por enquanto, marcado claramente como ilustrativo
+- Oculta até existirem depoimentos reais (flag `depoimentosIlustrativos` em `data/site.ts`): nada de "ilustrativo" no ar. Enquanto oculta, o FAQ sobe pro lugar dela pra não encostar Diferenciais e Localização (as duas navy).
 
 ### 8. Localização
 - Google Maps embed (iframe fornecido no briefing)
