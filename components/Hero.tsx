@@ -4,13 +4,15 @@ import { FaWhatsapp } from "react-icons/fa";
 import { company, waMessages } from "@/data/site";
 import { waContexto, waLink } from "@/lib/whatsapp";
 import CtaBrilho from "@/components/CtaBrilho";
+import ParallaxFachada from "@/components/ParallaxFachada";
 
 /*
   Reveal escalonado: eyebrow -> titulo -> subtitulo -> botoes -> horario, cada
   bloco subindo 16px e acendendo, 90ms um depois do outro (classe .hero-revelar
   em app/globals.css, cubic-bezier(0.16,1,0.3,1)). E CSS puro: o texto ja vem no
   HTML estatico (LCP nao espera JS), anima desde o primeiro paint sem piscar e
-  com prefers-reduced-motion aparece direto. Sem parallax.
+  com prefers-reduced-motion aparece direto. O parallax e so da foto de fundo
+  (components/ParallaxFachada.tsx, desktop), nunca do texto.
 
   A animacao fica sempre num WRAPPER, nunca no link: os links tem transicao CSS
   (hover e active:scale) e animar o mesmo elemento ja deixou botao preso
@@ -37,14 +39,16 @@ export default function Hero() {
           um pouco sob o fim da coluna de texto e a mascara faz ela surgir do navy
           do section aos poucos, sem emenda seca entre os dois lados. */}
       <div className="absolute inset-0 -z-20 lg:left-auto lg:w-[55%] lg:[mask-image:linear-gradient(to_right,transparent,rgba(0,0,0,0.2)_15%,rgba(0,0,0,0.65)_30%,rgba(0,0,0,0.92)_42%,#000_52%)]">
-        <img
-          src="/fachada-vidrafe.webp"
-          alt="Fachada da Vidrafe Acabamentos em Santa Bárbara de Goiás"
-          width={1280}
-          height={1707}
-          fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover object-[78%_50%] lg:object-[50%_70%]"
-        />
+        <ParallaxFachada>
+          <img
+            src="/fachada-vidrafe.webp"
+            alt="Fachada da Vidrafe Acabamentos em Santa Bárbara de Goiás"
+            width={1280}
+            height={1707}
+            fetchPriority="high"
+            className="absolute inset-0 h-full w-full object-cover object-[78%_50%] lg:object-[50%_70%]"
+          />
+        </ParallaxFachada>
 
         {/* Desktop: veu navy no topo, pra navbar ficar legivel sobre o ceu. */}
         <div

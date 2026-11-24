@@ -90,6 +90,8 @@ O que faz um site **não** parecer IA:
 - Altura quase cheia, foto da fachada ao fundo com overlay navy/escuro (gradiente de legibilidade, não decorativo).
 - Headline Archivo grande, cidade em gold.
 - Dois CTAs: primário (gold, FaWhatsapp) e secundário (contorno, âncora na galeria).
+- Mobile/tablet (até `lg`) mais enxuto: título menor, eyebrow sem travessão, subtítulo curto, sem a linha de horário (fica na Localização) e véu escuro só atrás do bloco de texto, pra fachada aparecer. Do `lg` pra cima a composição não muda.
+- Parallax sutil só na foto de fundo, no desktop (12% do scroll, GSAP ScrollTrigger em `components/ParallaxFachada.tsx`, sem reduced-motion). Desligar = `PARALLAX_FACHADA = false`.
 
 ### Cards de serviço
 - Fundo branco sobre seção off-white, sombra leve, ícone Lucide no topo, título, lista de itens, CTA do responsável.
@@ -98,7 +100,7 @@ O que faz um site **não** parecer IA:
 ### Botões / CTA
 - Primário: pill, fundo gold, texto navy, ícone FaWhatsapp, hover escurece levemente o gold.
 - Secundário: contorno navy, texto navy, hover preenche navy/texto branco.
-- WhatsApp: verde sólido só em 3 lugares (botão flutuante, CTA do hero, faixa final). O resto usa o `LinkWhatsApp` (link com ícone, sublinhado no acento e seta, alvo de 44px) e a navbar usa contorno discreto.
+- WhatsApp: verde sólido só em 2 lugares (botão flutuante e CTA do hero). Na faixa final (fundo gold) o botão é **navy com texto branco** e ícone do WhatsApp em gold: é o primário da marca sobre gold e não briga com o amarelo. No mobile o flutuante some enquanto os botões do hero estão na tela, pra não cobrir nenhum CTA. O resto usa o `LinkWhatsApp` (link com ícone, sublinhado no acento e seta, alvo de 44px) e a navbar usa contorno discreto.
 - Todo CTA de WhatsApp carrega o número correto (ver `prd.md`) e mensagem pré-preenchida.
 
 ### Galeria
