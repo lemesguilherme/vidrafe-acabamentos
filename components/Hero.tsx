@@ -19,8 +19,9 @@ import ParallaxFachada from "@/components/ParallaxFachada";
   invisivel (bug que foi pro ar).
 
   Mobile/tablet (ate lg) e mais enxuto pra fachada aparecer em cima: titulo menor,
-  eyebrow sem travessao, subtitulo curto e sem a linha de horario (ela esta na
-  Localizacao). Do lg pra cima a composicao e a de sempre.
+  eyebrow sem marcador e sem a linha de horario (ela esta na Localizacao). O
+  subtitulo e uma frase so, igual em todo tamanho. Do lg pra cima a composicao
+  e a de sempre.
 */
 const ordem = (i: number) => ({ "--i": i }) as CSSProperties;
 
@@ -95,14 +96,10 @@ export default function Hero() {
 
           <p
             style={ordem(2)}
-            className="hero-revelar mt-4 max-w-2xl font-body text-base leading-[1.6] text-white/90 sm:text-lg lg:mt-6 lg:text-white/85"
+            className="hero-revelar mt-4 max-w-2xl font-body text-base leading-[1.6] text-white/90 [text-wrap:pretty] sm:text-lg lg:mt-6 lg:text-white/85"
           >
             Box de banheiro, espelhos, portas de vidro, esquadrias de alumínio,
-            forro PVC e drywall. Aqui você conversa direto com o Joel e o Joel
-            Júnior
-            {/* Uma frase so no DOM (sem copia mobile/desktop pro crawler): no
-                celular o fim some e a frase fecha no ponto. */}
-            <span className="max-lg:hidden">, que são quem põe a mão na obra</span>.
+            forro PVC e drywall. Você fala direto com quem mede e instala.
           </p>
 
           {/* data-hero-ctas: o BotaoFlutuante se esconde no mobile enquanto
