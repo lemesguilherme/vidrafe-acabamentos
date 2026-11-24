@@ -50,16 +50,16 @@ export default function CtaFinal() {
       id="orcamento"
       ref={scope}
       aria-labelledby="cta-final-titulo"
-      className="relative isolate overflow-hidden bg-gold py-20 sm:py-28"
+      className="relative isolate overflow-hidden bg-gold py-16 sm:py-20"
     >
       <Esquadria />
 
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-5 sm:px-8 lg:grid-cols-12 lg:items-end lg:gap-12">
+      <div className="relative mx-auto grid max-w-6xl gap-10 px-5 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-12">
         <div className="cta-final-text lg:col-span-7">
           <span className="cta-final-rule block h-[3px] w-16 origin-left bg-accent-sobreGold" aria-hidden="true" />
           <h2
             id="cta-final-titulo"
-            className="mt-6 font-heading text-[2rem] font-bold leading-[1.1] text-navy sm:text-5xl lg:text-[3.4rem]"
+            className="mt-6 font-heading text-[2rem] font-extrabold leading-[1.08] text-navy sm:text-5xl lg:text-[3.25rem]"
           >
             Manda a medida no WhatsApp que a gente passa o orçamento
           </h2>
@@ -70,7 +70,7 @@ export default function CtaFinal() {
         </div>
 
         {/* flex-col: o botao estica na coluna toda (o GlareHover fixa width: auto inline). */}
-        <div className="cta-final-acao flex flex-col lg:col-span-5">
+        <div className="cta-final-acao flex flex-col lg:col-span-5 lg:col-start-8">
           {/* Sombra e ring ficam no wrapper: o GlareHover corta o que passa da borda. */}
           <CtaBrilho
             focoNavy
