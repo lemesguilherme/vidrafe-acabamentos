@@ -10,11 +10,16 @@ import { waContexto, waLink } from "@/lib/whatsapp";
   Navbar fixa no topo. Transparente sobre o hero e branca solida com sombra
   leve depois de ~24px de scroll. Com o menu mobile aberto ela tambem fica
   solida, para o painel branco nao flutuar sobre o hero escuro.
+
+  `foraDaHome`: em outras paginas (ex.: politica de privacidade) as ancoras
+  viram "/#secao" e nenhum item comeca marcado como atual. O scrollspy nao acha
+  as secoes e fica parado.
 */
-export default function Navbar() {
+export default function Navbar({ foraDaHome = false }: { foraDaHome?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>(navLinks[0].href);
+  const [active, setActive] = useState<string>(foraDaHome ? "" : navLinks[0].href);
+  const base = foraDaHome ? "/" : "";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -61,7 +66,7 @@ export default function Navbar() {
         className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-6 px-5 sm:px-8"
       >
         <a
-          href="#inicio"
+          href={`${base}#inicio`}
           className={`flex items-center gap-3 rounded-md ${
             solid ? "focus-visible:outline-navy" : ""
           }`}
@@ -102,7 +107,7 @@ export default function Navbar() {
             return (
               <li key={link.href}>
                 <a
-                  href={link.href}
+                  href={`${base}${link.href}`}
                   aria-current={current ? "location" : undefined}
                   className={`inline-flex min-h-10 items-center rounded-full px-4 font-body text-[15px] font-semibold transition-colors motion-reduce:transition-none ${estilo} ${
                     solid ? "focus-visible:outline-navy" : ""
@@ -164,7 +169,7 @@ export default function Navbar() {
               return (
                 <li key={link.href}>
                   <a
-                    href={link.href}
+                    href={`${base}${link.href}`}
                     onClick={() => setOpen(false)}
                     aria-current={current ? "location" : undefined}
                     className={`flex min-h-12 items-center rounded-full px-5 font-body text-base font-semibold text-navy transition-colors focus-visible:outline-navy motion-reduce:transition-none ${

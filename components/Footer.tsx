@@ -119,7 +119,7 @@ export default function Footer() {
             <span className="max-sm:hidden" aria-hidden="true"> · </span>
             <span className="max-sm:block"> Todos os direitos reservados</span>
           </p>
-          <a href="/politica-de-privacidade" className={linkClass}>
+          <a href="/politica-de-privacidade/" className={linkClass}>
             Política de Privacidade
           </a>
         </div>
