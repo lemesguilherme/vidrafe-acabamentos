@@ -117,11 +117,15 @@ export default function Navbar() {
             {...waContexto("navbar")}
             target="_blank"
             rel="noopener noreferrer"
-            className={`hidden items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 font-body text-sm font-semibold text-white transition hover:bg-whatsapp-dark active:scale-[0.97] sm:inline-flex ${
-              solid ? "focus-visible:outline-navy" : ""
+            /* Secundario: contorno discreto que limpa o topo. Verde solido
+               fica so no flutuante, no hero e na faixa final. */
+            className={`hidden min-h-11 items-center gap-2 rounded-full border px-5 font-body text-sm font-semibold transition-colors active:scale-[0.97] motion-reduce:transition-none sm:inline-flex ${
+              solid
+                ? "border-navy/20 text-navy hover:border-navy hover:bg-navy/5 focus-visible:outline-navy"
+                : "border-white/40 text-white hover:border-white hover:bg-white/10"
             }`}
           >
-            <FaWhatsapp className="text-lg" aria-hidden="true" />
+            <FaWhatsapp className="text-lg text-whatsapp" aria-hidden="true" />
             Fale no WhatsApp
           </a>
 
@@ -178,9 +182,9 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}
-            className="mt-5 flex items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3.5 font-body font-semibold text-white transition hover:bg-whatsapp-dark active:scale-[0.97] focus-visible:outline-navy"
+            className="mt-5 flex min-h-12 items-center justify-center gap-2 rounded-full border border-navy/20 px-5 font-body font-semibold text-navy transition-colors hover:border-navy hover:bg-navy/5 active:scale-[0.97] focus-visible:outline-navy motion-reduce:transition-none"
           >
-            <FaWhatsapp className="text-xl" aria-hidden="true" />
+            <FaWhatsapp className="text-xl text-whatsapp" aria-hidden="true" />
             Fale no WhatsApp
           </a>
         </div>

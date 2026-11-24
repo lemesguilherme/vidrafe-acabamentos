@@ -5,11 +5,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Camera } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
 import { company, equipe, numeros, waMessages } from "@/data/site";
 import { retratosEquipe } from "@/data/equipe.gerada";
-import { waContexto, waLink } from "@/lib/whatsapp";
-import CtaBrilho from "@/components/CtaBrilho";
+import { waLink } from "@/lib/whatsapp";
+import LinkWhatsApp from "@/components/LinkWhatsApp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -222,21 +221,11 @@ function PessoaBloco({ pessoa, invertido }: { pessoa: Pessoa; invertido: boolean
           </p>
         )}
 
-        {/* flex-col: no celular o CTA estica na largura toda (o GlareHover fixa
-            width: auto inline, entao w-full no wrapper nao funcionaria). */}
-        <div className="mt-7 flex flex-col sm:flex-row">
-          <CtaBrilho focoNavy>
-            <a
-              href={waLink(pessoa.whatsapp, waMessages.default)}
-              {...waContexto(pessoa.contexto)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition hover:bg-whatsapp-dark focus-visible:outline-none active:scale-[0.97] sm:w-auto"
-            >
-              <FaWhatsapp className="text-xl" aria-hidden="true" />
-              {pessoa.cta}
-            </a>
-          </CtaBrilho>
+        {/* CTA secundario (link com seta): verde solido so nos 3 principais. */}
+        <div className="mt-6 flex">
+          <LinkWhatsApp href={waLink(pessoa.whatsapp, waMessages.default)} contexto={pessoa.contexto}>
+            {pessoa.cta}
+          </LinkWhatsApp>
         </div>
       </div>
     </li>

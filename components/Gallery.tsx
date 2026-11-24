@@ -6,7 +6,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ChevronLeft, ChevronRight, Image as ImageIcon, X } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
 import {
   company,
   contacts,
@@ -17,7 +16,8 @@ import {
   type ItemGaleria,
 } from "@/data/site";
 import { fotosGaleria } from "@/data/galeria.gerada";
-import { waContexto, waLink } from "@/lib/whatsapp";
+import { waLink } from "@/lib/whatsapp";
+import LinkWhatsApp from "@/components/LinkWhatsApp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -264,16 +264,9 @@ export default function Gallery() {
         {/* CTA contextual da aba */}
         <div className="mt-10 flex flex-col gap-4 border-l-4 border-gold pl-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-xl font-body text-base text-navy/80">{tabCta[tab].text}</p>
-          <a
-            href={tabCta[tab].href}
-            {...waContexto("galeria")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition-colors hover:bg-whatsapp-dark focus-visible:outline-navy sm:self-auto"
-          >
-            <FaWhatsapp className="text-xl" aria-hidden="true" />
+          <LinkWhatsApp href={tabCta[tab].href} contexto="galeria" className="shrink-0 sm:self-auto">
             {tabCta[tab].label}
-          </a>
+          </LinkWhatsApp>
         </div>
       </div>
 

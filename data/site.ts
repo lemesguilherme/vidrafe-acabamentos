@@ -120,7 +120,7 @@ export const equipe = [
     foto: "/equipe/joel-junior.webp",
     alt: "Retrato do Joel Júnior, responsável por forros e drywall da Vidrafe Acabamentos",
     whatsapp: "junior",
-    cta: "Falar com o Júnior no WhatsApp",
+    cta: "Falar com o Júnior",
     contexto: "sobre_junior",
   },
 ] as const;

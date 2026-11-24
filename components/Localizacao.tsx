@@ -7,8 +7,8 @@ import { useGSAP } from "@gsap/react";
 import { CalendarDays, Store } from "lucide-react";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { company, contacts, waMessages } from "@/data/site";
-import { waContexto, waLink } from "@/lib/whatsapp";
-import CtaBrilho from "@/components/CtaBrilho";
+import { waLink } from "@/lib/whatsapp";
+import LinkWhatsApp from "@/components/LinkWhatsApp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -77,18 +77,12 @@ export default function Localizacao() {
               <p className="mt-1 font-body text-sm text-white/75">
                 Orçamento de vidraçaria, forro e drywall
               </p>
-              <div className="mt-auto flex flex-col pt-6">
-                <CtaBrilho>
-                  <a
-                    href={whatsappHref}
-                    {...external}
-                    {...waContexto("localizacao")}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3 font-body font-semibold text-white transition hover:bg-whatsapp-dark focus-visible:outline-none active:scale-[0.97]"
-                  >
-                    <FaWhatsapp className="text-xl" aria-hidden="true" />
-                    Chamar no WhatsApp
-                  </a>
-                </CtaBrilho>
+              {/* Secundario: o cartao ja mostra o numero e a faixa gold logo
+                  depois tem o CTA forte; aqui e um link integrado ao cartao. */}
+              <div className="mt-auto flex pt-6">
+                <LinkWhatsApp href={whatsappHref} contexto="localizacao" tom="escuro">
+                  Chamar no WhatsApp
+                </LinkWhatsApp>
               </div>
             </Cartao>
           </li>

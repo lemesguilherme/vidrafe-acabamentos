@@ -16,10 +16,9 @@ import {
   Umbrella,
   type LucideIcon,
 } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
 import { areaResponsavel, contacts, servicos, waMessages, type AreaServico } from "@/data/site";
-import { waContexto, waLink, type WaContexto } from "@/lib/whatsapp";
-import CtaBrilho from "@/components/CtaBrilho";
+import { waLink, type WaContexto } from "@/lib/whatsapp";
+import LinkWhatsApp from "@/components/LinkWhatsApp";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -140,20 +139,11 @@ function Frente({
             Quem mede e instala é o {responsavel}.
           </p>
         </div>
-        {/* flex-col: no celular o CTA estica (o GlareHover fixa width: auto inline). */}
-        <div className="mt-6 flex flex-col sm:flex-row">
-          <CtaBrilho focoNavy>
-            <a
-              href={waLink("junior", waMessages.default)}
-              {...waContexto(contexto)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 font-body font-semibold text-white transition hover:bg-whatsapp-dark focus-visible:outline-none active:scale-[0.97] sm:w-auto"
-            >
-              <FaWhatsapp className="text-xl" aria-hidden="true" />
-              Pedir orçamento pelo WhatsApp
-            </a>
-          </CtaBrilho>
+        {/* CTA secundario (link com seta): verde solido so nos 3 principais. */}
+        <div className="mt-5 flex">
+          <LinkWhatsApp href={waLink("junior", waMessages.default)} contexto={contexto}>
+            Pedir orçamento
+          </LinkWhatsApp>
         </div>
       </div>
 
