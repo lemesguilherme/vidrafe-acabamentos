@@ -18,7 +18,7 @@ import ParallaxFachada from "@/components/ParallaxFachada";
   (hover e active:scale) e animar o mesmo elemento ja deixou botao preso
   invisivel (bug que foi pro ar).
 
-  Mobile/tablet (ate lg) e mais enxuto pra fachada aparecer: titulo menor,
+  Mobile/tablet (ate lg) e mais enxuto pra fachada aparecer em cima: titulo menor,
   eyebrow sem travessao, subtitulo curto e sem a linha de horario (ela esta na
   Localizacao). Do lg pra cima a composicao e a de sempre.
 */
@@ -30,15 +30,18 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative isolate flex min-h-screen items-end overflow-hidden bg-navy lg:items-center"
+      className="relative isolate flex min-h-screen items-end overflow-hidden bg-navy max-lg:flex-col max-lg:items-stretch lg:items-center"
     >
       {/* Foto da fachada (public/fachada-vidrafe.webp, 1280x1707, gerada por npm run midia
-          a partir de midia/originais/fachada-vidrafe.jpeg), que e vertical 3:4.
-          Ate lg: fundo cheio atras do texto. A partir de lg: lado direito, onde a
-          proporcao vertical encaixa sem cortar so o meio da fachada. A foto comeca
-          um pouco sob o fim da coluna de texto e a mascara faz ela surgir do navy
-          do section aos poucos, sem emenda seca entre os dois lados. */}
-      <div className="absolute inset-0 -z-20 lg:left-auto lg:w-[55%] lg:[mask-image:linear-gradient(to_right,transparent,rgba(0,0,0,0.2)_15%,rgba(0,0,0,0.65)_30%,rgba(0,0,0,0.92)_42%,#000_52%)]">
+          a partir de midia/originais/fachada-vidrafe.jpeg), que e vertical 3:4, com o
+          terco de cima so de ceu.
+          Ate lg: bloco no fluxo, em cima do texto, ocupando o que sobra da tela
+          (flex-1). Enquadra telhado, placa e porta, e o pe se funde no navy onde o
+          texto comeca. A partir de lg: lado direito, absoluto, onde a proporcao
+          vertical encaixa sem cortar so o meio da fachada. A foto comeca um pouco
+          sob o fim da coluna de texto e a mascara faz ela surgir do navy do section
+          aos poucos, sem emenda seca entre os dois lados. */}
+      <div className="absolute inset-0 -z-20 max-lg:relative max-lg:inset-auto max-lg:min-h-[30vh] max-lg:flex-1 lg:left-auto lg:w-[55%] lg:[mask-image:linear-gradient(to_right,transparent,rgba(0,0,0,0.2)_15%,rgba(0,0,0,0.65)_30%,rgba(0,0,0,0.92)_42%,#000_52%)]">
         <ParallaxFachada>
           <img
             src="/fachada-vidrafe.webp"
@@ -46,10 +49,16 @@ export default function Hero() {
             width={1280}
             height={1707}
             fetchPriority="high"
-            className="absolute inset-0 h-full w-full object-cover object-[78%_50%] lg:object-[50%_70%]"
+            className="absolute inset-0 h-full w-full object-cover object-[72%_50%] lg:object-[50%_70%]"
           />
         </ParallaxFachada>
 
+        {/* Mobile/tablet: um pouco de navy no topo (navbar legivel) e o pe da
+            foto fundindo no navy, sem emenda, onde o texto comeca. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 -bottom-px top-0 bg-[linear-gradient(to_bottom,rgba(27,42,74,0.55)_0px,rgba(27,42,74,0)_96px,rgba(27,42,74,0)_55%,rgba(27,42,74,0.8)_85%,#1B2A4A_100%)] lg:hidden"
+        />
         {/* Desktop: veu navy no topo, pra navbar ficar legivel sobre o ceu. */}
         <div
           aria-hidden="true"
@@ -64,23 +73,10 @@ export default function Hero() {
         />
       </div>
 
-      {/* Mobile/tablet: a foto fica atras de tudo e o veu geral e leve (um
-          pouco mais de navy no topo, pra navbar), pra fachada aparecer. */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,rgba(27,42,74,0.6)_0%,rgba(27,42,74,0.25)_18%,rgba(27,42,74,0.3)_100%)] lg:hidden"
-      />
-
       {/* No desktop o texto segue alinhado ao container da navbar (max-w-6xl) e
-          a largura para antes da foto: 55vw menos a margem do container e um respiro. */}
-      <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-32 sm:px-8 sm:pb-20 lg:pb-20 lg:pt-28">
-        {/* Mobile/tablet: o escuro mora so atras do bloco de texto. Acompanha a
-            altura do texto em qualquer tela: some aos poucos acima do eyebrow e
-            fica navy firme do eyebrow pra baixo (contraste AA do eyebrow gold). */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 top-6 -z-10 bg-[linear-gradient(to_bottom,rgba(27,42,74,0)_0px,rgba(27,42,74,0.86)_96px,rgba(27,42,74,0.92)_100%)] lg:hidden"
-        />
+          a largura para antes da foto: 55vw menos a margem do container e um respiro.
+          Ate lg o texto fica sobre o navy, logo abaixo da foto (pt curto). */}
+      <div className="mx-auto w-full max-w-6xl px-5 pb-12 pt-6 sm:px-8 sm:pb-16 sm:pt-8 lg:pb-20 lg:pt-28">
         <div className="max-w-3xl lg:max-w-[calc(55vw-max(2rem,calc((100vw-72rem)/2+2rem))-2rem)]">
           <p
             style={ordem(0)}
@@ -92,7 +88,7 @@ export default function Hero() {
 
           <h1
             style={ordem(1)}
-            className="hero-revelar mt-4 font-heading text-[1.9rem] font-bold leading-[1.1] text-white sm:text-[2.6rem] sm:leading-none lg:mt-5 lg:text-[2.85rem] xl:text-[3.4rem]"
+            className="hero-revelar mt-4 font-heading text-[clamp(1.6rem,7.5vw,1.9rem)] font-bold leading-[1.1] text-white sm:text-[2.6rem] sm:leading-none lg:mt-5 lg:text-[2.85rem] xl:text-[3.4rem]"
           >
             {TITULO} <span className="text-gold">{company.city}</span>
           </h1>
