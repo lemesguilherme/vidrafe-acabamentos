@@ -41,6 +41,29 @@
 }
 
 /*
+  Hero (components/Hero.tsx): reveal escalonado em CSS puro. Cada bloco leva
+  --i (0, 1, 2...) e entra 90ms depois do anterior, subindo 16px. Sem JS: o
+  texto e o LCP ja estao no HTML e nada pisca na hidratacao.
+*/
+@keyframes hero-revelar {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hero-revelar {
+  animation: hero-revelar 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(80ms + var(--i, 0) * 90ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-revelar { animation: none; }
+}
+
+/*
   Galeria (components/GaleriaCoverflow.tsx): cards do lado esmaecidos, o do
   centro aceso. O Swiper controla a duracao inline; aqui so entra a opacity
   junto do transform que ele ja anima.
