@@ -118,7 +118,7 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             /* Secundario: contorno discreto que limpa o topo. Verde solido
-               fica so no flutuante, no hero e na faixa final. */
+               fica so no flutuante e no hero. */
             className={`hidden min-h-11 items-center gap-2 rounded-full border px-5 font-body text-sm font-semibold transition-colors active:scale-[0.97] motion-reduce:transition-none sm:inline-flex ${
               solid
                 ? "border-navy/20 text-navy hover:border-navy hover:bg-navy/5 focus-visible:outline-navy"

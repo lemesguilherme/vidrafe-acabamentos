@@ -4,7 +4,7 @@ import { waContexto, type WaContexto } from "@/lib/whatsapp";
 
 /*
   CTA SECUNDARIO de WhatsApp: link com seta, nao botao verde.
-  Verde solido fica so nos 3 principais (botao flutuante, hero e faixa final);
+  Verde solido fica so no botao flutuante e no hero (a faixa final e navy);
   o resto (Sobre, Servicos, Galeria, Localizacao) usa este link, pra nao
   competir com eles. Destino e mensagem continuam os mesmos (href do waLink,
   sempre o 4453) e o contexto de rastreamento tambem.
