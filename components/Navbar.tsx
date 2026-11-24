@@ -83,28 +83,32 @@ export default function Navbar() {
           </span>
         </a>
 
-        <ul className="hidden items-center gap-7 lg:flex">
+        {/*
+          Links em pill, no mesmo idioma dos chips da galeria e dos CTAs: fundo
+          arredondado tenue so no hover e na secao atual, sem borda nem sombra.
+          Sobre o hero (navy): hover branco/10 e atual branco/10 com texto gold.
+          Na barra branca: hover navy/5 e atual gold/25 com texto navy.
+        */}
+        <ul className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => {
             const current = active === link.href;
+            const estilo = solid
+              ? current
+                ? "bg-gold/25 text-navy"
+                : "text-navy hover:bg-navy/5"
+              : current
+                ? "bg-white/10 text-gold"
+                : "text-white hover:bg-white/10";
             return (
               <li key={link.href}>
                 <a
                   href={link.href}
                   aria-current={current ? "location" : undefined}
-                  className={`relative py-2 font-body text-[15px] font-semibold transition-colors hover:text-gold motion-reduce:transition-none ${
-                    solid
-                      ? "text-navy focus-visible:outline-navy"
-                      : "text-white"
+                  className={`inline-flex min-h-10 items-center rounded-full px-4 font-body text-[15px] font-semibold transition-colors motion-reduce:transition-none ${estilo} ${
+                    solid ? "focus-visible:outline-navy" : ""
                   }`}
                 >
                   {link.label}
-                  {/* Underline da secao atual: accent no fundo branco, gold sobre o hero. */}
-                  <span
-                    aria-hidden="true"
-                    className={`absolute inset-x-0 -bottom-0.5 h-[3px] rounded-full transition-opacity motion-reduce:transition-none ${
-                      solid ? "bg-accent" : "bg-gold"
-                    } ${current ? "opacity-100" : "opacity-0"}`}
-                  />
                 </a>
               </li>
             );
@@ -153,7 +157,8 @@ export default function Navbar() {
           id="menu-mobile"
           className="border-t border-navy/10 bg-white px-5 pb-6 pt-2 sm:px-8 lg:hidden"
         >
-          <ul className="flex flex-col">
+          {/* Mesmo pill do desktop na barra branca: atual gold/25, hover navy/5. */}
+          <ul className="flex flex-col gap-1">
             {navLinks.map((link) => {
               const current = active === link.href;
               return (
@@ -162,14 +167,10 @@ export default function Navbar() {
                     href={link.href}
                     onClick={() => setOpen(false)}
                     aria-current={current ? "location" : undefined}
-                    className={`flex items-center gap-3 border-b border-navy/10 py-3.5 font-body text-base font-semibold transition-colors hover:text-accent focus-visible:outline-navy motion-reduce:transition-none ${
-                      current ? "text-accent" : "text-navy"
+                    className={`flex min-h-12 items-center rounded-full px-5 font-body text-base font-semibold text-navy transition-colors focus-visible:outline-navy motion-reduce:transition-none ${
+                      current ? "bg-gold/25" : "hover:bg-navy/5"
                     }`}
                   >
-                    <span
-                      aria-hidden="true"
-                      className={`h-4 w-[3px] rounded-full ${current ? "bg-accent" : "bg-transparent"}`}
-                    />
                     {link.label}
                   </a>
                 </li>

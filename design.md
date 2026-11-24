@@ -83,14 +83,15 @@ O que faz um site **não** parecer IA:
 
 ### Navbar
 - Sticky, fundo navy ou branco com leve sombra ao rolar.
-- Logo à esquerda, links ao centro/direita, CTA pill gold à direita.
-- Mobile: hambúrguer com menu colapsável, CTA sempre visível.
+- Logo à esquerda, links ao centro/direita, CTA de WhatsApp em contorno à direita.
+- Links em pill sutil (mesmo idioma dos chips da galeria): fundo arredondado só no hover e na seção atual, sem borda nem sombra. Sobre o hero: hover branco/10, atual branco/10 com texto gold. Na barra branca: hover navy/5, atual gold/25 com texto navy.
+- Mobile: hambúrguer com menu colapsável, itens no mesmo pill (alvo de 48px), CTA sempre visível.
 
 ### Hero
 - Altura quase cheia, foto da fachada ao fundo com overlay navy/escuro (gradiente de legibilidade, não decorativo).
 - Headline Archivo grande, cidade em gold.
 - Dois CTAs: primário (gold, FaWhatsapp) e secundário (contorno, âncora na galeria).
-- Mobile/tablet (até `lg`) mais enxuto: título menor, eyebrow sem travessão, subtítulo curto, sem a linha de horário (fica na Localização) e véu escuro só atrás do bloco de texto, pra fachada aparecer. Do `lg` pra cima a composição não muda.
+- Mobile/tablet (até `lg`): a foto é um bloco em cima (telhado, placa e porta, ocupando o que sobra da tela) que se funde no navy, e o texto vem embaixo sobre o navy. Título fluido, eyebrow sem travessão, subtítulo curto, sem a linha de horário (fica na Localização). Tudo com `max-lg:`; do `lg` pra cima a composição não muda.
 - Parallax sutil só na foto de fundo, no desktop (12% do scroll, GSAP ScrollTrigger em `components/ParallaxFachada.tsx`, sem reduced-motion). Desligar = `PARALLAX_FACHADA = false`.
 
 ### Cards de serviço
