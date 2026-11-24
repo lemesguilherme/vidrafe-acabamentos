@@ -38,7 +38,7 @@ export default function PoliticaDePrivacidade() {
               height={44}
               className="h-11 w-11 rounded-md object-cover"
             />
-            <span className="font-heading text-xl font-bold text-navy">
+            <span className="font-heading text-xl font-extrabold tracking-tight text-navy">
               {company.shortName}
             </span>
           </a>

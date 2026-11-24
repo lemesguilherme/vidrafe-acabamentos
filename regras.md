@@ -10,7 +10,7 @@
 - **Tailwind CSS** (tokens de cor da marca no `tailwind.config`)
 - **GSAP ScrollTrigger** (classes específicas, `gsap.context` com cleanup)
 - **Lucide React** (ícones de serviço) + **react-icons** (`FaWhatsapp`, `FaInstagram`)
-- **Google Fonts**: Playfair Display + Inter
+- **Google Fonts**: Archivo (títulos) + Inter (corpo)
 - **Deploy**: Vercel — root directory = pasta onde está o `package.json`
 - **Repo**: `https://github.com/lemesguilherme/vidrafe-acabamentos`
 

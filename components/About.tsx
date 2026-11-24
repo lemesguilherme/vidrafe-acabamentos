@@ -244,7 +244,7 @@ function PessoaBloco({ pessoa, invertido }: { pessoa: Pessoa; invertido: boolean
 
 /*
   Retrato placeholder no recorte final (4:5), em P&B: iniciais grandes em
-  Playfair e o aviso "foto em breve". Quando a foto entra (npm run equipe), o
+  fonte de titulo e o aviso "foto em breve". Quando a foto entra (npm run equipe), o
   img ocupa exatamente o mesmo espaco, sem pular.
 */
 function RetratoEmBreve({ nome }: { nome: string }) {

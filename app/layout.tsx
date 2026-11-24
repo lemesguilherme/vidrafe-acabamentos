@@ -1,15 +1,19 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Archivo, Inter } from "next/font/google";
 import "./globals.css";
 import { company, contacts, ogImage } from "@/data/site";
 import WhatsAppTracking from "@/components/WhatsAppTracking";
 
-// Fontes via next/font (ver design.md): Playfair para titulos, Inter para corpo.
-const playfair = Playfair_Display({
+/*
+  Fontes via next/font (ver design.md): Archivo nos titulos, Inter no corpo.
+  Trocar a fonte dos titulos = trocar o construtor abaixo; o resto do site so
+  conhece a variavel --font-heading (token font-heading no tailwind.config.ts).
+*/
+const heading = Archivo({
   subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-playfair",
+  weight: ["600", "700", "800"],
+  variable: "--font-heading",
   display: "swap",
 });
 
@@ -109,7 +113,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="pt-BR" className={`${heading.variable} ${inter.variable}`}>
       <head>
         {/* Fontes ja vem do proprio site via next/font; so o mapa e externo. */}
         <link rel="preconnect" href="https://www.google.com" />

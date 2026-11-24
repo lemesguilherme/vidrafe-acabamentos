@@ -27,7 +27,7 @@ const config: Config = {
       },
       fontFamily: {
         // Variaveis injetadas pelo next/font no layout.
-        heading: ["var(--font-playfair)", "Georgia", "serif"],
+        heading: ["var(--font-heading)", "system-ui", "sans-serif"],
         body: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
     },

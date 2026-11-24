@@ -24,7 +24,7 @@ export default function NotFound() {
               height={48}
               className="h-12 w-12 rounded-md object-cover"
             />
-            <span className="font-heading text-2xl font-bold text-navy">
+            <span className="font-heading text-2xl font-extrabold tracking-tight text-navy">
               {company.shortName}
             </span>
           </a>

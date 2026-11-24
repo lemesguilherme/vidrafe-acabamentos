@@ -12,7 +12,7 @@ Site no ar: **https://vidrafe-acabamentos.vercel.app**
 - **GSAP** + **@gsap/react** (`useGSAP` e ScrollTrigger) para as animações de entrada
 - **lucide-react** para os ícones de serviços, diferenciais e interface
 - **react-icons** para os ícones de marca (`FaWhatsapp`, `FaInstagram`)
-- **Google Fonts** via `next/font`: Playfair Display (títulos) e Inter (texto)
+- **Google Fonts** via `next/font`: Archivo (títulos) e Inter (texto)
 - **sharp** (dev) para gerar favicon, apple-icon e imagem Open Graph
 - Deploy na **Vercel**
 

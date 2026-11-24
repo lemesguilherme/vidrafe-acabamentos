@@ -87,7 +87,7 @@ export default function Faq() {
                       onClick={() => setAberta(estaAberta ? null : i)}
                       className="group flex w-full items-start gap-4 py-5 text-left focus-visible:outline-navy sm:gap-6"
                     >
-                      {/* Numero em Playfair com lining-nums (senao a fonte desenha "o1"). */}
+                      {/* Numero na fonte de titulo, com lining-nums e tabular-nums pra alinhar. */}
                       <span
                         className={`w-9 shrink-0 pt-0.5 font-heading text-base lining-nums tabular-nums transition-colors motion-reduce:transition-none sm:w-12 sm:text-lg ${
                           estaAberta ? "text-brick" : "text-navy/70"

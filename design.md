@@ -35,7 +35,7 @@ Dark       #111827   Footer
 
 | Uso | Fonte | Observação |
 |---|---|---|
-| Headings | Playfair Display (serif) | Reflete a serifa da logo. Peso 600/700. |
+| Headings | Archivo (sans grotesca) | Robusta, com cara de letreiro de obra. Peso 600/700/800, tracking levemente fechado. Token `font-heading` (trocar a fonte = 1 linha no `app/layout.tsx`). |
 | Corpo | Inter (sans-serif) | Limpa e legível. Peso 400/500. |
 
 - `text-wrap: balance` nos headings.
@@ -87,7 +87,7 @@ O que faz um site **não** parecer IA:
 
 ### Hero
 - Altura quase cheia, foto da fachada ao fundo com overlay navy/escuro (gradiente de legibilidade, não decorativo).
-- Headline Playfair grande, cidade em gold.
+- Headline Archivo grande, cidade em gold.
 - Dois CTAs: primário (gold, FaWhatsapp) e secundário (contorno, âncora na galeria).
 
 ### Cards de serviço

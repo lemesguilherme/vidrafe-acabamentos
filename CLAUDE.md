@@ -25,7 +25,7 @@ Estes três arquivos são a fonte da verdade. Consulte-os antes de qualquer alte
 - TypeScript
 - GSAP ScrollTrigger (animações; classes CSS específicas, `gsap.context` com cleanup)
 - lucide-react (ícones de serviço) + react-icons (`FaWhatsapp`, `FaInstagram`)
-- Google Fonts: Playfair Display (títulos) + Inter (corpo), via `next/font`
+- Google Fonts: Archivo (títulos) + Inter (corpo), via `next/font`
 - Deploy: Vercel
 
 ## Regras inegociáveis (resumo — detalhe em regras.md e design.md)

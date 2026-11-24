@@ -17,12 +17,14 @@
     @apply bg-white text-navy font-body antialiased;
   }
 
-  /* Headings herdam apenas a familia serif e o balanceamento de linha. */
+  /* Headings herdam apenas a familia (sans de titulo), um tracking levemente
+     fechado e o balanceamento de linha. Cor nunca. */
   h1,
   h2,
   h3,
   h4 {
     @apply font-heading;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
 

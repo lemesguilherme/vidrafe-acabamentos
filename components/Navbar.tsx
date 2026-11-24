@@ -75,7 +75,7 @@ export default function Navbar() {
             className="h-12 w-12 rounded-md object-cover sm:h-14 sm:w-14"
           />
           <span
-            className={`font-heading text-2xl font-bold transition-colors ${
+            className={`font-heading text-2xl font-extrabold tracking-tight transition-colors ${
               solid ? "text-navy" : "text-white"
             }`}
           >
