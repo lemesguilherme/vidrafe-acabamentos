@@ -33,7 +33,7 @@ Estes três arquivos são a fonte da verdade. Consulte-os antes de qualquer alte
 - **Sem cara de IA e sem conteúdo genérico.** Nada de "soluções inovadoras", "excelência comprovada", simetria perfeita, gradientes ou shapes decorativos sem propósito.
 - **Zero emojis** em qualquer lugar: código, copy, UI, commits.
 - **Copy** direta, regional e humana. Sem travessões em excesso, sem frases paralelas, no máximo 2 eyebrows em CAPS no site todo. Sempre citar serviços concretos.
-- **Cores exatas da logo**: navy `#1B2A4A`, gold `#FFD700`, vermelho `#8B1A1A`, off-white `#F5F5F0`, dark `#111827`. Gold e vermelho precisam aparecer. Nunca navy sobre navy.
+- **Cores exatas da logo**: navy `#1B2A4A`, gold `#FFD700`, vermelho `#8B1A1A`, off-white `#F5F5F0`, dark `#111827`. Gold precisa aparecer; o acento da UI é gold (token `accent`) e o vermelho fica só na logo. Nunca navy sobre navy.
 - **Roteamento de WhatsApp unificado.** Todos os botões e links de WhatsApp do site vão para o Joel Júnior (4453) com a mensagem padrão, por decisão do cliente (Fase 12). O número do Joel (8056) não é mais usado em nenhum botão. Não "consertar" isso de volta para a divisão por profissional. Todo link `wa.me` leva mensagem pré-preenchida — use o helper `lib/whatsapp.ts`.
 - **GSAP** por classe específica (`.hero-title`), nunca seletor global; sempre `ctx.revert()` no cleanup (React 19).
 - **Sem CSS global** sobrescrevendo Tailwind. Sem dependência instalada e não usada.

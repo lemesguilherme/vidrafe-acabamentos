@@ -15,7 +15,8 @@ A marca vem da logo: casa em silhueta navy sobre fundo amarelo, janelas em verme
 ```
 Navy       #1B2A4A   Principal — textos, navbar, footer, CTAs, títulos
 Gold       #FFD700   Destaque — badges, hovers, detalhes sobre fundo escuro, cidade no hero
-Vermelho   #8B1A1A   Acento — linhas e detalhes decorativos (como na logo)
+Vermelho   #8B1A1A   Só na logo (desde a virada de UI, o acento da interface é gold)
+Gold esc.  #856500   Acento em fundo claro (token `accent`, AA 5.44:1 no branco)
 Off-white  #F5F5F0   Background alternado entre seções
 Branco     #FFFFFF   Cards e superfícies
 Dark       #111827   Footer
@@ -25,9 +26,9 @@ Dark       #111827   Footer
 
 - **Navy é a cor-base.** Texto principal, títulos, barras. Nunca navy sobre navy (foi bug na v1: título sumiu).
 - **Gold é destaque, não fundo de texto longo.** Serve para o nome da cidade no hero, badges, estado hover, ícone do WhatsApp na navbar. Texto sobre gold é sempre navy.
-- **Vermelho é tempero.** Linhas finas, detalhe sob um título, underline de aba ativa. Lembra a linha vermelha da logo. Não vira cor de botão nem bloco grande.
+- **Acento é gold (token `accent`).** Linhas finas sob títulos, números do FAQ, etiquetas, underline de aba ativa. Em fundo claro usa o gold escuro `#856500` (`accent`), em fundo navy o gold puro (`accent-escuro`) e na faixa gold vira navy (`accent-sobreGold`). Voltar pro vermelho é trocar `ACENTO` no `tailwind.config.ts`. O vermelho fica na logo.
 - **Contraste sempre conferido.** CTA de serviço não pode ser navy sobre off-white de baixo contraste (foi erro de CRO na v1). Botão primário: fundo gold + texto navy, ou fundo navy + texto branco.
-- A marca tem que **aparecer**. Na v1 ficou navy + cinza e o gold/vermelho quase sumiram. Aqui gold e vermelho são visíveis e intencionais.
+- A marca tem que **aparecer**. Na v1 ficou navy + cinza e o gold/vermelho quase sumiram. Aqui navy e gold são visíveis e intencionais.
 
 ---
 
@@ -49,7 +50,7 @@ Dark       #111827   Footer
 O que faz um site **não** parecer IA:
 
 1. **Assimetria proposital.** Nem tudo centralizado e espelhado. Blocos de serviço podem ter pesos diferentes; o "Sobre" pode ter foto de um lado e texto do outro sem simetria perfeita.
-2. **Decoração só com propósito.** Nenhum shape geométrico flutuando no hero. Nenhum gradiente decorativo sem função. O detalhe vermelho existe porque está na logo, não porque "preenche".
+2. **Decoração só com propósito.** Nenhum shape geométrico flutuando no hero. Nenhum gradiente decorativo sem função. O detalhe gold existe porque está na logo, não porque "preenche".
 3. **Sombra com parcimônia.** Sombra só onde há elevação real (card sobre fundo, lightbox, botão flutuante). Não em todo elemento.
 4. **Raio de borda contido.** Cantos levemente arredondados (4–8px em cards, pill só nos botões de CTA). Nada de `rounded-3xl` em tudo.
 5. **Respiro.** Espaçamento generoso entre seções. Densidade confortável, não apertada nem vazia demais.
@@ -97,10 +98,11 @@ O que faz um site **não** parecer IA:
 ### Botões / CTA
 - Primário: pill, fundo gold, texto navy, ícone FaWhatsapp, hover escurece levemente o gold.
 - Secundário: contorno navy, texto navy, hover preenche navy/texto branco.
+- WhatsApp: verde sólido só em 3 lugares (botão flutuante, CTA do hero, faixa final). O resto usa o `LinkWhatsApp` (link com ícone, sublinhado no acento e seta, alvo de 44px) e a navbar usa contorno discreto.
 - Todo CTA de WhatsApp carrega o número correto (ver `prd.md`) e mensagem pré-preenchida.
 
 ### Galeria
-- Abas no topo (duas), underline vermelho na aba ativa.
+- Abas no topo (duas), underline de acento na aba ativa.
 - Chips de filtro por categoria (sem "Todos"), primeira ativa por padrão.
 - Grid responsivo de fotos, hover com leve zoom, clique abre lightbox.
 - Placeholder por categoria com cor distinta enquanto não há foto.
@@ -153,6 +155,6 @@ O que faz um site **não** parecer IA:
 - Sem sombra pesada em todo elemento.
 - Sem border-radius exagerado em tudo.
 - Sem ícones parecendo emoji e sem repetir ícone entre seções.
-- Sem subutilizar as cores: gold e vermelho precisam aparecer.
+- Sem subutilizar as cores: navy e gold precisam aparecer.
 - Sem placeholders todos iguais na galeria (cor por categoria).
 - Sem CSS global sobrescrevendo Tailwind (navy sobre navy = invisível).

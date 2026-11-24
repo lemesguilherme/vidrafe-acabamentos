@@ -62,7 +62,7 @@ Tom: direto, confiável, regional, humano. Como um profissional de confiança fa
 ## 5. Regras de marca
 
 - Cores exatas do `design.md`, sem improviso de tonalidade.
-- Gold e vermelho precisam estar visíveis e com propósito.
+- Navy e gold precisam estar visíveis e com propósito (acento da UI em gold, token `accent`; vermelho só na logo).
 - Ícones Lucide, nunca emoji, nunca repetidos entre seções.
 - Logo real na navbar, footer e favicon.
 
@@ -118,7 +118,7 @@ Tom: direto, confiável, regional, humano. Como um profissional de confiança fa
 
 - [ ] Nenhum emoji no código nem na copy.
 - [ ] Nenhum travessão em excesso; copy soa regional e humana.
-- [ ] Cores corretas; gold e vermelho visíveis.
+- [ ] Cores corretas; gold visível e acento AA no fundo (`accent` no claro, `accent-escuro` no navy).
 - [ ] Ícones Lucide, sem repetição entre seções.
 - [ ] CTAs apontam pro número certo, com mensagem pré-preenchida.
 - [ ] Contraste conferido em todos os CTAs e títulos.
